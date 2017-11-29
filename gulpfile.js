@@ -1,21 +1,19 @@
 'use strict';
 
 const gulp        = require('gulp');
+const sass        = require('gulp-sass');
 const browserSync = require('browser-sync');
 const reload      = browserSync.reload;
 const nodemon     = require('gulp-nodemon');
 
 
-gulp.task('default', ['browser-sync'], function () {
-});
 
 gulp.task('nodemon', function (cb) {
 
   var started = false;
 
   return nodemon({
-    script : './bin/www',
-    nodeArgs : ['--inspect']
+    script : './bin/www'
   }).on('start', function () {
     if (!started) {
       cb();
@@ -25,6 +23,7 @@ gulp.task('nodemon', function (cb) {
 });
 
 gulp.task('browser-sync', ['nodemon'], function() {
+
   browserSync.init(null, {
     proxy: "http://localhost:3000",
     files: ["public/**/*.*"],
@@ -33,8 +32,20 @@ gulp.task('browser-sync', ['nodemon'], function() {
   });
 });
 
-gulp.task('watch', function () {
-  gulp.watch('./public/**/*.*').on('change', reload);
+gulp.task('sass', function () {
+  return gulp.src('./sass/main.scss')
+    .pipe(sass({
+      errLogToConsole : true,
+      sourceComments : true,
+    }).on('error', sass.logError))
+    .pipe(gulp.dest('./public/stylesheets'))
+    .pipe(reload({ stream : true }));
 });
 
-gulp.task('default', ['watch', 'browser-sync']);
+gulp.task('watch', function () {
+  gulp.watch('./sass/**/*.sass', ['sass']);
+  gulp.watch('./public/stylesheets/main.css').on('change', reload);
+  // gulp.watch('./views/*.*').on('change', reload);
+});
+
+gulp.task('default', ['watch', 'sass', 'browser-sync']);
