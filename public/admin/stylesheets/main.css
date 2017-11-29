@@ -1,4 +1,4 @@
-/* line 5, sass/1-base/main.sass */
+/* line 5, sass/admin/1-base/main.sass */
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -7,12 +7,12 @@
   -ms-user-select: none;
   user-select: none; }
 
-/* line 13, sass/1-base/main.sass */
+/* line 13, sass/admin/1-base/main.sass */
 html, body {
   margin: 0;
   padding: 0; }
 
-/* line 17, sass/1-base/main.sass */
+/* line 17, sass/admin/1-base/main.sass */
 body {
   font-family: Arial;
   color: #333;

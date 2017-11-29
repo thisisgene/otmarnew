@@ -26,7 +26,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
 
   browserSync.init(null, {
     proxy: "http://localhost:3000",
-    files: ["public/**/*.*"],
+    files: ["views/*.pug", "views/admin/*.pug"],
     browser: "google chrome",
     port: 7000
   });
@@ -42,10 +42,19 @@ gulp.task('sass', function () {
     .pipe(reload({ stream : true }));
 });
 
-gulp.task('watch', function () {
-  gulp.watch('./sass/**/*.sass', ['sass']);
-  gulp.watch('./public/stylesheets/main.css').on('change', reload);
-  // gulp.watch('./views/*.*').on('change', reload);
+gulp.task('sass-admin', function () {
+  return gulp.src('./sass/admin/main.scss')
+    .pipe(sass({
+      errLogToConsole : true,
+      sourceComments : true,
+    }).on('error', sass.logError))
+    .pipe(gulp.dest('./public/admin/stylesheets'))
+    .pipe(reload({ stream : true }));
 });
 
-gulp.task('default', ['watch', 'sass', 'browser-sync']);
+gulp.task('watch', function () {
+  gulp.watch('./sass/*/*.sass', ['sass']);
+  gulp.watch('./sass/admin/*/*.sass', ['sass-admin']);
+});
+
+gulp.task('default', ['watch', 'sass', 'sass-admin', 'browser-sync']);
