@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var session = require('express-session');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin/index')
@@ -12,6 +14,9 @@ var admin = require('./routes/admin/index')
 var app = express();
 
 // require('./models/user');
+
+app.enable('trust proxy');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,10 +29,41 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
+}));
+
+function checkAuth(req, res, next) {
+  if (!req.session.user_id) {
+    res.redirect("/login");
+    console.log(req.session);
+  } else {
+    next();
+  }
+}
+
+app.all("/admin", checkAuth);
+app.all("/admin/*", checkAuth);
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);
+
+app.post('/login/authenticate', function (req, res) {
+  var post = req.body;
+  console.log(post.uname, post.upass);
+  if (post.uname == 'admin' && post.upass == 'otmar') {
+    req.session.user_id = "admin";
+    console.log('right', req.session);
+    res.redirect('/admin');
+  } else {
+    console.log('wrong');
+    res.redirect('/login');
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
