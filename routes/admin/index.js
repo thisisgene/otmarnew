@@ -7,3 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+router.post('/login', function(req, res) {
+  var user = req.body.uname;
+  var pass = req.body.upass;
+  console.log(user, pass);
+});

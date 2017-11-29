@@ -11,6 +11,8 @@ var admin = require('./routes/admin/index')
 
 var app = express();
 
+// require('./models/user');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

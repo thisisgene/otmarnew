@@ -13,7 +13,8 @@ gulp.task('nodemon', function (cb) {
   var started = false;
 
   return nodemon({
-    script : './bin/www'
+    script : './bin/www',
+    nodeArgs : ['--inspect']
   }).on('start', function () {
     if (!started) {
       cb();
