@@ -1,0 +1,36 @@
+.left-container
+  h1.slim-title MENÜPUNKTE
+  .project-form
+    form(action='/create_project', method='post').form
+      .form-item
+        //label Neues Projekt erstellen
+        .append.w100
+          input(type='text', name='project')
+          button.button.outline Go
+
+  .project-table
+    table.unstyled
+      tr
+        td.w60
+          p.upper.small Project 1
+        td.w20
+          .smaller
+            a(href='#') edit
+        td.w20
+          .smaller
+            a(href='#') delete
+        td.w20
+          .smaller
+            a(href='#') +
+      tr
+        td.w60
+          p.upper.small Project 2
+        td.w20
+          .smaller
+            a(href='#') edit
+        td.w20
+          .smaller
+            a(href='#') delete
+        td.w20
+          .smaller
+            a(href='#') +

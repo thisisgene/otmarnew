@@ -1,4 +1,5 @@
-/* line 5, sass/admin/1-base/main.sass */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
+/* line 3, sass/admin/1-base/main.sass */
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -7,13 +8,41 @@
   -ms-user-select: none;
   user-select: none; }
 
-/* line 13, sass/admin/1-base/main.sass */
+/* line 11, sass/admin/1-base/main.sass */
 html, body {
   margin: 0;
   padding: 0; }
 
-/* line 17, sass/admin/1-base/main.sass */
+/* line 15, sass/admin/1-base/main.sass */
 body {
-  font-family: Arial;
   color: #333;
   background: white; }
+  /* line 20, sass/admin/1-base/main.sass */
+  body .main-container .main-wrapper {
+    height: 100%;
+    border-left: 1px solid #ddd;
+    background: #eee; }
+
+/* line 26, sass/admin/1-base/main.sass */
+.slim-title {
+  font-family: 'Open Sans Condensed';
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: #619A90;
+  text-align: center; }
+
+/* line 1, sass/admin/3-sections/left-menu.sass */
+#left-menu {
+  padding: 1rem; }
+  /* line 5, sass/admin/3-sections/left-menu.sass */
+  #left-menu .project-form form {
+    margin: 0 auto; }
+  /* line 8, sass/admin/3-sections/left-menu.sass */
+  #left-menu .project-table {
+    margin-top: 2rem; }
+    /* line 11, sass/admin/3-sections/left-menu.sass */
+    #left-menu .project-table td {
+      padding: 0 !important; }
+      /* line 14, sass/admin/3-sections/left-menu.sass */
+      #left-menu .project-table td p {
+        margin: 0; }

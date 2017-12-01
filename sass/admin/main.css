@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -7,12 +8,32 @@
   user-select: none; }
 
 html, body {
-  margin: 0px;
-  padding: 10px; }
+  margin: 0;
+  padding: 0; }
 
 body {
-  font-family: Arial;
   color: #333;
   background: white; }
+  body .main-container .main-wrapper {
+    height: 100%;
+    border-left: 1px solid #ddd;
+    background: #eee; }
+
+.slim-title {
+  font-family: "Open Sans Condensed";
+  font-weight: 300;
+  font-size: 2rem;
+  color: #619A90; }
+
+#left-menu {
+  padding: 1rem; }
+  #left-menu .project-form form {
+    margin: 0 auto; }
+  #left-menu .project-table {
+    margin-top: 2rem; }
+    #left-menu .project-table td {
+      padding: 0 !important; }
+      #left-menu .project-table td p {
+        margin: 0; }
 
 /*# sourceMappingURL=main.css.map */

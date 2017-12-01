@@ -2,3 +2,12 @@ extends layout
 
 block content
   h1 ADMIN
+
+  .main-container.row
+    .main-wrapper.main-wrapper--left.col.col-3
+      .section#left-menu
+        include left-menu
+    .main-wrapper.main-wrapper--center.col.col-5
+      .section#center-content
+    .main-wrapper.main-wrapper--right.col.col-4
+      .section#right-menu
