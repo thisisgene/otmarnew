@@ -1,11 +1,11 @@
 .left-container
   h1.slim-title MENÜPUNKTE
   .project-form
-    form(action='/create_project', method='post').form
+    form(onsubmit='create_project(this)').form
       .form-item
         //label Neues Projekt erstellen
         .append.w100
-          input(type='text', name='project')
+          input(type='text', name='project')#project-name
           button.button.outline Go
 
   .project-table

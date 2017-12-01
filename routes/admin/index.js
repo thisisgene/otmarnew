@@ -8,3 +8,8 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
+
+router.post('/create_project', function(req, res) {
+  var name = req.body.project;
+  console.log(name);
+});
