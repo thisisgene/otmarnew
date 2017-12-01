@@ -7,13 +7,14 @@ var bodyParser = require('body-parser');
 
 var session = require('express-session');
 
+require('./models/project');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin/index')
 
 var app = express();
 
-// require('./models/user');
 
 app.enable('trust proxy');
 
@@ -51,7 +52,7 @@ function checkAuth(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);
-app.use('/admin/create_project', admin);
+// app.use('/admin/create_project', admin);
 
 app.post('/login/authenticate', function (req, res) {
   var post = req.body;

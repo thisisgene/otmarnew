@@ -1,7 +1,7 @@
 .left-container
   h1.slim-title MENÜPUNKTE
   .project-form
-    form(onsubmit='create_project(this)').form
+    form.form
       .form-item
         //label Neues Projekt erstellen
         .append.w100
@@ -10,27 +10,18 @@
 
   .project-table
     table.unstyled
-      tr
-        td.w60
-          p.upper.small Project 1
-        td.w20
-          .smaller
-            a(href='#') edit
-        td.w20
-          .smaller
-            a(href='#') delete
-        td.w20
-          .smaller
-            a(href='#') +
-      tr
-        td.w60
-          p.upper.small Project 2
-        td.w20
-          .smaller
-            a(href='#') edit
-        td.w20
-          .smaller
-            a(href='#') delete
-        td.w20
-          .smaller
-            a(href='#') +
+
+      each project in projects
+        tr(onclick='openProject(this.id)' id=project._id)
+          td.w60
+            p.upper.small= project.name
+          td.w20
+            .smaller
+              a(href='#') edit
+          td.w20
+            .smaller
+              a(href='#') delete
+          td.w20
+            .smaller
+              a(href='#') +
+      

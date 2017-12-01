@@ -1,13 +1,14 @@
-function create_project(obj) {
-  var name = $('#project-name').val();
-  console.log(name);
+$('.project-form form').on('submit', function(event) {
+  event.preventDefault();
+  var $projectName = $('#project-name');
+  var name = $projectName.val();
   var $table = $('.project-table table tbody');
 
   if (name!=='') {
 
-    $.get('/admin/create_project/' + name, function (data) {
-      console.log('success');
-      $table.append(' <tr>\n' +
+    $.post('/admin/create_project', {name: name}, function (data) {
+      console.log('success', data);
+      $table.append(' <tr onclick="openProject(this.id)" id='+ data +'>\n' +
         '  <td class="w60">\n' +
         '    <p class="upper small">' + name + '</p>\n' +
         '  </td>\n' +
@@ -22,8 +23,13 @@ function create_project(obj) {
         '  </td>\n' +
         '</tr> ');
 
+      $projectName.val('');
+
     });
 
   }
+});
 
+function openProject(id) {
+  console.log("hallo, " + id);
 }
