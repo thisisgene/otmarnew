@@ -16,14 +16,25 @@ html, body {
 /* line 15, sass/admin/1-base/main.sass */
 body {
   color: #333;
-  background: white; }
+  background: white;
+  height: 100vh; }
   /* line 20, sass/admin/1-base/main.sass */
-  body .main-container .main-wrapper {
-    height: 100%;
-    border-left: 1px solid #ddd;
-    background: #eee; }
+  body .navbar-container {
+    height: 50px; }
+  /* line 23, sass/admin/1-base/main.sass */
+  body .main-container {
+    display: flex;
+    height: calc(100% - 50px); }
+    /* line 26, sass/admin/1-base/main.sass */
+    body .main-container .main-wrapper {
+      height: 100%;
+      border-left: 1px solid #f4f4f4;
+      flex-shrink: 0; }
+      /* line 31, sass/admin/1-base/main.sass */
+      body .main-container .main-wrapper .section {
+        padding: 1rem; }
 
-/* line 26, sass/admin/1-base/main.sass */
+/* line 35, sass/admin/1-base/main.sass */
 .slim-title {
   font-family: 'Open Sans Condensed';
   font-weight: 300;
@@ -54,17 +65,40 @@ body {
           /* line 22, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul li .li-wrapper:hover {
             color: #333;
-            background: rgba(0, 0, 0, 0.1); }
-          /* line 26, sass/admin/3-sections/left-menu.sass */
-          #left-menu .project-list ul li .li-wrapper.active {
-            color: #111;
-            background: rgba(12, 154, 154, 0.3); }
-    /* line 30, sass/admin/3-sections/left-menu.sass */
+            background: rgba(68, 68, 68, 0.1); }
+          /* line 27, sass/admin/3-sections/left-menu.sass */
+          #left-menu .project-list ul li .li-wrapper.active span {
+            color: #111; }
+    /* line 31, sass/admin/3-sections/left-menu.sass */
     #left-menu .project-list a {
-      color: #888;
+      color: #aaa;
       text-decoration: none;
       display: inline-block; }
-      /* line 38, sass/admin/3-sections/left-menu.sass */
+      /* line 39, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list a p {
         margin: 0;
         display: inline-block; }
+
+/* line 5, sass/admin/3-sections/center-content.sass */
+.section#center-content .tabs .tab-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  /* line 10, sass/admin/3-sections/center-content.sass */
+  .section#center-content .tabs .tab-list li {
+    width: 50%;
+    background: #c9c9c9; }
+    /* line 14, sass/admin/3-sections/center-content.sass */
+    .section#center-content .tabs .tab-list li a {
+      color: #aaa;
+      border: none;
+      height: 3rem; }
+      /* line 18, sass/admin/3-sections/center-content.sass */
+      .section#center-content .tabs .tab-list li a:hover {
+        text-decoration: none; }
+    /* line 21, sass/admin/3-sections/center-content.sass */
+    .section#center-content .tabs .tab-list li.active {
+      background: #63BEFF; }
+      /* line 24, sass/admin/3-sections/center-content.sass */
+      .section#center-content .tabs .tab-list li.active a {
+        color: #fff; }

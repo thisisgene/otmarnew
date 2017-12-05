@@ -1,11 +1,18 @@
 
-
-h1.slim-title= currentProject.name
 nav.breadcrumbs
   ul
     if (currentProject.parentsList)
       for crumb in currentProject.parentsList
         li: a(href='')= crumb
       span= currentProject.name
+nav.tabs(data-component='tabs', data-equals="true")
+  ul.tab-list
+    li: a(href='#text-container').slim-title TEXT
+    li: a(href='#img-container').slim-title BILDER
+
 .main-content
-  textarea#description= currentProject.description
+
+  #text-container
+    textarea#description= currentProject.description
+  #img-container
+    p Bilder

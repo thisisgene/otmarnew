@@ -15,12 +15,21 @@ html, body
 body
   color: #333
   background: white
+  height: 100vh
+
+  .navbar-container
+    height: 50px
 
   .main-container
+    display: flex
+    height: calc(100% - 50px)
     .main-wrapper
       height: 100%
-      border-left: 1px solid #ddd
-      background: #eee
+      border-left: 1px solid #f4f4f4
+      flex-shrink: 0
+
+      .section
+        padding: 1rem
 
 
 .slim-title
