@@ -1,0 +1,1 @@
+var mongoose=require("mongoose"),ProjectSchema=new mongoose.Schema({name:String,deleted:Boolean},{_id:!0});ProjectSchema.add({subProjects:[ProjectSchema]});var User=mongoose.model("Project",ProjectSchema);mongoose.Promise=require("bluebird"),mongoose.connect("mongodb://localhost/rychlik",{useMongoClient:!0});

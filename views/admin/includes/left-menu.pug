@@ -1,0 +1,34 @@
+.left-container
+  h1.slim-title MENÜPUNKTE
+  .project-form
+    form.form
+      .form-item
+        //label Neues Projekt erstellen
+        .append.w100
+          input(type='text', name='project', data-who=currentProjectId)#project-name
+          button.button.outline Go
+
+  .project-table
+    table.unstyled
+      - var linkClass = ''
+      - var currentProject
+      each project in projects
+        if (project.deleted!=true)
+          - linkClass = (project._id == currentProjectId ? 'active':'')
+          if (project._id == currentProjectId)
+            - linkClass = 'active'
+            - currentProject = project
+          tr(id=project._id)
+            td.w60
+                a(href='/admin/project/'+ project._id, class=linkClass)
+                  p.upper.small= project.name
+
+            td.w20
+              .smaller
+                a(href='#') edit
+            td.w20
+              .smaller
+                a(href='/admin/delete/'+ project._id) delete
+            td.w20
+              .smaller
+                a(href='#') +

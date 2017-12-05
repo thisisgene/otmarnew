@@ -20,10 +20,11 @@ body {
     background: #eee; }
 
 .slim-title {
-  font-family: "Open Sans Condensed";
+  font-family: 'Open Sans Condensed';
   font-weight: 300;
-  font-size: 2rem;
-  color: #619A90; }
+  font-size: 2.2rem;
+  color: #619A90;
+  text-align: center; }
 
 #left-menu {
   padding: 1rem; }
@@ -35,5 +36,13 @@ body {
       padding: 0 !important; }
       #left-menu .project-table td p {
         margin: 0; }
-
-/*# sourceMappingURL=main.css.map */
+      #left-menu .project-table td a {
+        color: #888;
+        text-decoration: none;
+        display: block; }
+        #left-menu .project-table td a:hover {
+          color: #333;
+          background: rgba(0, 0, 0, 0.1); }
+        #left-menu .project-table td a.active {
+          color: #111;
+          background: rgba(12, 154, 154, 0.3); }

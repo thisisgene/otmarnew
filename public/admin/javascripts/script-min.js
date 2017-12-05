@@ -1,0 +1,1 @@
+function openProject(o){console.log("hallo, "+o)}$(".project-form form").on("submit",function(o){o.preventDefault();var e=$("#project-name"),t=e.val(),l=$(".project-table table tbody"),n=e.data("who");console.log(n)});
