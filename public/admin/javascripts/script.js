@@ -33,3 +33,20 @@ $('.project-form form').on('submit', function(event) {
     })
   }
 });
+
+
+//       SAVE ALL!
+
+function saveAll(obj) {
+  var id = $(obj).data('projectid')
+  var description = $('#description').val();
+  var body = {
+    id:             id,
+    description:    description
+  };
+
+  $.post('/admin/save_all', body, function(data) {
+    console.log('saved successfully');
+  })
+
+}

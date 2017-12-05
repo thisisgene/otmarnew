@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var ProjectSchema = new mongoose.Schema({
   name: String,
+  description: String,
   deleted: Boolean,
   hasChildren: Boolean,
   children: Array,

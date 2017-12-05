@@ -82,9 +82,23 @@ router.get('/project/:id', function(req, res, next) {
       title: 'Admin',
       projects: projects,
       currentProjectId: req.params.id
-    });
+    })
 
-  });
+  })
+});
+
+router.post('/save_all', function(req, res) {
+  var body = req.body;
+  var id = body.id;
+  var description = body.description;
+
+  Project.findById(id, function(err, project) {
+    project.description = description;
+    project.save(function(err) {
+      if (err) res.send(err);
+      else res.send('success');
+    })
+  })
 });
 
 module.exports = router;
