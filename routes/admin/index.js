@@ -28,6 +28,44 @@ router.post('/create_project', function(req, res) {
   });
 });
 
+router.post('/create_sub_project', function(req, res) {
+  var name = req.body.name;
+  var id = req.body.parent;
+
+
+  var newProject = new Project({
+    name: name,
+    deleted: false,
+    hasParent: true,
+    parentId: id
+
+  });
+  newProject.save();
+
+  Project.findById(id, function(err, project) {
+    if (err) console.log(err);
+    else {
+
+      // updateParent(project.parentId);
+      console.log(project);
+      project.children.push(newProject._id);
+      project.hasChildren = true;
+      project.save(function(err, project) {
+        res.send('success');
+      });
+
+    }
+
+  });
+
+});
+
+function updateParent(id) {
+  Project.findById(id, function(err, project) {
+
+  })
+}
+
 router.get('/delete/:id', function(req, res) {
   var id = req.params.id;
   Project.findById(id, function(err, project) {

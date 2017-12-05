@@ -1,3 +1,28 @@
+- var linkClass = ''
+- var currentProject
+
+mixin parseSubProjects(obj)
+  ul.unstyled
+    each projectId in obj
+      each project in projects
+
+        if (project.id == projectId && !project.deleted)
+
+
+
+          - linkClass = (project._id == currentProjectId ? 'active':'')
+          if (project._id == currentProjectId)
+           - linkClass = 'active'
+           - currentProject = project
+          li(id=project._id, class=linkClass)
+            .li-wrapper
+
+              a(href='/admin/project/' + project._id)
+                span.upper.small= project.name
+              a(href='/admin/delete/' + project._id).smaller delete
+            if (project.hasChildren)
+              +parseSubProjects(project.children)
+
 .left-container
   h1.slim-title MENÜPUNKTE
   .project-form
@@ -8,27 +33,20 @@
           input(type='text', name='project', data-who=currentProjectId)#project-name
           button.button.outline Go
 
-  .project-table
-    table.unstyled
-      - var linkClass = ''
-      - var currentProject
+  .project-list
+    ul.unstyled
+
       each project in projects
-        if (project.deleted!=true)
+        if (!project.deleted && !project.hasParent)
           - linkClass = (project._id == currentProjectId ? 'active':'')
           if (project._id == currentProjectId)
             - linkClass = 'active'
             - currentProject = project
-          tr(id=project._id)
-            td.w60
-                a(href='/admin/project/'+ project._id, class=linkClass)
-                  p.upper.small= project.name
+          li(id=project._id, class=linkClass)
+            .li-wrapper
 
-            td.w20
-              .smaller
-                a(href='#') edit
-            td.w20
-              .smaller
-                a(href='/admin/delete/'+ project._id) delete
-            td.w20
-              .smaller
-                a(href='#') +
+              a(href='/admin/project/' + project._id)
+                span.upper.small= project.name
+              a(href='/admin/delete/' + project._id).smaller delete
+            if (project.hasChildren)
+              +parseSubProjects(project.children)

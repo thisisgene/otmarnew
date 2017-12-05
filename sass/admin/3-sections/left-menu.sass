@@ -5,23 +5,36 @@
     form
       margin: 0 auto
 
-  .project-table
+  .project-list
     margin-top: 2rem
+    //padding: 5px 0 0
+    ul
+      border-left: 1px dashed #ccc
 
-    td
-      padding: 0 !important
+      li
+        padding-left: 5px
 
-      p
-        margin: 0
-      a
-        color: #888
-        text-decoration: none
-        display: block
+        .li-wrapper
+          display: flex
+          flex-direction: row
+          justify-content: space-between
 
-        &:hover
-          color: #333
-          background: rgba(black, .1)
+          &:hover
+            color: #333
+            background: rgba(black, .1)
 
-        &.active
-          color: #111
-          background: rgba(#0C9A9A, .3)
+          &.active
+            color: #111
+            background: rgba(#0C9A9A, .3)
+
+        a
+          color: #888
+          text-decoration: none
+          display: inline-block
+
+
+
+
+          p
+            margin: 0
+            display: inline-block

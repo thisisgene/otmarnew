@@ -1,11 +1,15 @@
 var mongoose = require('mongoose');
 var ProjectSchema = new mongoose.Schema({
   name: String,
-  deleted: Boolean
+  deleted: Boolean,
+  hasChildren: Boolean,
+  children: Array,
+  hasParent: Boolean,
+  parentId: String
 
 }, { _id: true });
 
-ProjectSchema.add({ subProjects: [ProjectSchema] });
+// ProjectSchema.add({ subProjects: [ProjectSchema] });
 
 var User = mongoose.model('Project', ProjectSchema);
 

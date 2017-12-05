@@ -30,19 +30,26 @@ body {
   padding: 1rem; }
   #left-menu .project-form form {
     margin: 0 auto; }
-  #left-menu .project-table {
+  #left-menu .project-list {
     margin-top: 2rem; }
-    #left-menu .project-table td {
-      padding: 0 !important; }
-      #left-menu .project-table td p {
-        margin: 0; }
-      #left-menu .project-table td a {
-        color: #888;
-        text-decoration: none;
-        display: block; }
-        #left-menu .project-table td a:hover {
-          color: #333;
-          background: rgba(0, 0, 0, 0.1); }
-        #left-menu .project-table td a.active {
-          color: #111;
-          background: rgba(12, 154, 154, 0.3); }
+    #left-menu .project-list ul {
+      border-left: 1px dashed #ccc; }
+      #left-menu .project-list ul li {
+        padding-left: 5px; }
+        #left-menu .project-list ul li .li-wrapper {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between; }
+          #left-menu .project-list ul li .li-wrapper:hover {
+            color: #333;
+            background: rgba(0, 0, 0, 0.1); }
+          #left-menu .project-list ul li .li-wrapper.active {
+            color: #111;
+            background: rgba(12, 154, 154, 0.3); }
+        #left-menu .project-list ul li a {
+          color: #888;
+          text-decoration: none;
+          display: inline-block; }
+          #left-menu .project-list ul li a p {
+            margin: 0;
+            display: inline-block; }
