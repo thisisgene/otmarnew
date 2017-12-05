@@ -1,3 +1,11 @@
+
+
 h1.slim-title= currentProject.name
+nav.breadcrumbs
+  ul
+    if (currentProject.parentsList)
+      for crumb in currentProject.parentsList
+        li: a(href='')= crumb
+      span= currentProject.name
 .main-content
   textarea#description= currentProject.description

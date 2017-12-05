@@ -1,27 +1,32 @@
 - var linkClass = ''
 - var currentProject
+- var parentsList = []
 
-mixin parseSubProjects(obj)
+mixin parseSubProjects(obj, parentName, pList)
   ul.unstyled
     each projectId in obj
       each project in projects
 
         if (project.id == projectId && !project.deleted)
 
+          - project.parentsList = (pList?[pList]:[])
+
+          - project.parentsList.push(parentName)
 
 
           - linkClass = (project._id == currentProjectId ? 'active':'')
           if (project._id == currentProjectId)
            - linkClass = 'active'
            - currentProject = project
-          li(id=project._id, class=linkClass)
-            .li-wrapper
+
+          li(id=project._id)
+            .li-wrapper(class=linkClass)
 
               a(href='/admin/project/' + project._id)
                 span.upper.small= project.name
               a(href='/admin/delete/' + project._id).smaller delete
             if (project.hasChildren)
-              +parseSubProjects(project.children)
+              +parseSubProjects(project.children, project.name, project.parentsList)
 
 .left-container
   h1.slim-title MENÜPUNKTE
@@ -30,7 +35,7 @@ mixin parseSubProjects(obj)
       .form-item
         //label Neues Projekt erstellen
         .append.w100
-          input(type='text', name='project', data-who=currentProjectId)#project-name
+          input(type='text', name='project', data-whoid=currentProjectId)#project-name
           button.button.outline Go
 
   .project-list
@@ -42,11 +47,12 @@ mixin parseSubProjects(obj)
           if (project._id == currentProjectId)
             - linkClass = 'active'
             - currentProject = project
-          li(id=project._id, class=linkClass)
-            .li-wrapper
+
+          li(id=project._id)
+            .li-wrapper(class=linkClass)
 
               a(href='/admin/project/' + project._id)
                 span.upper.small= project.name
               a(href='/admin/delete/' + project._id).smaller delete
             if (project.hasChildren)
-              +parseSubProjects(project.children)
+              +parseSubProjects(project.children, project.name)

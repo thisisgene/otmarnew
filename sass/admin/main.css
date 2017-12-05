@@ -46,10 +46,10 @@ body {
           #left-menu .project-list ul li .li-wrapper.active {
             color: #111;
             background: rgba(12, 154, 154, 0.3); }
-        #left-menu .project-list ul li a {
-          color: #888;
-          text-decoration: none;
-          display: inline-block; }
-          #left-menu .project-list ul li a p {
-            margin: 0;
-            display: inline-block; }
+    #left-menu .project-list a {
+      color: #888;
+      text-decoration: none;
+      display: inline-block; }
+      #left-menu .project-list a p {
+        margin: 0;
+        display: inline-block; }

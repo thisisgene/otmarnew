@@ -30,22 +30,21 @@ router.post('/create_project', function(req, res) {
 
 router.post('/create_sub_project', function(req, res) {
   var name = req.body.name;
-  var id = req.body.parent;
+  var parentId = req.body.parentId;
 
 
-  var newProject = new Project({
-    name: name,
-    deleted: false,
-    hasParent: true,
-    parentId: id
-
-  });
-  newProject.save();
-
-  Project.findById(id, function(err, project) {
+  Project.findById(parentId, function(err, project) {
     if (err) console.log(err);
     else {
+      var newProject = new Project({
+        name: name,
+        deleted: false,
+        hasParent: true,
+        parentId: parentId,
+        parentName: project.name
 
+      });
+      newProject.save();
       // updateParent(project.parentId);
       console.log(project);
       project.children.push(newProject._id);
@@ -60,11 +59,6 @@ router.post('/create_sub_project', function(req, res) {
 
 });
 
-function updateParent(id) {
-  Project.findById(id, function(err, project) {
-
-  })
-}
 
 router.get('/delete/:id', function(req, res) {
   var id = req.params.id;

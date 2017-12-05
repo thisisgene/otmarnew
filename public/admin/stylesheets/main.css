@@ -59,12 +59,12 @@ body {
           #left-menu .project-list ul li .li-wrapper.active {
             color: #111;
             background: rgba(12, 154, 154, 0.3); }
-        /* line 30, sass/admin/3-sections/left-menu.sass */
-        #left-menu .project-list ul li a {
-          color: #888;
-          text-decoration: none;
-          display: inline-block; }
-          /* line 38, sass/admin/3-sections/left-menu.sass */
-          #left-menu .project-list ul li a p {
-            margin: 0;
-            display: inline-block; }
+    /* line 30, sass/admin/3-sections/left-menu.sass */
+    #left-menu .project-list a {
+      color: #888;
+      text-decoration: none;
+      display: inline-block; }
+      /* line 38, sass/admin/3-sections/left-menu.sass */
+      #left-menu .project-list a p {
+        margin: 0;
+        display: inline-block; }

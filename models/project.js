@@ -6,7 +6,8 @@ var ProjectSchema = new mongoose.Schema({
   hasChildren: Boolean,
   children: Array,
   hasParent: Boolean,
-  parentId: String
+  parentId: String,
+  parentName: String
 
 }, { _id: true });
 
