@@ -8,6 +8,9 @@ $('.project-form form').on('submit', function(event) {
   if (name!=='' && projectParentId == undefined) {
 
     $.post('/admin/create_project', {name: name}, function (data) {
+
+      // TODO: ADD PROJECTS AS SOON ON THE FLY
+
       // $table.append(' <tr id='+ data +'>\n' +
       //   '  <td class="w60">\n' +
       //   '    <a href="/admin/project/'+data+'"><p class="upper small">' + name + '</p></a>\n' +
@@ -40,9 +43,13 @@ $('.project-form form').on('submit', function(event) {
 function saveAll(obj) {
   var id = $(obj).data('projectid')
   var description = $('#description').val();
+  var layout = $('input[name=layout]:checked').val();
+
+
   var body = {
-    id:             id,
-    description:    description
+    id            : id,
+    description   : description,
+    layout        : layout
   };
 
   $.post('/admin/save_all', body, function(data) {

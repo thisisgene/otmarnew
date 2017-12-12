@@ -87,10 +87,12 @@ router.post('/save_all', function(req, res) {
   var id = body.id;
   var description = body.description;
   var descHtml = marked(description);
+  var layout = body.layout;
 
   Project.findById(id, function(err, project) {
     project.descMU = description;
     project.descHtml = descHtml;
+    project.layout = layout;
     project.save(function(err) {
       if (err) res.send(err);
       else res.send('success');

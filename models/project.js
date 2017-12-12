@@ -8,7 +8,8 @@ var ProjectSchema = new mongoose.Schema({
   children: Array,
   hasParent: Boolean,
   parentId: String,
-  parentName: String
+  parentName: String,
+  layout: String
 
 }, { _id: true });
 

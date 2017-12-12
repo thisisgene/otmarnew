@@ -3,17 +3,17 @@
     h1.slim-title ALLGEMEIN
     .layout-container
       .layout.layout-img
-        input#option-1(type='radio', name='layout', value='layout_img')
+        input#option-1(type='radio', name='layout', value='layout_img', checked=(currentProject.layout==='layout_img'))
         .layout-label
           label(for='option-1')
           span LAYOUT MIT BILD
       .layout.layout-txt
-        input#option-2(type='radio', name='layout', value='layout_txt')
+        input#option-2(type='radio', name='layout', value='layout_txt', checked=(currentProject.layout==='layout_txt'))
         .layout-label
           label(for='option-2')
           span LAYOUT MIT TEXT
       .layout.layout-mnu
-        input#option-3(type='radio', name='layout', value='layout_mnu')
+        input#option-3(type='radio', name='layout', value='layout_mnu', checked=(currentProject.layout==='layout_mnu'))
         .layout-label
           label(for='option-3')
           span LAYOUT MIT TEXT
