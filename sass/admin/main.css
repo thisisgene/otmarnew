@@ -79,6 +79,9 @@ body {
       .section#center-content .tabs .tab-list li.active a {
         color: #fff; }
 
+.right-container .sub-container {
+  padding: 1rem 0; }
+
 .right-container .general-container .layout-container {
   width: 100%;
   display: flex;
@@ -119,3 +122,24 @@ body {
   .right-container .general-container .layout-container .layout-mnu .layout-label label {
     background-image: url(../images/layout_menu.svg);
     background-size: cover; }
+
+.right-container .save-container {
+  margin: 0 auto;
+  text-align: center; }
+  .right-container .save-container button {
+    margin: 0 .2rem;
+    border-radius: 0;
+    box-shadow: 0 3px 1px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center; }
+    .right-container .save-container button.button-save {
+      background: #63BEFF; }
+      .right-container .save-container button.button-save:hover {
+        background: #30a9ff; }
+    .right-container .save-container button.button-cancel {
+      background: #b3b3b3; }
+      .right-container .save-container button.button-cancel:hover {
+        background: #9a9999; }

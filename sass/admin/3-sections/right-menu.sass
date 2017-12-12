@@ -1,4 +1,9 @@
 .right-container
+
+  .sub-container
+    padding: 1rem 0
+
+
   .general-container
     .layout-container
       width: 100%
@@ -54,3 +59,27 @@
           background:
             image: url(../images/layout_menu.svg)
             size: cover
+
+  .save-container
+    margin: 0 auto
+    text-align: center
+    button
+      margin: 0 .2rem
+      border-radius: 0
+      //border: 1px solid #999
+      box-shadow: 0 3px 1px rgba(black, .5)
+      color: white
+      font:
+        family: "Open Sans Condensed", sans-serif
+        size: 1.2rem
+      text-transform: uppercase
+      text-align: center
+      &.button-save
+        background: $blue
+
+        &:hover
+          background: darken($blue, 10%)
+      &.button-cancel
+        background: $grey
+        &:hover
+          background: darken($grey, 10%)

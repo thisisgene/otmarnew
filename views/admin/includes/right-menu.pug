@@ -1,5 +1,5 @@
 .right-container
-  .general-container
+  .sub-container.general-container
     h1.slim-title ALLGEMEIN
     .layout-container
       .layout.layout-img
@@ -18,8 +18,9 @@
           label(for='option-3')
           span LAYOUT MIT TEXT
 
-
-  .save-container
-
-    button.button.button-save(onclick='saveAll(this)', data-projectid=currentProjectId) Alles speichern
-  .info-container
+  hr
+  .sub-container.save-container
+    h1.slim-title SPEICHERN
+    button.w55.button-save(onclick='saveAll(this)', data-projectid=currentProjectId) Alles speichern
+    button.button-cancel(onclick='reloadAll(this)', data-projectid=currentProjectId) Verwerfen
+  .sub-container.info-container
