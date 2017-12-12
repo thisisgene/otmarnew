@@ -78,3 +78,44 @@ body {
       background: #63BEFF; }
       .section#center-content .tabs .tab-list li.active a {
         color: #fff; }
+
+.right-container .general-container .layout-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto; }
+  .right-container .general-container .layout-container input {
+    opacity: 0;
+    position: absolute; }
+    .right-container .general-container .layout-container input:checked ~ .layout-label {
+      opacity: 1;
+      filter: grayscale(0); }
+      .right-container .general-container .layout-container input:checked ~ .layout-label label {
+        border: 2px solid #888;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); }
+  .right-container .general-container .layout-container .layout-label {
+    margin: 0 .5rem;
+    filter: grayscale(1);
+    text-align: center;
+    opacity: .6;
+    transition: all 200ms ease-in-out; }
+    .right-container .general-container .layout-container .layout-label label {
+      margin: 0 auto .2rem;
+      height: 4.03rem;
+      width: 6rem;
+      border: 2px solid #aaa; }
+    .right-container .general-container .layout-container .layout-label span {
+      display: block;
+      font-family: "Open Sans Condensed", sans-serif;
+      font-size: 1rem; }
+  .right-container .general-container .layout-container .layout-img .layout-label label {
+    background-image: url(../images/layout_img.svg);
+    background-size: cover; }
+  .right-container .general-container .layout-container .layout-txt .layout-label label {
+    background-image: url(../images/layout_text.svg);
+    background-size: cover; }
+  .right-container .general-container .layout-container .layout-mnu .layout-label label {
+    background-image: url(../images/layout_menu.svg);
+    background-size: cover; }

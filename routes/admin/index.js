@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var marked = require('marked');
 var mongoose = require( 'mongoose' );
 var Project  = mongoose.model( 'Project' );
 
@@ -85,9 +86,11 @@ router.post('/save_all', function(req, res) {
   var body = req.body;
   var id = body.id;
   var description = body.description;
+  var descHtml = marked(description);
 
   Project.findById(id, function(err, project) {
-    project.description = description;
+    project.descMU = description;
+    project.descHtml = descHtml;
     project.save(function(err) {
       if (err) res.send(err);
       else res.send('success');

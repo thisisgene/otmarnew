@@ -1,1 +1,25 @@
-button.button.button-save(onclick='saveAll(this)', data-projectid=currentProjectId) Alles speichern
+.right-container
+  .general-container
+    h1.slim-title ALLGEMEIN
+    .layout-container
+      .layout.layout-img
+        input#option-1(type='radio', name='layout', value='layout_img')
+        .layout-label
+          label(for='option-1')
+          span LAYOUT MIT BILD
+      .layout.layout-txt
+        input#option-2(type='radio', name='layout', value='layout_txt')
+        .layout-label
+          label(for='option-2')
+          span LAYOUT MIT TEXT
+      .layout.layout-mnu
+        input#option-3(type='radio', name='layout', value='layout_mnu')
+        .layout-label
+          label(for='option-3')
+          span LAYOUT MIT TEXT
+
+
+  .save-container
+
+    button.button.button-save(onclick='saveAll(this)', data-projectid=currentProjectId) Alles speichern
+  .info-container
