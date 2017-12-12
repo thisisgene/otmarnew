@@ -45,6 +45,8 @@ function saveAll(obj) {
   var description = $('#description').val();
   var layout = $('input[name=layout]:checked').val();
 
+  var $loadingWrapper = $('.loading-wrapper');
+  var $loadingScreen = $('.loading-screen');
 
   var body = {
     id            : id,
@@ -52,8 +54,26 @@ function saveAll(obj) {
     layout        : layout
   };
 
-  $.post('/admin/save_all', body, function(data) {
-    console.log('saved successfully');
+  $loadingWrapper.addClass('show');
+  $loadingWrapper.fadeTo(300, 1, function(next){
+    $.post('/admin/save_all', body, function(data) {
+      console.log('saved successfully');
+      $loadingScreen.addClass('success').delay(100).queue(function(next) {
+
+        $loadingWrapper.fadeTo(1800,0, function() {
+
+          $(this).removeClass('show');
+        });
+        $(this).delay(1900).queue(function(next){
+          $(this).removeClass('success');
+          next();
+        });
+        next();
+      })
+    })
   })
+
+
+
 
 }
