@@ -3,6 +3,10 @@ var router = express.Router();
 var marked = require('marked');
 var mongoose = require( 'mongoose' );
 var Project  = mongoose.model( 'Project' );
+var Image  = mongoose.model( 'Image' );
+var multer = require('multer');
+var upload = multer({ dest: 'public/uploads/' });
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -88,16 +92,50 @@ router.post('/save_all', function(req, res) {
   var description = body.description;
   var descHtml = marked(description);
   var layout = body.layout;
+  var msg = '';
 
   Project.findById(id, function(err, project) {
     project.descMU = description;
     project.descHtml = descHtml;
     project.layout = layout;
+    if (body.namechanged) {
+      project.name = body.name;
+      msg = 'changed';
+    }
     project.save(function(err) {
       if (err) res.send(err);
-      else res.send('success');
+      else res.send(msg);
     })
   })
+});
+
+router.post('/upload', upload.single('file'), function(req, res) {
+  var file = req.file;
+  console.log(file);
+  if ( !file.mimetype.startsWith( 'image/' ) ) {
+    return res.status( 422 ).json( {
+      error : 'Die Datei muss ein Bildformat sein.'
+    } );
+  }
+  else {
+    var id = req.body.project_id;
+    Project.findById(id, function(err, project) {
+      if (err) res.send(err);
+      else {
+        var image = new Image({
+          filename: file.filename,
+          originalName: file.originalname,
+          path: file.path,
+          fileSize: file.size
+        });
+        image.save();
+        project.images.push(image);
+        project.save(function(err, project) {
+          res.send('success');
+        });
+      }
+    })
+  }
 });
 
 module.exports = router;

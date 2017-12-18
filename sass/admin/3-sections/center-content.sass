@@ -1,7 +1,27 @@
 .section#center-content
 
-  .tabs
+  display: flex
+  flex-direction: column
 
+  .breadcrumbs
+    flex-grow: 0
+    height: 25px
+    box-sizing: border-box
+    .crumb-link:last-child
+      margin-right: 15px
+    #project-name-input
+      padding: .3rem
+      //margin-left: 5px
+      transform: translateY(-1px)
+      border: 1px solid #fafafa
+      transition: all 200ms ease-in-out
+      &:hover
+        border-color: #aaa
+
+
+  .tabs
+    flex-grow: 0
+    height: 35px
     .tab-list
       display: flex
       flex-direction: row
@@ -23,3 +43,95 @@
 
           a
             color: #fff
+
+  .main-content
+    flex-grow: 1
+    display: flex
+    #text-container
+      flex-grow: 1
+      textarea
+        height: 100%
+        resize: none
+        background: #fdffff
+        border-color: #ddd
+        box-shadow: inset 0 0 8px rgba(100, 100, 100, .15)
+
+    #img-container
+      width: 100%
+      .dropzone-container
+        .dropzone
+          background: #E4FFFC
+          border: none
+          width: 100%
+          height: 130px
+          box-shadow: inset 0 0 20px rgba(150, 150, 150, .3)
+          color: #aaa
+          text-transform: uppercase
+          display: flex
+          align-items: center
+          justify-content: center
+          cursor: pointer
+
+          .hidden-input
+            display: none
+
+      .image-list ul
+        list-style: none
+        li
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          align-items: center
+
+          height: 40px
+          background: #E4FFEB
+          border-bottom: 1px dashed rgba(150, 150, 150, .5)
+
+          .image
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 60px
+            img
+              height: 35px
+
+          .img-name
+            max-width: 160px
+            flex-grow: 2
+            p
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+              margin: 0
+              color: #777
+              font:
+                size: .9rem
+                weight: 300
+          .control-container
+            display: flex
+            flex-direction: row
+            label
+              margin: 0 4px
+              .ctl
+                width: 16px
+                height: 16px
+                background:
+                  repeat: no-repeat
+                  position: center
+                filter: grayscale(1)
+                opacity: .7
+                cursor: pointer
+
+                &:hover
+                  opacity: 1
+                  filter: grayscale(.6)
+
+                &--cover
+                  background-image: url('../images/cover.svg')
+
+                &--visible
+                  background-image: url('../images/eye.svg')
+
+                &--delete
+                  background-image: url('../images/trash.svg')
+

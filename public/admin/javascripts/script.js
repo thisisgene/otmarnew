@@ -41,7 +41,10 @@ $('.project-form form').on('submit', function(event) {
 //       SAVE ALL!
 
 function saveAll(obj) {
-  var id = $(obj).data('projectid')
+  var id = $(obj).data('projectid');
+  var $nameObj = $('#project-name-input');
+  var name = $nameObj.val();
+  var oldName = $nameObj.data('currentName');
   var description = $('#description').val();
   var layout = $('input[name=layout]:checked').val();
 
@@ -54,10 +57,18 @@ function saveAll(obj) {
     layout        : layout
   };
 
+  if (name != oldName) {
+    body.name = name;
+    body.namechanged = true
+  }
+
   $loadingWrapper.addClass('show');
   $loadingWrapper.fadeTo(300, 1, function(next){
-    $.post('/admin/save_all', body, function(data) {
+    $.post('/admin/save_all', body, function(msg) {
       console.log('saved successfully');
+      if (msg=='changed') {
+        $('.li-wrapper.active > a > span').text(name);
+      }
       $loadingScreen.addClass('success').delay(100).queue(function(next) {
 
         $loadingWrapper.fadeTo(1800,0, function() {
@@ -72,8 +83,8 @@ function saveAll(obj) {
       })
     })
   })
+}
 
-
-
-
+function reloadAll() {
+  location.reload();
 }

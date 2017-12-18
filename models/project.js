@@ -9,13 +9,22 @@ var ProjectSchema = new mongoose.Schema({
   hasParent: Boolean,
   parentId: String,
   parentName: String,
-  layout: String
+  layout: String,
+  images: Array
 
 }, { _id: true });
 
+var ImageSchema = new mongoose.Schema({
+  filename: String,
+  originalName: String,
+  path: String,
+  fileSize: Number
+});
+
 // ProjectSchema.add({ subProjects: [ProjectSchema] });
 
-var User = mongoose.model('Project', ProjectSchema);
+var Project = mongoose.model('Project', ProjectSchema);
+var Image = mongoose.model('Image', ImageSchema);
 
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/rychlik', {useMongoClient: true});

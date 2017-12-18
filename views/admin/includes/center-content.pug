@@ -2,9 +2,13 @@
 nav.breadcrumbs
   ul
     if (currentProject.parentsList)
-      for crumb in currentProject.parentsList
-        li: a(href='')= crumb
-      span= currentProject.name
+      each crumb in currentProject.parentsList
+        if (crumb.id == currentProject._id)
+          break
+        else
+          li.crumb-link: a(href='/admin/project/'+crumb.id)= crumb.name
+    li: input#project-name-input(type='text', value= currentProject.name, data-currentname= currentProject.name)
+
 nav.tabs(data-component='tabs', data-equals="true")
   ul.tab-list
     li: a(href='#text-container').slim-title TEXT
@@ -15,4 +19,20 @@ nav.tabs(data-component='tabs', data-equals="true")
   #text-container
     textarea#description= currentProject.descMU
   #img-container
-    p Bilder
+    .dropzone-container
+      form(action='/admin/upload').dropzone
+        input.hidden-input(name='project_id', value=currentProject._id)
+    .image-list
+      if (currentProject.images)
+        ul
+          each image in currentProject.images
+            li
+              .image: img(src='../../uploads/'+image.filename)
+              .img-name: p= image.originalName
+              .control-container
+                label
+                  .ctl.ctl--cover
+                label
+                  .ctl.ctl--visible
+                label
+                  .ctl.ctl--delete
