@@ -191,11 +191,13 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer; }
+        cursor: pointer;
+        margin-bottom: .3rem; }
         .section#center-content .main-content #img-container .dropzone-container .dropzone .hidden-input {
           display: none; }
       .section#center-content .main-content #img-container .image-list ul {
-        list-style: none; }
+        list-style: none;
+        margin: 0; }
         .section#center-content .main-content #img-container .image-list ul li {
           display: flex;
           flex-direction: row;
@@ -224,7 +226,14 @@ body {
               font-weight: 300; }
           .section#center-content .main-content #img-container .image-list ul li .control-container {
             display: flex;
-            flex-direction: row; }
+            flex-direction: row;
+            margin-right: 3px; }
+            .section#center-content .main-content #img-container .image-list ul li .control-container input {
+              width: 0;
+              visibility: hidden; }
+              .section#center-content .main-content #img-container .image-list ul li .control-container input:checked + label > .ctl:first-child {
+                opacity: 1;
+                filter: grayscale(0) drop-shadow(0 0 4px rgba(150, 150, 150, 0.5)); }
             .section#center-content .main-content #img-container .image-list ul li .control-container label {
               margin: 0 4px; }
               .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl {
@@ -232,9 +241,10 @@ body {
                 height: 16px;
                 background-repeat: no-repeat;
                 background-position: center;
-                filter: grayscale(1);
-                opacity: .7;
                 cursor: pointer; }
+                .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl.shadow {
+                  filter: grayscale(1);
+                  opacity: .3; }
                 .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl:hover {
                   opacity: 1;
                   filter: grayscale(0.6); }

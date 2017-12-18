@@ -17,12 +17,14 @@ block content
         include includes/left-menu
 
     if (currentProjectId)
+      .current-id(data-id=currentProjectId)
       .main-wrapper.main-wrapper--center.col.col-5
         .section#center-content
           include includes/center-content
       .main-wrapper.main-wrapper--right.col.col-4
         .section#right-menu
           include includes/right-menu
+
 
   .loading-wrapper
     .loading-screen

@@ -1,3 +1,5 @@
+var projectId;
+
 $('.project-form form').on('submit', function(event) {
   event.preventDefault();
   var $projectName = $('#project-name');
@@ -87,4 +89,16 @@ function saveAll(obj) {
 
 function reloadAll() {
   location.reload();
+}
+
+function checkCover(obj) {
+  var id = obj.substring(6);
+  projectId = $('.current-id').data('id');
+  var body = {
+    imgid : id,
+    proid : projectId
+  }
+  $.post('/admin/update_image', body, function(data) {
+    console.log(data);
+  });
 }

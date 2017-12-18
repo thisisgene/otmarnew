@@ -1,4 +1,13 @@
 var mongoose = require('mongoose');
+
+var ImageSchema = new mongoose.Schema({
+  filename: String,
+  originalName: String,
+  path: String,
+  fileSize: Number,
+  isCover: Boolean
+});
+
 var ProjectSchema = new mongoose.Schema({
   name: String,
   descMU: String,
@@ -10,16 +19,9 @@ var ProjectSchema = new mongoose.Schema({
   parentId: String,
   parentName: String,
   layout: String,
-  images: Array
+  images: [ImageSchema]
 
 }, { _id: true });
-
-var ImageSchema = new mongoose.Schema({
-  filename: String,
-  originalName: String,
-  path: String,
-  fileSize: Number
-});
 
 // ProjectSchema.add({ subProjects: [ProjectSchema] });
 

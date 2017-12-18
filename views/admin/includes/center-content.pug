@@ -30,9 +30,12 @@ nav.tabs(data-component='tabs', data-equals="true")
               .image: img(src='../../uploads/'+image.filename)
               .img-name: p= image.originalName
               .control-container
-                label
-                  .ctl.ctl--cover
-                label
-                  .ctl.ctl--visible
-                label
+                input(type='radio', name='cover-option', id='cover_'+ image._id, onclick='checkCover(this.id)', checked=(image.isCover))
+                label(for='cover_'+image._id)
+                  .ctl.ctl--cover.shadow
+                input(type='checkbox', name='visibility-option', id='visible_'+ image._id)
+                label(for='visible_'+ image._id)
+                  .ctl.ctl--visible.shadow
+                input(type='checkbox', name='delete-option', id='delete_' + image._id)
+                label(for='delete_' + image._id)
                   .ctl.ctl--delete

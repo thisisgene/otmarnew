@@ -138,4 +138,25 @@ router.post('/upload', upload.single('file'), function(req, res) {
   }
 });
 
+router.post('/update_image', function(req, res) {
+  var body = req.body;
+  Project.findById(body.proid, function(err, project, next) {
+    var images = project.images;
+    for (var i=0; i<images.length; i++) {
+      if (images[i]._id == body.imgid) {
+        images[i].isCover = true;
+
+      }
+      else {
+        images[i].isCover = false;
+
+      }
+    }
+    project.save(function(err, project) {
+      res.send('success');
+    });
+  });
+
+});
+
 module.exports = router;

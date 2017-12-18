@@ -71,12 +71,14 @@
           align-items: center
           justify-content: center
           cursor: pointer
+          margin-bottom: .3rem
 
           .hidden-input
             display: none
 
       .image-list ul
         list-style: none
+        margin: 0
         li
           display: flex
           flex-direction: row
@@ -98,6 +100,7 @@
           .img-name
             max-width: 160px
             flex-grow: 2
+
             p
               white-space: nowrap
               overflow: hidden
@@ -110,6 +113,14 @@
           .control-container
             display: flex
             flex-direction: row
+            margin-right: 3px
+            input
+              width: 0
+              visibility: hidden
+              &:checked + label > .ctl:first-child
+                opacity: 1
+                filter: grayscale(0) drop-shadow(0 0 4px rgba(150, 150, 150, .5))
+
             label
               margin: 0 4px
               .ctl
@@ -118,13 +129,18 @@
                 background:
                   repeat: no-repeat
                   position: center
-                filter: grayscale(1)
-                opacity: .7
+
                 cursor: pointer
+
+                &.shadow
+                  filter: grayscale(1)
+                  opacity: .3
 
                 &:hover
                   opacity: 1
                   filter: grayscale(.6)
+
+
 
                 &--cover
                   background-image: url('../images/cover.svg')
