@@ -232,8 +232,9 @@ body {
         box-shadow: inset 0 0 8px rgba(100, 100, 100, 0.15); }
     /* line 64, sass/admin/3-sections/center-content.sass */
     .section#center-content .main-content #img-container {
-      width: 100%; }
-      /* line 67, sass/admin/3-sections/center-content.sass */
+      width: 100%;
+      position: relative; }
+      /* line 68, sass/admin/3-sections/center-content.sass */
       .section#center-content .main-content #img-container .dropzone-container .dropzone {
         background: #E4FFFC;
         border: none;
@@ -247,99 +248,181 @@ body {
         justify-content: center;
         cursor: pointer;
         margin-bottom: .3rem; }
-        /* line 81, sass/admin/3-sections/center-content.sass */
+        /* line 82, sass/admin/3-sections/center-content.sass */
         .section#center-content .main-content #img-container .dropzone-container .dropzone .hidden-input {
           display: none; }
-      /* line 84, sass/admin/3-sections/center-content.sass */
-      .section#center-content .main-content #img-container .image-list ul {
-        list-style: none;
-        margin: 0; }
-        /* line 87, sass/admin/3-sections/center-content.sass */
-        .section#center-content .main-content #img-container .image-list ul .img-li {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          height: 40px;
-          background: #EAFFf3;
-          border-bottom: 1px dashed rgba(150, 150, 150, 0.5);
-          transition: all 1000ms ease-in-out; }
-          /* line 98, sass/admin/3-sections/center-content.sass */
-          .section#center-content .main-content #img-container .image-list ul .img-li.updated {
-            background: #C4FFC4;
-            transition: all 10ms ease-in-out; }
-          /* line 102, sass/admin/3-sections/center-content.sass */
-          .section#center-content .main-content #img-container .image-list ul .img-li .img-preview {
+      /* line 85, sass/admin/3-sections/center-content.sass */
+      .section#center-content .main-content #img-container .image-list {
+        position: absolute;
+        width: 100%;
+        max-height: calc(100% - 150px);
+        z-index: 1;
+        transform: translate(0%, 0%);
+        padding: 0;
+        overflow-y: auto;
+        transition: all 300ms ease-in-out; }
+        /* line 94, sass/admin/3-sections/center-content.sass */
+        .section#center-content .main-content #img-container .image-list * {
+          transition: all 300ms ease-in-out; }
+        /* line 97, sass/admin/3-sections/center-content.sass */
+        .section#center-content .main-content #img-container .image-list #closeButton {
+          display: none; }
+        /* line 100, sass/admin/3-sections/center-content.sass */
+        .section#center-content .main-content #img-container .image-list ul {
+          list-style: none;
+          margin: 0; }
+          /* line 106, sass/admin/3-sections/center-content.sass */
+          .section#center-content .main-content #img-container .image-list ul .img-li {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
             align-items: center;
-            cursor: pointer; }
-            /* line 108, sass/admin/3-sections/center-content.sass */
-            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview:hover {
-              background: rgba(200, 200, 200, 0.2); }
-            /* line 111, sass/admin/3-sections/center-content.sass */
-            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-thumb {
+            height: 40px;
+            background: #EAFFf3;
+            border-bottom: 1px dashed rgba(150, 150, 150, 0.5); }
+            /* line 117, sass/admin/3-sections/center-content.sass */
+            .section#center-content .main-content #img-container .image-list ul .img-li.updated {
+              background: #C4FFC4;
+              transition: all 10ms ease-in-out; }
+            /* line 121, sass/admin/3-sections/center-content.sass */
+            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview {
+              flex-grow: 2;
               display: flex;
-              justify-content: center;
+              flex-direction: row;
               align-items: center;
-              width: 60px;
-              margin-right: 5px; }
-              /* line 117, sass/admin/3-sections/center-content.sass */
-              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-thumb img {
-                height: 35px; }
-            /* line 120, sass/admin/3-sections/center-content.sass */
-            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name {
-              max-width: 200px;
-              flex-grow: 2; }
-              /* line 124, sass/admin/3-sections/center-content.sass */
-              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name p {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                margin: 0;
-                color: #777;
-                font-size: .9rem;
-                font-weight: 300; }
-          /* line 133, sass/admin/3-sections/center-content.sass */
-          .section#center-content .main-content #img-container .image-list ul .img-li .control-container {
-            display: flex;
-            flex-direction: row;
-            margin-right: 3px; }
-            /* line 137, sass/admin/3-sections/center-content.sass */
-            .section#center-content .main-content #img-container .image-list ul .img-li .control-container input {
-              width: 0;
-              visibility: hidden; }
-              /* line 140, sass/admin/3-sections/center-content.sass */
-              .section#center-content .main-content #img-container .image-list ul .img-li .control-container input:checked + label > .ctl:first-child {
-                opacity: 1;
-                filter: grayscale(0) drop-shadow(0 0 4px rgba(150, 150, 150, 0.5)); }
-            /* line 144, sass/admin/3-sections/center-content.sass */
-            .section#center-content .main-content #img-container .image-list ul .img-li .control-container label {
-              margin: 0 4px; }
+              cursor: pointer;
+              height: 100%; }
+              /* line 129, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-form {
+                display: none; }
+              /* line 132, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview:hover {
+                background: rgba(200, 200, 200, 0.2); }
+              /* line 135, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-thumb {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-width: 80px;
+                height: 100%;
+                margin-right: 5px; }
+                /* line 143, sass/admin/3-sections/center-content.sass */
+                .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-thumb img {
+                  height: 90%; }
               /* line 146, sass/admin/3-sections/center-content.sass */
-              .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl {
-                width: 16px;
-                height: 16px;
-                background-repeat: no-repeat;
-                background-position: center;
-                cursor: pointer; }
-                /* line 155, sass/admin/3-sections/center-content.sass */
-                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl.shadow {
-                  filter: grayscale(1);
-                  opacity: .3; }
-                /* line 159, sass/admin/3-sections/center-content.sass */
-                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl:hover {
+              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name {
+                max-width: 200px;
+                flex-grow: 2; }
+                /* line 150, sass/admin/3-sections/center-content.sass */
+                .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name p {
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  margin: 0;
+                  color: #777;
+                  font-size: .9rem;
+                  font-weight: 300; }
+            /* line 159, sass/admin/3-sections/center-content.sass */
+            .section#center-content .main-content #img-container .image-list ul .img-li .control-container {
+              display: flex;
+              flex-direction: row;
+              margin-right: 3px; }
+              /* line 163, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list ul .img-li .control-container input {
+                width: 0;
+                visibility: hidden; }
+                /* line 166, sass/admin/3-sections/center-content.sass */
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container input:checked + label > .ctl:first-child {
                   opacity: 1;
-                  filter: grayscale(0.6); }
-                /* line 165, sass/admin/3-sections/center-content.sass */
-                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--cover {
-                  background-image: url("../images/cover.svg"); }
-                /* line 168, sass/admin/3-sections/center-content.sass */
-                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--visible {
-                  background-image: url("../images/eye.svg"); }
-                /* line 171, sass/admin/3-sections/center-content.sass */
-                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--delete {
-                  background-image: url("../images/trash.svg"); }
+                  filter: grayscale(0) drop-shadow(0 0 4px rgba(150, 150, 150, 0.5)); }
+              /* line 170, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list ul .img-li .control-container label {
+                margin: 0 4px; }
+                /* line 172, sass/admin/3-sections/center-content.sass */
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl {
+                  width: 16px;
+                  height: 16px;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  cursor: pointer; }
+                  /* line 181, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl.shadow {
+                    filter: grayscale(1);
+                    opacity: .3; }
+                  /* line 185, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl:hover {
+                    opacity: 1;
+                    filter: grayscale(0.6); }
+                  /* line 191, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--cover {
+                    background-image: url("../images/cover.svg"); }
+                  /* line 194, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--visible {
+                    background-image: url("../images/eye.svg"); }
+                  /* line 197, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--delete {
+                    background-image: url("../images/trash.svg"); }
+        /* line 200, sass/admin/3-sections/center-content.sass */
+        .section#center-content .main-content #img-container .image-list.big-view {
+          transform: translate(-22%, -50%);
+          width: 220%;
+          max-height: 80vh;
+          padding: 0 1rem 1rem;
+          background: white;
+          border: 3px solid #c9c9c9;
+          box-shadow: 0 0 10px #6ad5cb;
+          transition: all 300ms ease-in-out; }
+          /* line 209, sass/admin/3-sections/center-content.sass */
+          .section#center-content .main-content #img-container .image-list.big-view #closeButton {
+            position: absolute;
+            display: block;
+            text-align: right;
+            margin: 0;
+            font-weight: 300; }
+            /* line 216, sass/admin/3-sections/center-content.sass */
+            .section#center-content .main-content #img-container .image-list.big-view #closeButton a {
+              color: #ccc;
+              cursor: pointer; }
+              /* line 219, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list.big-view #closeButton a:hover {
+                color: #111; }
+          /* line 223, sass/admin/3-sections/center-content.sass */
+          .section#center-content .main-content #img-container .image-list.big-view ul .active {
+            height: 360px; }
+            /* line 225, sass/admin/3-sections/center-content.sass */
+            .section#center-content .main-content #img-container .image-list.big-view ul .active * {
+              transition: all 300ms ease-in-out; }
+            /* line 229, sass/admin/3-sections/center-content.sass */
+            .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview {
+              height: 100%;
+              width: auto; }
+              /* line 232, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form {
+                display: block; }
+                /* line 234, sass/admin/3-sections/center-content.sass */
+                .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item {
+                  margin: 10px 5px; }
+                  /* line 237, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item textarea {
+                    resize: none; }
+                  /* line 240, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item button {
+                    margin-right: 8px; }
+              /* line 243, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-thumb {
+                margin-right: 10px;
+                height: 100%; }
+                /* line 247, sass/admin/3-sections/center-content.sass */
+                .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-thumb img {
+                  width: auto;
+                  height: 290px; }
+              /* line 250, sass/admin/3-sections/center-content.sass */
+              .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-name p {
+                opacity: 0; }
+          /* line 254, sass/admin/3-sections/center-content.sass */
+          .section#center-content .main-content #img-container .image-list.big-view ul .img-preview .img-name {
+            max-width: none;
+            width: auto; }
 
 /* line 3, sass/admin/3-sections/right-menu.sass */
 .right-container .sub-container {
@@ -352,59 +435,60 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 1rem auto; }
-  /* line 16, sass/admin/3-sections/right-menu.sass */
+  margin: 1rem auto;
+  z-index: -1; }
+  /* line 17, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .layout-container input {
     opacity: 0;
     position: absolute; }
-    /* line 21, sass/admin/3-sections/right-menu.sass */
+    /* line 22, sass/admin/3-sections/right-menu.sass */
     .right-container .general-container .layout-container input:checked ~ .layout-label {
       opacity: 1;
       filter: grayscale(0); }
-      /* line 25, sass/admin/3-sections/right-menu.sass */
+      /* line 26, sass/admin/3-sections/right-menu.sass */
       .right-container .general-container .layout-container input:checked ~ .layout-label label {
         border: 2px solid #888;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); }
-  /* line 29, sass/admin/3-sections/right-menu.sass */
+  /* line 30, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .layout-container .layout-label {
     margin: 0 .5rem;
     filter: grayscale(1);
     text-align: center;
     opacity: .6;
     transition: all 200ms ease-in-out; }
-    /* line 38, sass/admin/3-sections/right-menu.sass */
+    /* line 39, sass/admin/3-sections/right-menu.sass */
     .right-container .general-container .layout-container .layout-label label {
       margin: 0 auto .2rem;
       height: 4.03rem;
       width: 6rem;
       border: 2px solid #aaa;
       cursor: pointer; }
-      /* line 44, sass/admin/3-sections/right-menu.sass */
+      /* line 45, sass/admin/3-sections/right-menu.sass */
       .right-container .general-container .layout-container .layout-label label:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
-    /* line 47, sass/admin/3-sections/right-menu.sass */
+    /* line 48, sass/admin/3-sections/right-menu.sass */
     .right-container .general-container .layout-container .layout-label span {
       display: block;
       font-family: "Open Sans Condensed", sans-serif;
       font-size: 1rem; }
-  /* line 54, sass/admin/3-sections/right-menu.sass */
+  /* line 55, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .layout-container .layout-img .layout-label label {
     background-image: url(../images/layout_img.svg);
     background-size: cover; }
-  /* line 59, sass/admin/3-sections/right-menu.sass */
+  /* line 60, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .layout-container .layout-txt .layout-label label {
     background-image: url(../images/layout_text.svg);
     background-size: cover; }
-  /* line 64, sass/admin/3-sections/right-menu.sass */
+  /* line 65, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .layout-container .layout-mnu .layout-label label {
     background-image: url(../images/layout_menu.svg);
     background-size: cover; }
 
-/* line 69, sass/admin/3-sections/right-menu.sass */
+/* line 70, sass/admin/3-sections/right-menu.sass */
 .right-container .save-container {
   margin: 0 auto;
   text-align: center; }
-  /* line 72, sass/admin/3-sections/right-menu.sass */
+  /* line 73, sass/admin/3-sections/right-menu.sass */
   .right-container .save-container button {
     margin: 0 .2rem;
     border-radius: 0;
@@ -414,15 +498,15 @@ body {
     font-size: 1.2rem;
     text-transform: uppercase;
     text-align: center; }
-    /* line 83, sass/admin/3-sections/right-menu.sass */
+    /* line 84, sass/admin/3-sections/right-menu.sass */
     .right-container .save-container button.button-save {
       background: #63BEFF; }
-      /* line 86, sass/admin/3-sections/right-menu.sass */
+      /* line 87, sass/admin/3-sections/right-menu.sass */
       .right-container .save-container button.button-save:hover {
         background: #30a9ff; }
-    /* line 88, sass/admin/3-sections/right-menu.sass */
+    /* line 89, sass/admin/3-sections/right-menu.sass */
     .right-container .save-container button.button-cancel {
       background: #b3b3b3; }
-      /* line 90, sass/admin/3-sections/right-menu.sass */
+      /* line 91, sass/admin/3-sections/right-menu.sass */
       .right-container .save-container button.button-cancel:hover {
         background: #9a9a9a; }

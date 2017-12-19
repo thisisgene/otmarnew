@@ -22,15 +22,28 @@ nav.tabs(data-component='tabs', data-equals="true")
     .dropzone-container
       form(action='/admin/upload').dropzone
         input.hidden-input(name='project_id', value=currentProject._id)
-    .image-list
+    .image-list(id='imgList_' + currentProject._id)
       if (currentProject.images)
+        #closeButton
+          a(onclick='closeBigView(this)') x
         ul
           each image in currentProject.images
             if (!image.isDeleted)
-              li.img-li
-                a.img-preview
+              li(id='img-li_'+image._id).img-li
+                a(onclick='imageView(this, "'+currentProject._id+'")').img-preview
                   .img-thumb: img(src='../../uploads/'+image.filename)
-                  .img-name: p= image.originalName
+                  .img-name
+                    p= image.name
+                    .img-form
+                      .form-item
+                        label Name
+                        input(type='text', name='img_name', value= image.name, data-imgname=image.name).form-img--name.w80
+                      .form-item
+                        label Beschreibung
+                        textarea(name='img_desc', rows='4', data-imgdesc=image.desc).form-img--desc= image.desc
+                      .form-item
+                        button(onclick='saveImgEdit("'+ currentProject._id + '", "'+ image._id +'")') Speichern
+                        button(onclick='cancelImgEdit()').button.secondary.outline Verwerfen
                 .control-container
                   input(type='radio', name='cover-option', id='cover_'+ image._id, onclick='updateImage(this, this.id, "cover")', checked=(image.isCover))
                   label(for='cover_'+image._id)

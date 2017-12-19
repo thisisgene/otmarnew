@@ -1,4 +1,8 @@
 var projectId;
+var currentImageDesc;
+var $currentImageNameInput;
+var $activeNameInput;
+var currentImgId;
 
 $('.project-form form').on('submit', function(event) {
   event.preventDefault();
@@ -93,6 +97,13 @@ function reloadAll() {
 
 ///////// Update Imgaes
 
+function successAnimation(obj) {
+  obj.addClass('updated').delay(1000).queue(function(next){
+    $(this).removeClass('updated');
+    next();
+  })
+}
+
 function updateImage(obj, objId, cat) {
   var length = cat.length + 1;
   var id = objId.substring(length);
@@ -111,11 +122,72 @@ function updateImage(obj, objId, cat) {
         $parentLi.hide();
       }
       else {
-        $parentLi.addClass('updated').delay(1000).queue(function(next){
-          $(this).removeClass('updated');
-          next();
-        })
+        successAnimation($parentLi);
       }
     }
   });
+}
+
+function imageView(obj, pId) {
+
+  var $this = $(obj).parent();
+  var thisId = $this.attr('id');
+  if (currentImgId !== thisId) {
+    currentImgId = thisId;
+    var id = '#imgList_' + pId;
+    var $container = $(id);
+    var $form = $this.find('.img-form').first();
+    $currentImageNameInput = $form.find('.form-img--name:first');
+    var $active = $('.img-li.active');
+    var $activeForm = $active.find('.img-form').first();
+    $activeNameInput = $activeForm.find('.form-img--name:first');
+    $container.addClass('big-view');
+    $activeNameInput.val($activeNameInput.data('imgname'));
+    $active.removeClass('active');
+
+    $this.addClass('active');
+  }
+
+}
+
+function saveImgEdit(pId, iId) {
+  var $imgli = $(".img-li.active");
+  var $imgname = $imgli.find('.form-img--name:first');
+  var imgname = $imgname.val();
+  var $imgdesc = $imgli.find('.form-img--desc:first');
+  var imgdesc = $imgdesc.val();
+
+  var body = {
+    project_id  : pId,
+    image_id    : iId,
+    name        : imgname,
+    desc        : imgdesc
+
+  };
+
+  $.post('/admin/edit_image', body, function(data){
+    if (data == 'success') {
+      $imgname.data('imgname', imgname);
+      $imgdesc.data('imgdesc', imgdesc);
+      successAnimation($imgli);
+    }
+  })
+
+}
+
+function cancelImgEdit() {
+  var $imgli = $(".img-li.active");
+  var $imgname = $imgli.find('.form-img--name:first');
+  var $imgdesc = $imgli.find('.form-img--desc:first');
+  $imgname.val($imgname.data('imgname'));
+  $imgdesc.val($imgdesc.data('imgdesc'));
+}
+
+function closeBigView(obj) {
+  var $imgli = $(".img-li.active");
+
+  cancelImgEdit();
+  $imgli.removeClass("active");
+  $(obj).parent().parent().removeClass("big-view");
+  currentImgId = '';
 }

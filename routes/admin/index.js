@@ -125,6 +125,7 @@ router.post('/upload', upload.single('file'), function(req, res) {
         var image = new Image({
           filename: file.filename,
           originalName: file.originalname,
+          name: file.originalname,
           path: file.path,
           fileSize: file.size,
           isVisible: true,
@@ -159,17 +160,31 @@ router.post('/update_image/:cat', function(req, res) {
             images[i].isDeleted = true;
         }
       }
-
       else {
         if (cat == 'cover') {images[i].isCover = false; }
-
       }
     }
     project.save(function(err, project) {
       res.send('success');
     });
   });
+});
 
+router.post('/edit_image', function(req, res) {
+  var body = req.body;
+  Project.findById(body.project_id, function(err, project) {
+    var images = project.images;
+    for (var i=0; i < images.length; i++) {
+      if (images[i]._id == body.image_id) {
+        var img = images[i];
+        img.name = body.name;
+        img.desc = body.desc;
+      }
+    }
+    project.save(function(err, project) {
+      res.send('success');
+    });
+  })
 });
 
 module.exports = router;

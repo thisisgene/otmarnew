@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var ImageSchema = new mongoose.Schema({
   filename: String,
   originalName: String,
+  name: String,
+  desc: String,
   path: String,
   fileSize: Number,
   isCover: Boolean,
