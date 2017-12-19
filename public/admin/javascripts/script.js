@@ -194,11 +194,10 @@ function cancelImgEdit() {
   $imgdesc.val($imgdesc.data('imgdesc'));
 }
 
-function closeBigView(obj) {
+function closeBigView() {
   var $imgli = $(".img-li.active");
-
   cancelImgEdit();
   $imgli.removeClass("active");
-  $(obj).parent().parent().removeClass("big-view");
+  $('.big-view').removeClass("big-view");
   currentImgId = '';
 }

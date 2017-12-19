@@ -24,8 +24,8 @@ nav.tabs(data-component='tabs', data-equals="true")
         input.hidden-input(name='project_id', value=currentProject._id)
     .image-list(id='imgList_' + currentProject._id)
       if (currentProject.images)
-        #closeButton
-          a(onclick='closeBigView(this)') x
+        .closeButton
+          a(onclick='closeBigView()') schließen x
         ul
           each image in currentProject.images
             if (!image.isDeleted)
@@ -54,3 +54,5 @@ nav.tabs(data-component='tabs', data-equals="true")
 
                   label(id='delete_' + image._id, onclick='updateImage(this, this.id, "delete")')
                     .ctl.ctl--delete
+        .closeButton
+          a(onclick='closeBigView()') schließen x

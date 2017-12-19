@@ -210,7 +210,7 @@ body {
         transition: all 300ms ease-in-out; }
         .section#center-content .main-content #img-container .image-list * {
           transition: all 300ms ease-in-out; }
-        .section#center-content .main-content #img-container .image-list #closeButton {
+        .section#center-content .main-content #img-container .image-list .closeButton {
           display: none; }
         .section#center-content .main-content #img-container .image-list ul {
           list-style: none;
@@ -297,15 +297,15 @@ body {
           border: 3px solid #c9c9c9;
           box-shadow: 0 0 10px #6ad5cb;
           transition: all 300ms ease-in-out; }
-          .section#center-content .main-content #img-container .image-list.big-view #closeButton {
+          .section#center-content .main-content #img-container .image-list.big-view .closeButton {
             display: block;
             text-align: right;
             margin: 0;
             font-weight: 300; }
-            .section#center-content .main-content #img-container .image-list.big-view #closeButton a {
+            .section#center-content .main-content #img-container .image-list.big-view .closeButton a {
               color: #ccc;
               cursor: pointer; }
-              .section#center-content .main-content #img-container .image-list.big-view #closeButton a:hover {
+              .section#center-content .main-content #img-container .image-list.big-view .closeButton a:hover {
                 color: #111; }
           .section#center-content .main-content #img-container .image-list.big-view ul .active {
             height: 360px; }
