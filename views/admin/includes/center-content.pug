@@ -26,16 +26,18 @@ nav.tabs(data-component='tabs', data-equals="true")
       if (currentProject.images)
         ul
           each image in currentProject.images
-            li
-              .image: img(src='../../uploads/'+image.filename)
-              .img-name: p= image.originalName
-              .control-container
-                input(type='radio', name='cover-option', id='cover_'+ image._id, onclick='checkCover(this.id)', checked=(image.isCover))
-                label(for='cover_'+image._id)
-                  .ctl.ctl--cover.shadow
-                input(type='checkbox', name='visibility-option', id='visible_'+ image._id)
-                label(for='visible_'+ image._id)
-                  .ctl.ctl--visible.shadow
-                input(type='checkbox', name='delete-option', id='delete_' + image._id)
-                label(for='delete_' + image._id)
-                  .ctl.ctl--delete
+            if (!image.isDeleted)
+              li.img-li
+                a.img-preview
+                  .img-thumb: img(src='../../uploads/'+image.filename)
+                  .img-name: p= image.originalName
+                .control-container
+                  input(type='radio', name='cover-option', id='cover_'+ image._id, onclick='updateImage(this, this.id, "cover")', checked=(image.isCover))
+                  label(for='cover_'+image._id)
+                    .ctl.ctl--cover.shadow
+                  input(type='checkbox', name='visibility-option', id='visible_'+ image._id, onclick='updateImage(this, this.id, "visible")', checked=(image.isVisible))
+                  label(for='visible_'+ image._id)
+                    .ctl.ctl--visible.shadow
+
+                  label(id='delete_' + image._id, onclick='updateImage(this, this.id, "delete")')
+                    .ctl.ctl--delete

@@ -7,8 +7,13 @@
     flex-grow: 0
     height: 25px
     box-sizing: border-box
-    .crumb-link:last-child
-      margin-right: 15px
+    font-size: .7rem
+    .crumb-link
+      a
+        padding: 0 3px
+        //&:first-child
+      &:last-child
+        margin-right: 15px
     #project-name-input
       padding: .3rem
       //margin-left: 5px
@@ -79,37 +84,52 @@
       .image-list ul
         list-style: none
         margin: 0
-        li
+        .img-li
           display: flex
           flex-direction: row
           justify-content: space-between
           align-items: center
 
           height: 40px
-          background: #E4FFEB
+          background: #EAFFf3
           border-bottom: 1px dashed rgba(150, 150, 150, .5)
+          transition: all 1000ms ease-in-out
 
-          .image
+          &.updated
+            background: #C4FFC4
+            transition: all 10ms ease-in-out
+
+          .img-preview
             display: flex
-            justify-content: center
+            flex-direction: row
             align-items: center
-            width: 60px
-            img
-              height: 35px
+            cursor: pointer
 
-          .img-name
-            max-width: 160px
-            flex-grow: 2
+            &:hover
+              background: rgba(200, 200, 200, .2)
 
-            p
-              white-space: nowrap
-              overflow: hidden
-              text-overflow: ellipsis
-              margin: 0
-              color: #777
-              font:
-                size: .9rem
-                weight: 300
+            .img-thumb
+              display: flex
+              justify-content: center
+              align-items: center
+              width: 60px
+              margin-right: 5px
+              img
+                height: 35px
+
+            .img-name
+              max-width: 200px
+              flex-grow: 2
+
+              p
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
+                margin: 0
+                color: #777
+                font:
+                  size: .9rem
+                  weight: 300
           .control-container
             display: flex
             flex-direction: row

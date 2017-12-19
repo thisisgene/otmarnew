@@ -91,14 +91,31 @@ function reloadAll() {
   location.reload();
 }
 
-function checkCover(obj) {
-  var id = obj.substring(6);
+///////// Update Imgaes
+
+function updateImage(obj, objId, cat) {
+  var length = cat.length + 1;
+  var id = objId.substring(length);
   projectId = $('.current-id').data('id');
+  var status;
+  var $parentLi = $(obj).closest('.img-li');
+  if (cat == 'visibility') {status = $(obj)[0].checked;}
   var body = {
-    imgid : id,
-    proid : projectId
-  }
-  $.post('/admin/update_image', body, function(data) {
-    console.log(data);
+    imgid  : id,
+    proid  : projectId,
+    vistatus : status
+  };
+  $.post('/admin/update_image/' + cat, body, function(data) {
+    if (data=='success') {
+      if (cat=='delete') {
+        $parentLi.hide();
+      }
+      else {
+        $parentLi.addClass('updated').delay(1000).queue(function(next){
+          $(this).removeClass('updated');
+          next();
+        })
+      }
+    }
   });
 }

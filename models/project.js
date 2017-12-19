@@ -5,7 +5,9 @@ var ImageSchema = new mongoose.Schema({
   originalName: String,
   path: String,
   fileSize: Number,
-  isCover: Boolean
+  isCover: Boolean,
+  isVisible: Boolean,
+  isDeleted: Boolean
 });
 
 var ProjectSchema = new mongoose.Schema({

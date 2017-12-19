@@ -137,7 +137,10 @@ body {
   .section#center-content .breadcrumbs {
     flex-grow: 0;
     height: 25px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    font-size: .7rem; }
+    .section#center-content .breadcrumbs .crumb-link a {
+      padding: 0 3px; }
     .section#center-content .breadcrumbs .crumb-link:last-child {
       margin-right: 15px; }
     .section#center-content .breadcrumbs #project-name-input {
@@ -198,61 +201,73 @@ body {
       .section#center-content .main-content #img-container .image-list ul {
         list-style: none;
         margin: 0; }
-        .section#center-content .main-content #img-container .image-list ul li {
+        .section#center-content .main-content #img-container .image-list ul .img-li {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
           height: 40px;
-          background: #E4FFEB;
-          border-bottom: 1px dashed rgba(150, 150, 150, 0.5); }
-          .section#center-content .main-content #img-container .image-list ul li .image {
+          background: #EAFFf3;
+          border-bottom: 1px dashed rgba(150, 150, 150, 0.5);
+          transition: all 1000ms ease-in-out; }
+          .section#center-content .main-content #img-container .image-list ul .img-li.updated {
+            background: #C4FFC4;
+            transition: all 10ms ease-in-out; }
+          .section#center-content .main-content #img-container .image-list ul .img-li .img-preview {
             display: flex;
-            justify-content: center;
+            flex-direction: row;
             align-items: center;
-            width: 60px; }
-            .section#center-content .main-content #img-container .image-list ul li .image img {
-              height: 35px; }
-          .section#center-content .main-content #img-container .image-list ul li .img-name {
-            max-width: 160px;
-            flex-grow: 2; }
-            .section#center-content .main-content #img-container .image-list ul li .img-name p {
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              margin: 0;
-              color: #777;
-              font-size: .9rem;
-              font-weight: 300; }
-          .section#center-content .main-content #img-container .image-list ul li .control-container {
+            cursor: pointer; }
+            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview:hover {
+              background: rgba(200, 200, 200, 0.2); }
+            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-thumb {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 60px;
+              margin-right: 5px; }
+              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-thumb img {
+                height: 35px; }
+            .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name {
+              max-width: 200px;
+              flex-grow: 2; }
+              .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name p {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0;
+                color: #777;
+                font-size: .9rem;
+                font-weight: 300; }
+          .section#center-content .main-content #img-container .image-list ul .img-li .control-container {
             display: flex;
             flex-direction: row;
             margin-right: 3px; }
-            .section#center-content .main-content #img-container .image-list ul li .control-container input {
+            .section#center-content .main-content #img-container .image-list ul .img-li .control-container input {
               width: 0;
               visibility: hidden; }
-              .section#center-content .main-content #img-container .image-list ul li .control-container input:checked + label > .ctl:first-child {
+              .section#center-content .main-content #img-container .image-list ul .img-li .control-container input:checked + label > .ctl:first-child {
                 opacity: 1;
                 filter: grayscale(0) drop-shadow(0 0 4px rgba(150, 150, 150, 0.5)); }
-            .section#center-content .main-content #img-container .image-list ul li .control-container label {
+            .section#center-content .main-content #img-container .image-list ul .img-li .control-container label {
               margin: 0 4px; }
-              .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl {
+              .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl {
                 width: 16px;
                 height: 16px;
                 background-repeat: no-repeat;
                 background-position: center;
                 cursor: pointer; }
-                .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl.shadow {
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl.shadow {
                   filter: grayscale(1);
                   opacity: .3; }
-                .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl:hover {
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl:hover {
                   opacity: 1;
                   filter: grayscale(0.6); }
-                .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl--cover {
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--cover {
                   background-image: url("../images/cover.svg"); }
-                .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl--visible {
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--visible {
                   background-image: url("../images/eye.svg"); }
-                .section#center-content .main-content #img-container .image-list ul li .control-container label .ctl--delete {
+                .section#center-content .main-content #img-container .image-list ul .img-li .control-container label .ctl--delete {
                   background-image: url("../images/trash.svg"); }
 
 .right-container .sub-container {
