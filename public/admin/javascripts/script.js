@@ -158,6 +158,7 @@ function saveImgEdit(pId, iId) {
   var imgname = $imgname.val();
   var $imgdesc = $imgli.find('.form-img--desc:first');
   var imgdesc = $imgdesc.val();
+  var $imgNameP = $imgli.find('.img-name-p');
 
   var body = {
     project_id  : pId,
@@ -167,13 +168,21 @@ function saveImgEdit(pId, iId) {
 
   };
 
-  $.post('/admin/edit_image', body, function(data){
-    if (data == 'success') {
-      $imgname.data('imgname', imgname);
-      $imgdesc.data('imgdesc', imgdesc);
-      successAnimation($imgli);
-    }
-  })
+  if (imgname !== '') {
+    $.post('/admin/edit_image', body, function(data){
+      if (data == 'success') {
+        $imgname.data('imgname', imgname);
+        $imgdesc.data('imgdesc', imgdesc);
+        $imgNameP.text(imgname);
+        successAnimation($imgli);
+      }
+    })
+  }
+  else {
+    alert('Name darf nicht leer sein.');
+  }
+
+
 
 }
 

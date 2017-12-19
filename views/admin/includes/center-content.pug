@@ -33,7 +33,7 @@ nav.tabs(data-component='tabs', data-equals="true")
                 a(onclick='imageView(this, "'+currentProject._id+'")').img-preview
                   .img-thumb: img(src='../../uploads/'+image.filename)
                   .img-name
-                    p= image.name
+                    p.img-name-p= image.name
                     .img-form
                       .form-item
                         label Name

@@ -250,6 +250,7 @@ body {
                 max-width: 200px;
                 flex-grow: 2; }
                 .section#center-content .main-content #img-container .image-list ul .img-li .img-preview .img-name p {
+                  display: block;
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
@@ -297,7 +298,6 @@ body {
           box-shadow: 0 0 10px #6ad5cb;
           transition: all 300ms ease-in-out; }
           .section#center-content .main-content #img-container .image-list.big-view #closeButton {
-            position: absolute;
             display: block;
             text-align: right;
             margin: 0;
@@ -329,7 +329,7 @@ body {
                   width: auto;
                   height: 290px; }
               .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-name p {
-                opacity: 0; }
+                display: none; }
           .section#center-content .main-content #img-container .image-list.big-view ul .img-preview .img-name {
             max-width: none;
             width: auto; }

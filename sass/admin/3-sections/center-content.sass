@@ -148,6 +148,7 @@
                 flex-grow: 2
 
                 p
+                  display: block
                   white-space: nowrap
                   overflow: hidden
                   text-overflow: ellipsis
@@ -198,6 +199,7 @@
                     background-image: url('../images/trash.svg')
 
         &.big-view
+
           transform: translate(-22%, -50%)
           width: 220%
           max-height: 80vh
@@ -207,8 +209,7 @@
           box-shadow: 0 0 10px #6ad5cb
           transition: all 300ms ease-in-out
           #closeButton
-            position: absolute
-            //width: 100%
+
             display: block
             text-align: right
             margin: 0
@@ -248,7 +249,7 @@
                     width: auto
                     height: 290px
                 .img-name p
-                  opacity: 0
+                  display: none
 
             .img-preview
               .img-name
