@@ -136,13 +136,15 @@ function imageView(obj, pId) {
     currentImgId = thisId;
     var id = '#imgList_' + pId;
     var $container = $(id);
-    var $form = $this.find('.img-form').first();
-    $currentImageNameInput = $form.find('.form-img--name:first');
+    // var $form = $this.find('.img-form').first();
+    // $currentImageNameInput = $form.find('.form-img--name:first');
     var $active = $('.img-li.active');
     var $activeForm = $active.find('.img-form').first();
     $activeNameInput = $activeForm.find('.form-img--name:first');
+    $activeDescInput = $activeForm.find('.form-img--desc:first');
     $container.addClass('big-view');
     $activeNameInput.val($activeNameInput.data('imgname'));
+    $activeDescInput.val($activeDescInput.data('imgdesc'));
     $active.removeClass('active');
 
     $this.addClass('active');
