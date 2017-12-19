@@ -2,4 +2,11 @@
   .trash-img
 
 .trash-compartment
-  h1 trash
+  h1.slim-title TRASH
+
+  .trash-project-container
+
+    ul.trash-project-list
+    each project in projects
+      if (project.deleted)
+        li= project.name
