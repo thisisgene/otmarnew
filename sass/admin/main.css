@@ -16,7 +16,8 @@ body {
   background: white;
   height: 100vh;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden; }
   body .navbar-container {
     background: #eee;
     display: flex;
@@ -59,6 +60,7 @@ body {
           transform: scale(1.2); }
   body .main-container {
     display: flex;
+    flex-direction: row;
     height: calc(100% - 50px); }
     body .main-container .main-wrapper {
       height: 100%;
@@ -402,3 +404,77 @@ body {
       background: #b3b3b3; }
       .right-container .save-container button.button-cancel:hover {
         background: #9a9999; }
+
+.trash-wrapper {
+  position: absolute;
+  right: 0;
+  height: calc(100% - 50px);
+  z-index: 100;
+  width: 50vw; }
+  .trash-wrapper .section#trash {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    transform: translateX(calc(100% - 30px));
+    transition: transform 300ms ease-in-out; }
+    .trash-wrapper .section#trash.show-trash {
+      transform: translateX(0); }
+      .trash-wrapper .section#trash.show-trash .trash-handle {
+        transform: translateX(0px);
+        opacity: 1; }
+        .trash-wrapper .section#trash.show-trash .trash-handle:hover {
+          transform: none; }
+        .trash-wrapper .section#trash.show-trash .trash-handle .trash-img {
+          height: 20px;
+          width: 20px;
+          background-image: url("../images/close.svg");
+          transform: translateX(4px) scale(0.8);
+          opacity: .6; }
+          .trash-wrapper .section#trash.show-trash .trash-handle .trash-img:hover {
+            opacity: 1;
+            transform: translateX(4px) scale(1); }
+    .trash-wrapper .section#trash .trash-handle {
+      position: relative;
+      width: 30px;
+      height: 60px;
+      background: #EBB45D;
+      margin-top: 10px;
+      cursor: pointer;
+      border: 2px solid #4ca0f5;
+      border-right: none;
+      border-bottom-left-radius: 15px;
+      border-top-left-radius: 15px;
+      opacity: .5;
+      transform: translateX(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 12;
+      transition: all 200ms ease-in-out; }
+      .trash-wrapper .section#trash .trash-handle:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #EBB45D;
+        width: 2px;
+        transform: translateX(2px); }
+      .trash-wrapper .section#trash .trash-handle .trash-img {
+        height: 20px;
+        width: 20px;
+        background-image: url("../images/trash_big.svg");
+        background-repeat: no-repeat; }
+      .trash-wrapper .section#trash .trash-handle:hover {
+        opacity: 1;
+        transform: translateX(6px); }
+    .trash-wrapper .section#trash .trash-compartment {
+      z-index: -1;
+      background: #EBB45D;
+      padding: 1rem;
+      width: calc(100% - 30px);
+      height: 100%;
+      border-left: 2px solid #4ca0f5; }
+      .trash-wrapper .section#trash .trash-compartment h1 {
+        color: white; }

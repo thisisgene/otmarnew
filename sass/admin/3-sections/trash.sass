@@ -1,0 +1,92 @@
+
+.trash-wrapper
+  position: absolute
+  right: 0
+  height: calc(100% - 50px)
+  z-index: 100
+  width: 50vw
+
+  .section#trash
+    height: 100%
+    width: 100%
+    display: flex
+    flex-direction: row
+    transform: translateX(calc(100% - 30px))
+    transition: transform 300ms ease-in-out
+
+    &.show-trash
+      transform: translateX(0)
+
+      .trash-handle
+        transform: translateX(0px)
+        opacity: 1
+
+        &:hover
+          transform: none
+
+        .trash-img
+          height: 20px
+          width: 20px
+
+          background-image: url('../images/close.svg')
+          transform: translateX(4px) scale(.8)
+          opacity: .6
+
+          &:hover
+            opacity: 1
+            transform: translateX(4px) scale(1)
+
+
+
+
+    .trash-handle
+      position: relative
+      width: 30px
+      height: 60px
+      background: $trash-color
+      margin-top: 10px
+      cursor: pointer
+      border: 2px solid #4ca0f5
+      border-right: none
+      border-bottom-left-radius: 15px
+      border-top-left-radius: 15px
+      opacity: .5
+      transform: translateX(10px)
+      display: flex
+      align-items: center
+      justify-content: center
+      z-index: 12
+      transition: all 200ms ease-in-out
+
+      &:after
+        content: ''
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        background: $trash-color
+        width: 2px
+        transform: translateX(2px)
+
+      .trash-img
+        height: 20px
+        width: 20px
+
+        background:
+          image: url('../images/trash_big.svg')
+          repeat: no-repeat
+
+      &:hover
+        opacity: 1
+        transform: translateX(6px)
+
+    .trash-compartment
+      z-index: -1
+      background: $trash-color
+      padding: 1rem
+      width: calc(100% - 30px)
+      height: 100%
+      border-left: 2px solid #4ca0f5
+      h1
+        color: white
+
