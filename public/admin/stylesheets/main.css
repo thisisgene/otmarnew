@@ -519,83 +519,90 @@ body {
   right: 0;
   height: calc(100% - 50px);
   z-index: 100;
-  width: 50vw; }
-  /* line 9, sass/admin/3-sections/trash.sass */
+  width: 50vw;
+  transform: translateX(calc(100% - 30px));
+  transition: transform 300ms ease-in-out; }
+  /* line 11, sass/admin/3-sections/trash.sass */
   .trash-wrapper .section#trash {
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: row;
-    transform: translateX(calc(100% - 30px));
-    transition: transform 300ms ease-in-out; }
-    /* line 17, sass/admin/3-sections/trash.sass */
-    .trash-wrapper .section#trash.show-trash {
-      transform: translateX(0); }
-      /* line 20, sass/admin/3-sections/trash.sass */
-      .trash-wrapper .section#trash.show-trash .trash-handle {
-        transform: translateX(0px);
-        opacity: 1; }
-        /* line 24, sass/admin/3-sections/trash.sass */
-        .trash-wrapper .section#trash.show-trash .trash-handle:hover {
-          transform: none; }
-        /* line 27, sass/admin/3-sections/trash.sass */
-        .trash-wrapper .section#trash.show-trash .trash-handle .trash-img {
-          height: 20px;
-          width: 20px;
-          background-image: url("../images/close.svg");
-          transform: translateX(4px) scale(0.8);
-          opacity: .6; }
-          /* line 35, sass/admin/3-sections/trash.sass */
-          .trash-wrapper .section#trash.show-trash .trash-handle .trash-img:hover {
-            opacity: 1;
-            transform: translateX(4px) scale(1); }
-    /* line 42, sass/admin/3-sections/trash.sass */
-    .trash-wrapper .section#trash .trash-handle {
-      position: relative;
-      width: 30px;
-      height: 60px;
-      background: #EBB45D;
-      margin-top: 10px;
-      cursor: pointer;
-      border: 2px solid #4ca0f5;
-      border-right: none;
-      border-bottom-left-radius: 15px;
-      border-top-left-radius: 15px;
-      opacity: .5;
-      transform: translateX(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 12;
-      transition: all 200ms ease-in-out; }
-      /* line 61, sass/admin/3-sections/trash.sass */
-      .trash-wrapper .section#trash .trash-handle:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        background: #EBB45D;
-        width: 2px;
-        transform: translateX(2px); }
-      /* line 71, sass/admin/3-sections/trash.sass */
-      .trash-wrapper .section#trash .trash-handle .trash-img {
+    flex-direction: row; }
+  /* line 17, sass/admin/3-sections/trash.sass */
+  .trash-wrapper.show-trash {
+    transform: translateX(0);
+    width: 100vw;
+    padding-left: 50vw;
+    background: rgba(100, 100, 100, 0.3); }
+    /* line 25, sass/admin/3-sections/trash.sass */
+    .trash-wrapper.show-trash #trash .trash-compartment {
+      box-shadow: -4px 0 3px rgba(0, 0, 0, 0.2); }
+    /* line 29, sass/admin/3-sections/trash.sass */
+    .trash-wrapper.show-trash #trash .trash-handle {
+      transform: translateX(0px);
+      opacity: 1;
+      box-shadow: -4px 0 3px rgba(0, 0, 0, 0.2); }
+      /* line 34, sass/admin/3-sections/trash.sass */
+      .trash-wrapper.show-trash #trash .trash-handle:hover {
+        transform: none; }
+      /* line 37, sass/admin/3-sections/trash.sass */
+      .trash-wrapper.show-trash #trash .trash-handle .trash-img {
         height: 20px;
         width: 20px;
-        background-image: url("../images/trash_big.svg");
-        background-repeat: no-repeat; }
-      /* line 79, sass/admin/3-sections/trash.sass */
-      .trash-wrapper .section#trash .trash-handle:hover {
-        opacity: 1;
-        transform: translateX(6px); }
-    /* line 83, sass/admin/3-sections/trash.sass */
-    .trash-wrapper .section#trash .trash-compartment {
-      z-index: -1;
-      background: #EBB45D;
-      padding: 1rem;
-      width: calc(100% - 30px);
-      height: 100%;
-      border-left: 2px solid #4ca0f5; }
-      /* line 90, sass/admin/3-sections/trash.sass */
-      .trash-wrapper .section#trash .trash-compartment h1 {
-        color: white; }
+        background-image: url("../images/close.svg");
+        transform: translateX(4px) scale(0.8);
+        opacity: .6; }
+        /* line 45, sass/admin/3-sections/trash.sass */
+        .trash-wrapper.show-trash #trash .trash-handle .trash-img:hover {
+          opacity: 1;
+          transform: translateX(4px) scale(1); }
+  /* line 52, sass/admin/3-sections/trash.sass */
+  .trash-wrapper #trash .trash-handle {
+    position: relative;
+    width: 30px;
+    height: 60px;
+    background: #eebf74;
+    margin-top: 10px;
+    cursor: pointer;
+    border: 2px solid #4ca0f5;
+    border-right: none;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    opacity: .5;
+    transform: translateX(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 12;
+    transition: all 200ms ease-in-out; }
+    /* line 71, sass/admin/3-sections/trash.sass */
+    .trash-wrapper #trash .trash-handle:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: #eebf74;
+      width: 2px;
+      transform: translateX(2px); }
+    /* line 81, sass/admin/3-sections/trash.sass */
+    .trash-wrapper #trash .trash-handle .trash-img {
+      height: 20px;
+      width: 20px;
+      background-image: url("../images/trash_big.svg");
+      background-repeat: no-repeat; }
+    /* line 89, sass/admin/3-sections/trash.sass */
+    .trash-wrapper #trash .trash-handle:hover {
+      opacity: 1;
+      transform: translateX(6px); }
+  /* line 93, sass/admin/3-sections/trash.sass */
+  .trash-wrapper #trash .trash-compartment {
+    z-index: -1;
+    background: #eebf74;
+    padding: 1rem;
+    width: calc(100% - 30px);
+    height: 100%;
+    border-left: 2px solid #4ca0f5; }
+    /* line 100, sass/admin/3-sections/trash.sass */
+    .trash-wrapper #trash .trash-compartment h1 {
+      color: white; }

@@ -1,4 +1,4 @@
 function toggleTrash(){
   console.log('adfsgs');
-  $('#trash').toggleClass('show-trash');
+  $('.trash-wrapper').toggleClass('show-trash');
 }

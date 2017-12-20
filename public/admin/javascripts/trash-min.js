@@ -1,1 +1,1 @@
-function toggleTrash(){console.log("adfsgs"),$("#trash").toggleClass("show-trash")}
+function toggleTrash(){console.log("adfsgs"),$(".trash-wrapper").toggleClass("show-trash")}
