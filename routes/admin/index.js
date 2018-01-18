@@ -27,7 +27,8 @@ router.post('/create_project', function(req, res) {
 
   new Project({
     name: name,
-    deleted: false
+    deleted: false,
+    visible: true
   }).save(function(err, project) {
     if (!err) res.send(project._id);
   });
@@ -92,12 +93,14 @@ router.post('/save_all', function(req, res) {
   var description = body.description;
   var descHtml = marked(description);
   var layout = body.layout;
+  var visible = body.visible;
   var msg = '';
 
   Project.findById(id, function(err, project) {
     project.descMU = description;
     project.descHtml = descHtml;
     project.layout = layout;
+    project.visible = visible;
     if (body.namechanged) {
       project.name = body.name;
       msg = 'changed';

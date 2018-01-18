@@ -17,6 +17,7 @@ var ProjectSchema = new mongoose.Schema({
   descMU: String,
   descHtml: String,
   deleted: Boolean,
+  visible: Boolean,
   hasChildren: Boolean,
   children: Array,
   hasParent: Boolean,

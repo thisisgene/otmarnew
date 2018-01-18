@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1 Otmar Rychlik
-  p halasd
+  .header-bar
+
+    h1.main-title OTMAR RYCHLIK
+    h1.sub-title IM LAUF DER ZEIT
+    h1.ghost-title
+
+  .main-container
+    ul.project-list
+      each project in projects
+        if (!project.deleted && project.visible && !project.hasParent)
+          li= project.name

@@ -1,6 +1,5 @@
-//@font-face
-//  font-family: 'DIN alt'
-//  src: url(../fonts/din1451alt.ttf)
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400')
+
 
 .noselect
   -webkit-touch-callout: none
@@ -10,12 +9,35 @@
   -ms-user-select: none
   user-select: none
 
-html, body
+body
   margin: 0
-  padding: 0
+  padding: 8px
 
 body
   font:
-    family: Arial
+    family: "Open Sans Condensed", sans-serif
   color: #333
   background: white
+
+.header-bar
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  background: $header-bar-background
+  padding: 0 .5rem
+  h1
+    width: 200px
+    margin: 0
+
+    &.main-title
+      color: #fff
+
+    &.sub-title
+      color: #DB2633
+
+.main-container
+  .project-list
+    margin: 0
+    padding: 0
+    list-style: none

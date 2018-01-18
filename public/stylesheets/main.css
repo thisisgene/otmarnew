@@ -1,4 +1,5 @@
-/* line 5, sass/1-base/main.sass */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400");
+/* line 4, sass/1-base/main.sass */
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -7,13 +8,32 @@
   -ms-user-select: none;
   user-select: none; }
 
-/* line 13, sass/1-base/main.sass */
-html, body {
-  margin: 0;
-  padding: 0; }
-
-/* line 17, sass/1-base/main.sass */
+/* line 12, sass/1-base/main.sass */
 body {
-  font-family: Arial;
+  margin: 0;
+  padding: 8px; }
+
+/* line 16, sass/1-base/main.sass */
+body {
+  font-family: "Open Sans Condensed", sans-serif;
   color: #333;
   background: white; }
+
+/* line 22, sass/1-base/main.sass */
+.header-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #CACACA;
+  padding: 0 .5rem; }
+  /* line 29, sass/1-base/main.sass */
+  .header-bar h1 {
+    width: 200px;
+    margin: 0; }
+    /* line 33, sass/1-base/main.sass */
+    .header-bar h1.main-title {
+      color: #fff; }
+    /* line 36, sass/1-base/main.sass */
+    .header-bar h1.sub-title {
+      color: #DB2633; }

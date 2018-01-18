@@ -1,9 +1,19 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require( 'mongoose' );
+var Project  = mongoose.model( 'Project' );
+var Image  = mongoose.model( 'Image' );
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  Project.find(function(err, projects) {
+    res.render('index', {
+      title: 'Otmar Rychlik',
+      projects: projects
+    });
+
+
+  });
 });
 
 router.get('/login', function(req, res) {
