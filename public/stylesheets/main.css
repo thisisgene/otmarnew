@@ -18,22 +18,59 @@ body {
   font-family: "Open Sans Condensed", sans-serif;
   color: #333;
   background: white; }
-
-/* line 22, sass/1-base/main.sass */
-.header-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background: #CACACA;
-  padding: 0 .5rem; }
-  /* line 29, sass/1-base/main.sass */
-  .header-bar h1 {
-    width: 200px;
-    margin: 0; }
-    /* line 33, sass/1-base/main.sass */
-    .header-bar h1.main-title {
-      color: #fff; }
-    /* line 36, sass/1-base/main.sass */
-    .header-bar h1.sub-title {
-      color: #DB2633; }
+  /* line 22, sass/1-base/main.sass */
+  body .header-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #CACACA;
+    padding: 0 .5rem; }
+    /* line 29, sass/1-base/main.sass */
+    body .header-bar h1 {
+      width: 200px;
+      margin: 0; }
+      /* line 33, sass/1-base/main.sass */
+      body .header-bar h1.main-title {
+        color: #fff; }
+      /* line 36, sass/1-base/main.sass */
+      body .header-bar h1.sub-title {
+        color: #DB2633; }
+  /* line 38, sass/1-base/main.sass */
+  body .main-container {
+    overflow-x: hidden; }
+    /* line 40, sass/1-base/main.sass */
+    body .main-container .project-list {
+      list-style: none;
+      margin: 2rem 0;
+      padding: 0 .2rem; }
+      /* line 46, sass/1-base/main.sass */
+      body .main-container .project-list li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-right: 10rem; }
+        /* line 54, sass/1-base/main.sass */
+        body .main-container .project-list li .link {
+          display: block;
+          text-decoration: none;
+          font-size: 8vh;
+          line-height: .9;
+          text-transform: uppercase;
+          color: #585858;
+          transition: transform 100ms ease-in-out;
+          transform-origin: left; }
+        /* line 66, sass/1-base/main.sass */
+        body .main-container .project-list li .project-update {
+          font-size: 4.6vh;
+          line-height: .9;
+          color: #DB2633;
+          opacity: .5; }
+        /* line 74, sass/1-base/main.sass */
+        body .main-container .project-list li:hover .link {
+          transform: scaleX(1.1);
+          color: #111; }
+        /* line 77, sass/1-base/main.sass */
+        body .main-container .project-list li:hover .project-update {
+          opacity: 1; }

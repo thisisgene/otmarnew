@@ -9,6 +9,11 @@ block content
 
   .main-container
     ul.project-list
+      li.h-li
+        .link
+        span.project-update-title ZULETZT GEÄNDERT
       each project in projects
         if (!project.deleted && project.visible && !project.hasParent)
-          li= project.name
+          li
+            a.link(href='')= project.name
+            span.project-update 1.4.2017
