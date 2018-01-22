@@ -14,6 +14,7 @@ var ImageSchema = new mongoose.Schema({
 
 var ProjectSchema = new mongoose.Schema({
   name: String,
+  latName: String,
   descMU: String,
   descHtml: String,
   deleted: Boolean,

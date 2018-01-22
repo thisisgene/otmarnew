@@ -3,17 +3,21 @@ extends layout
 block content
   .header-bar
 
-    h1.main-title OTMAR RYCHLIK
-    h1.sub-title IM LAUF DER ZEIT
-    h1.ghost-title
+    .left-header: h1.main-title OTMAR RYCHLIK
+    .right-header
+      h1.sub-title IM LAUF DER ZEIT
+      //h1.ghost-title
 
   .main-container
     ul.project-list
       li.h-li
-        .link
-        span.project-update-title ZULETZT GEÄNDERT
+        a
+          .link
+          span.project-update-title ZULETZT GEÄNDERT
       each project in projects
         if (!project.deleted && project.visible && !project.hasParent)
+
           li
-            a.link(href='')= project.name
-            span.project-update 1.4.2017
+            a(href='')
+              .link= project.name
+              span.project-update 1.4.2017

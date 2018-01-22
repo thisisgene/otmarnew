@@ -53,6 +53,7 @@ function saveAll(obj) {
   var oldName = $nameObj.data('currentName');
   var description = $('#description').val();
   var layout = $('input[name=layout]:checked').val();
+  var menuname = $('#menuname').val();
   var visible = $('#visible-check').is(':checked');
 
   var $loadingWrapper = $('.loading-wrapper');
@@ -62,6 +63,7 @@ function saveAll(obj) {
     id            : id,
     description   : description,
     layout        : layout,
+    menuname      : menuname,
     visible       : visible
   };
 

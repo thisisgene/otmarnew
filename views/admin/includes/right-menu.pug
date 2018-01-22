@@ -16,11 +16,15 @@
         input#option-3(type='radio', name='layout', value='layout_mnu', checked=(currentProject.layout==='layout_mnu'))
         .layout-label
           label(for='option-3')
-          span LAYOUT MIT TEXT
+          span NUR MENÜPUNKT
+
+    .menuname-container
+      span Menü-Name:
+      input(type='text', value=currentProject.latName)#menuname.w50
 
     .visible-container
-      input#visible-check(type='checkbox', value='Wird angezeigt', checked=currentProject.visible)
-
+      input#visible-check(type='checkbox', checked=currentProject.visible)
+      span Wird angezeigt
   hr
   .sub-container.save-container
     h1.slim-title SPEICHERN

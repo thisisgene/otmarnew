@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400");
-/* line 4, sass/1-base/main.sass */
+@font-face {
+  font-family: 'ITC Avant Garde Condensed';
+  src: url("../fonts/ITC Avant Garde Gothic LT Condensed Book.ttf"); }
+
+/* line 6, sass/1-base/main.sass */
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -8,69 +12,74 @@
   -ms-user-select: none;
   user-select: none; }
 
-/* line 12, sass/1-base/main.sass */
+/* line 14, sass/1-base/main.sass */
 body {
   margin: 0;
-  padding: 8px; }
-
-/* line 16, sass/1-base/main.sass */
-body {
-  font-family: "Open Sans Condensed", sans-serif;
+  padding: 8px;
+  font-family: "ITC Avant Garde Condensed", sans-serif;
   color: #333;
   background: white; }
-  /* line 22, sass/1-base/main.sass */
+  /* line 25, sass/1-base/main.sass */
   body .header-bar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
-    background: #CACACA;
-    padding: 0 .5rem; }
-    /* line 29, sass/1-base/main.sass */
+    background: #CECBCC;
+    padding: 2px 5px;
+    letter-spacing: 1px; }
+    /* line 34, sass/1-base/main.sass */
+    body .header-bar .left-header {
+      width: 450px; }
+    /* line 37, sass/1-base/main.sass */
     body .header-bar h1 {
-      width: 200px;
-      margin: 0; }
-      /* line 33, sass/1-base/main.sass */
+      margin: 0;
+      line-height: 1;
+      font-size: 2.3rem;
+      font-weight: 100; }
+      /* line 44, sass/1-base/main.sass */
       body .header-bar h1.main-title {
         color: #fff; }
-      /* line 36, sass/1-base/main.sass */
+      /* line 47, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  /* line 38, sass/1-base/main.sass */
+  /* line 49, sass/1-base/main.sass */
   body .main-container {
     overflow-x: hidden; }
-    /* line 40, sass/1-base/main.sass */
+    /* line 53, sass/1-base/main.sass */
     body .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0 .2rem; }
-      /* line 46, sass/1-base/main.sass */
-      body .main-container .project-list li {
+      /* line 59, sass/1-base/main.sass */
+      body .main-container .project-list li > a {
+        text-decoration: none;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 54, sass/1-base/main.sass */
-        body .main-container .project-list li .link {
+        /* line 68, sass/1-base/main.sass */
+        body .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
           font-size: 8vh;
           line-height: .9;
           text-transform: uppercase;
-          color: #585858;
-          transition: transform 100ms ease-in-out;
+          color: #4a4a4a;
+          transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 66, sass/1-base/main.sass */
-        body .main-container .project-list li .project-update {
+        /* line 79, sass/1-base/main.sass */
+        body .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .5; }
-        /* line 74, sass/1-base/main.sass */
-        body .main-container .project-list li:hover .link {
+        /* line 87, sass/1-base/main.sass */
+        body .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
-          color: #111; }
-        /* line 77, sass/1-base/main.sass */
-        body .main-container .project-list li:hover .project-update {
+          color: #111;
+          transition-duration: 100ms; }
+        /* line 91, sass/1-base/main.sass */
+        body .main-container .project-list li > a:hover .project-update {
           opacity: 1; }

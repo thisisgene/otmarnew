@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400')
-
+@font-face
+  font-family: 'ITC Avant Garde Condensed'
+  src: url('../fonts/ITC Avant Garde Gothic LT Condensed Book.ttf')
 
 .noselect
   -webkit-touch-callout: none
@@ -13,23 +15,32 @@ body
   margin: 0
   padding: 8px
 
-body
   font:
-    family: "Open Sans Condensed", sans-serif
+    family: "ITC Avant Garde Condensed", sans-serif
+  //letter-spacing: normal
+
   color: #333
   background: white
 
   .header-bar
     display: flex
     flex-direction: row
-    justify-content: space-between
+    justify-content: left
     align-items: center
     background: $header-bar-background
-    padding: 0 .5rem
-    h1
-      width: 200px
-      margin: 0
+    padding: 2px 5px
+    letter-spacing: 1px
 
+    .left-header
+      width: 450px
+
+    h1
+      //width: 230px
+      margin: 0
+      line-height: 1
+      font:
+        size: 2.3rem
+        weight: 100
       &.main-title
         color: #fff
 
@@ -37,13 +48,16 @@ body
         color: $red
   .main-container
     overflow-x: hidden
+    //letter-spacing: normal
+
     .project-list
       list-style: none
       margin: 2rem 0
       padding: 0 .2rem
 
 
-      li
+      li > a
+        text-decoration: none
         display: flex
         flex-direction: row
         justify-content: space-between
@@ -58,9 +72,8 @@ body
           line-height: .9
           text-transform: uppercase
           color: $project-title-color
-          transition: transform 100ms ease-in-out
+          transition: all 200ms ease-in-out
           transform-origin: left
-          &:hover
 
 
         .project-update
@@ -74,5 +87,6 @@ body
           .link
             transform: scaleX(1.1)
             color: #111
+            transition-duration: 100ms
           .project-update
             opacity: 1

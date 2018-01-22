@@ -6,6 +6,8 @@ var Project  = mongoose.model( 'Project' );
 var Image  = mongoose.model( 'Image' );
 var multer = require('multer');
 var upload = multer({ dest: 'public/uploads/' });
+var latinize = require('latinize');
+
 
 
 /* GET home page. */
@@ -23,10 +25,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/create_project', function(req, res) {
   var name = req.body.name;
-  console.log(name);
+
+  var latName = latinize(name).toLowerCase();
 
   new Project({
     name: name,
+    latName: latName,
     deleted: false,
     visible: true
   }).save(function(err, project) {
@@ -37,13 +41,14 @@ router.post('/create_project', function(req, res) {
 router.post('/create_sub_project', function(req, res) {
   var name = req.body.name;
   var parentId = req.body.parentId;
-
+  var latName = latinize(name).toLowerCase();
 
   Project.findById(parentId, function(err, project) {
     if (err) console.log(err);
     else {
       var newProject = new Project({
         name: name,
+        latName: latName,
         deleted: false,
         hasParent: true,
         parentId: parentId,
@@ -93,6 +98,7 @@ router.post('/save_all', function(req, res) {
   var description = body.description;
   var descHtml = marked(description);
   var layout = body.layout;
+  var latName = body.menuname;
   var visible = body.visible;
   var msg = '';
 
@@ -100,6 +106,7 @@ router.post('/save_all', function(req, res) {
     project.descMU = description;
     project.descHtml = descHtml;
     project.layout = layout;
+    project.latName = latName;
     project.visible = visible;
     if (body.namechanged) {
       project.name = body.name;
