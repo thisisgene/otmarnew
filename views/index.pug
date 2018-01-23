@@ -1,11 +1,7 @@
 extends layout
 
 block content
-  .header-bar
-
-    .left-header: h1.main-title OTMAR RYCHLIK
-    .right-header
-      h1.sub-title IM LAUF DER ZEIT
+  include includes/header
       //h1.ghost-title
 
   .main-container
@@ -18,6 +14,6 @@ block content
         if (!project.deleted && project.visible && !project.hasParent)
 
           li
-            a(href='/'+ project.latName)
+            a(href='/site/'+ project.latName)
               .link= project.name
               span.project-update 1.4.2017

@@ -548,7 +548,7 @@ body {
         background: #f58282; }
         /* line 95, sass/admin/3-sections/right-menu.sass */
         .right-container .general-container .menuname-container .menuname-wrapper input.notunique + .invalid-msg::after {
-          content: 'Name schon vergeben.'; }
+          content: 'Name schon vergeben. (Das jeweilige Objekt könnte sich auch im Mistkübel befinden.)'; }
     /* line 98, sass/admin/3-sections/right-menu.sass */
     .right-container .general-container .menuname-container .menuname-wrapper .invalid-msg {
       font-size: .7rem;

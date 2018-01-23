@@ -29,7 +29,7 @@ mixin parseSubProjects(obj, parentName, parentId, pList)
                 span.upper.small= project.name
               a(href='/admin/delete/' + project._id).smaller delete
             if (project.hasChildren)
-              +parseSubProjects(project.children, project.name, project._id, project.parentsList)
+              +parseSubProjects(project.childrenIds, project.name, project._id, project.parentsList)
 
 .left-container
   h1.slim-title MENÜPUNKTE
@@ -59,4 +59,4 @@ mixin parseSubProjects(obj, parentName, parentId, pList)
                 span.upper.small= project.name
               a(href='/admin/delete/' + project._id).smaller delete
             if (project.hasChildren)
-              +parseSubProjects(project.children, project.name, project._id)
+              +parseSubProjects(project.childrenIds, project.name, project._id)

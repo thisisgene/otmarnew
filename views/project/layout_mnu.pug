@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  include ../includes/header
+
+  .project-wrapper
+
+    .project-left
+      h1.main-title= project.name
+
+    .project-main
+      ul.sub-list
+        each child in project.children
+          if (child.visible && !child.deleted)
+            li
+              a(href= child.latName)
+                h1.main-title= child.name

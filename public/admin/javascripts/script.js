@@ -18,7 +18,7 @@ var delay = (function(){
 
 var errorList = {
   err_urlNameInvalid: 'Der URL-Name darf nicht leer sein. Der URL-Name darf keine Sonderzeichen oder Umlaute enthalten.',
-  err_urlNameNotUnique: 'Der URL-Name existiert bereits.'
+  err_urlNameNotUnique: 'Der URL-Name existiert bereits. Vielleicht auch im Mistkübel.'
 };
 
 function checkIfErrorExists(errorname) {

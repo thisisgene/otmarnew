@@ -11,12 +11,21 @@ router.get('/', function(req, res, next) {
       title: 'Otmar Rychlik',
       projects: projects
     });
-
-
   });
 });
 
+router.get('/site/:name', function(req, res) {
+  var name = req.params.name;
+  Project.findOne({'latName': name }, function(err, project){
+    var project_layout = project.layout;
+    console.log(project.layout);
 
+    res.render('project/'+project_layout, {
+      title: 'Otmar Rychlick | ' + project.name,
+      project: project
+    });
+  })
+});
 
 router.get('/login', function(req, res) {
   res.render('login', {title: 'Log In'});

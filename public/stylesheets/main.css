@@ -20,6 +20,9 @@ body {
   color: #333;
   background: white; }
   /* line 25, sass/1-base/main.sass */
+  body a {
+    text-decoration: none; }
+  /* line 28, sass/1-base/main.sass */
   body .header-bar {
     display: flex;
     flex-direction: row;
@@ -28,30 +31,30 @@ body {
     background: #CECBCC;
     padding: 2px 5px;
     letter-spacing: 1px; }
-    /* line 34, sass/1-base/main.sass */
+    /* line 37, sass/1-base/main.sass */
     body .header-bar .left-header {
       width: 450px; }
-    /* line 37, sass/1-base/main.sass */
+    /* line 40, sass/1-base/main.sass */
     body .header-bar h1 {
       margin: 0;
       line-height: 1;
       font-size: 2.3rem;
       font-weight: 100; }
-      /* line 44, sass/1-base/main.sass */
+      /* line 47, sass/1-base/main.sass */
       body .header-bar h1.main-title {
         color: #fff; }
-      /* line 47, sass/1-base/main.sass */
+      /* line 50, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  /* line 49, sass/1-base/main.sass */
+  /* line 52, sass/1-base/main.sass */
   body .main-container {
     overflow-x: hidden; }
-    /* line 53, sass/1-base/main.sass */
+    /* line 56, sass/1-base/main.sass */
     body .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0; }
-      /* line 59, sass/1-base/main.sass */
+      /* line 62, sass/1-base/main.sass */
       body .main-container .project-list li > a {
         text-decoration: none;
         display: flex;
@@ -59,7 +62,7 @@ body {
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 68, sass/1-base/main.sass */
+        /* line 71, sass/1-base/main.sass */
         body .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
@@ -69,17 +72,45 @@ body {
           color: #4a4a4a;
           transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 79, sass/1-base/main.sass */
+        /* line 82, sass/1-base/main.sass */
         body .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .5; }
-        /* line 87, sass/1-base/main.sass */
+        /* line 90, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
           color: #111;
           transition-duration: 100ms; }
-        /* line 91, sass/1-base/main.sass */
+        /* line 94, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .project-update {
           opacity: 1; }
+
+/* line 1, sass/3-sections/project.sass */
+.main-title {
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 1px; }
+
+/* line 6, sass/3-sections/project.sass */
+.project-wrapper {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: row; }
+  /* line 10, sass/3-sections/project.sass */
+  .project-wrapper .project-left {
+    width: 450px; }
+  /* line 15, sass/3-sections/project.sass */
+  .project-wrapper .project-main .sub-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 6px; }
+    /* line 21, sass/3-sections/project.sass */
+    .project-wrapper .project-main .sub-list li a {
+      text-decoration: none;
+      color: #4a4a4a; }
+      /* line 25, sass/3-sections/project.sass */
+      .project-wrapper .project-main .sub-list li a:hover {
+        color: #0d0d0e; }

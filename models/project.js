@@ -12,7 +12,8 @@ var ImageSchema = new mongoose.Schema({
   isDeleted: Boolean
 });
 
-var ProjectSchema = new mongoose.Schema({
+var ProjectSchema = new mongoose.Schema();
+ProjectSchema.add({
   name: String,
   latName: String,
   descMU: String,
@@ -20,14 +21,15 @@ var ProjectSchema = new mongoose.Schema({
   deleted: Boolean,
   visible: Boolean,
   hasChildren: Boolean,
-  children: Array,
+  childrenIds: Array,
+  children: [ProjectSchema],
   hasParent: Boolean,
   parentId: String,
   parentName: String,
   layout: String,
   images: [ImageSchema]
 
-}, { _id: true });
+});
 
 // ProjectSchema.add({ subProjects: [ProjectSchema] });
 

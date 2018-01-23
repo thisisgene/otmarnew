@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400");
+@font-face {
+  font-family: "ITC Avant Garde Condensed";
+  src: url("../fonts/ITC Avant Garde Gothic LT Condensed Book.ttf"); }
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -9,27 +12,64 @@
 
 body {
   margin: 0;
-  padding: 8px; }
-
-body {
-  font-family: "Open Sans Condensed", sans-serif;
+  padding: 14px;
+  font-family: "ITC Avant Garde Condensed", sans-serif;
   color: #333;
   background: white; }
   body .header-bar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
-    background: #CACACA;
-    padding: 0 0.5rem; }
+    background: #CECBCC;
+    padding: 2px 5px;
+    letter-spacing: 1px; }
+    body .header-bar .left-header {
+      width: 450px; }
     body .header-bar h1 {
-      width: 200px;
-      margin: 0; }
+      margin: 0;
+      line-height: 1;
+      font-size: 2.3rem;
+      font-weight: 100; }
       body .header-bar h1.main-title {
         color: #fff; }
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  body .main-container2 {
-    background: red; }
+  body .main-container {
+    overflow-x: hidden; }
+    body .main-container .project-list {
+      list-style: none;
+      margin: 2rem 0;
+      padding: 0; }
+      body .main-container .project-list li > a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-right: 10rem; }
+        body .main-container .project-list li > a .link {
+          display: block;
+          text-decoration: none;
+          font-size: 8vh;
+          line-height: 0.9;
+          text-transform: uppercase;
+          color: #4a4a4a;
+          transition: all 200ms ease-in-out;
+          transform-origin: left; }
+        body .main-container .project-list li > a .project-update {
+          font-size: 4.6vh;
+          line-height: 0.9;
+          color: #DB2633;
+          opacity: 0.5; }
+        body .main-container .project-list li > a:hover .link {
+          transform: scaleX(1.1);
+          color: #111;
+          transition-duration: 100ms; }
+        body .main-container .project-list li > a:hover .project-update {
+          opacity: 1; }
+
+.project-wrapper .main-title {
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=main.css.map */
