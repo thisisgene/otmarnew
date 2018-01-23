@@ -16,6 +16,8 @@ router.get('/', function(req, res, next) {
   });
 });
 
+
+
 router.get('/login', function(req, res) {
   res.render('login', {title: 'Log In'});
 });

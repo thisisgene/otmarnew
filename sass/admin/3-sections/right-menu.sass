@@ -69,12 +69,37 @@
 
     .menuname-container
       display: flex
-      align-items: center
+      align-items: flex-start
       justify-content: center
-      input
-        margin: 1rem
-        height: 2rem
+      margin: 1rem 0
+      width: 100%
+      .menuname-label
+        font-size: .9rem
+        margin-top: .2rem
+      .menuname-wrapper
+        display: flex
+        flex-direction: column
+        padding-left: 1rem
+        max-width: 65%
+        input
+          height: 2rem
 
+          &.invalid
+            background: lighten($alert, 20%)
+
+            & + .invalid-msg::after
+              content: 'Darf nicht leer sein. Darf keine Sonderzeichen oder Umlaute enthalten (außer _ ).'
+          &.notunique
+            background: lighten($alert, 20%)
+
+            & + .invalid-msg::after
+              content: 'Name schon vergeben.'
+
+        .invalid-msg
+          font-size: .7rem
+          line-height: 1rem
+          //margin-left: 1rem
+          color: $alert
     .visible-container
       text-align: center
 

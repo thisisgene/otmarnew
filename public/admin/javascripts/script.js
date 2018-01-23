@@ -3,6 +3,48 @@ var currentImageDesc;
 var $currentImageNameInput;
 var $activeNameInput;
 var currentImgId;
+var errorsExist = false;
+var activeErrorList = [];
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+var errorList = {
+  err_urlNameInvalid: 'Der URL-Name darf keine Sonderzeichen oder Umlaute enthalten.',
+  err_urlNameNotUnique: 'Der URL-Name existiert bereits.'
+};
+
+function checkIfErrorExists(errorname) {
+  if (activeErrorList.length>0) {
+    return ($.inArray(errorname, activeErrorList) !== -1)
+  }
+
+
+}
+
+function handleError(errorname) {
+  if (!checkIfErrorExists(errorname)) {
+    activeErrorList.push(errorname);
+    errorsExist = true;
+  }
+  console.log(activeErrorList, errorsExist);
+}
+
+function removeError(errorname) {
+  if (checkIfErrorExists(errorname)) {
+    var index = $.inArray(errorname, activeErrorList);
+    activeErrorList.splice(index, 1);
+
+    if (activeErrorList.length == 0) errorsExist = false;
+    console.log(activeErrorList, errorsExist);
+
+  }
+}
 
 $('.project-form form').on('submit', function(event) {
   event.preventDefault();
@@ -47,52 +89,56 @@ $('.project-form form').on('submit', function(event) {
 //       SAVE ALL!
 
 function saveAll(obj) {
-  var id = $(obj).data('projectid');
-  var $nameObj = $('#project-name-input');
-  var name = $nameObj.val();
-  var oldName = $nameObj.data('currentName');
-  var description = $('#description').val();
-  var layout = $('input[name=layout]:checked').val();
-  var menuname = $('#menuname').val();
-  var visible = $('#visible-check').is(':checked');
+  if (errorsExist) {
 
-  var $loadingWrapper = $('.loading-wrapper');
-  var $loadingScreen = $('.loading-screen');
-
-  var body = {
-    id            : id,
-    description   : description,
-    layout        : layout,
-    menuname      : menuname,
-    visible       : visible
-  };
-
-  if (name != oldName) {
-    body.name = name;
-    body.namechanged = true
   }
+  else {
+    var id = $(obj).data('projectid');
+    var $nameObj = $('#project-name-input');
+    var name = $nameObj.val();
+    var oldName = $nameObj.data('currentName');
+    var description = $('#description').val();
+    var layout = $('input[name=layout]:checked').val();
+    var menuname = $('#menuname').val();
+    var visible = $('#visible-check').is(':checked');
 
-  $loadingWrapper.addClass('show');
-  $loadingWrapper.fadeTo(300, 1, function(next){
-    $.post('/admin/save_all', body, function(msg) {
-      console.log('saved successfully');
-      if (msg=='changed') {
-        $('.li-wrapper.active > a > span').text(name);
-      }
-      $loadingScreen.addClass('success').delay(100).queue(function(next) {
+    var $loadingWrapper = $('.loading-wrapper');
+    var $loadingScreen = $('.loading-screen');
 
-        $loadingWrapper.fadeTo(1800,0, function() {
+    var body = {
+      id            : id,
+      description   : description,
+      layout        : layout,
+      menuname      : menuname,
+      visible       : visible
+    };
 
-          $(this).removeClass('show');
-        });
-        $(this).delay(1900).queue(function(next){
-          $(this).removeClass('success');
+    if (name != oldName) {
+      body.name = name;
+      body.namechanged = true
+    }
+
+    $loadingWrapper.addClass('show');
+    $loadingWrapper.fadeTo(300, 1, function(next){
+      $.post('/admin/save_all', body, function(msg) {
+        if (msg=='changed') {
+          $('.li-wrapper.active > a > span').text(name);
+        }
+        $loadingScreen.addClass('success').delay(100).queue(function(next) {
+
+          $loadingWrapper.fadeTo(1800,0, function() {
+
+            $(this).removeClass('show');
+          });
+          $(this).delay(1900).queue(function(next){
+            $(this).removeClass('success');
+            next();
+          });
           next();
-        });
-        next();
+        })
       })
     })
-  })
+  }
 }
 
 function reloadAll() {
@@ -204,4 +250,65 @@ function closeBigView() {
   $imgli.removeClass("active");
   $('.big-view').removeClass("big-view");
   currentImgId = '';
+}
+
+function isValid(str) { return /^\w+$/.test(str); }
+
+function checkIfValid(obj) {
+  var $obj = $(obj);
+  var name = $obj.val();
+  $obj.removeClass('notunique');
+
+  if (!isValid(name)) {
+    $obj.addClass('invalid');
+  }
+  else {
+    $('.invalid').removeClass('invalid');
+
+  }
+
+  delay(function(){
+    checkNameIsUnique(obj);
+  }, 300);
+
+}
+
+function checkNameIsUnique(obj) {
+  var $obj = $(obj);
+  var name = $obj.val();
+  var id = $obj.data('projectid');
+  var body = {
+    name: name,
+    id  : id
+  };
+  if (name!='') {
+    if (isValid(name)) {
+      $('.invalid').removeClass('invalid');
+      removeError('err_urlNameInvalid');
+
+      $.post('/admin/check_name', body, function(msg) {
+        if (msg!='error') {
+          if (msg=='not_unique') {
+            $obj.addClass('notunique');
+            handleError('err_urlNameNotUnique');
+          }
+          else {
+            removeError('err_urlNameNotUnique');
+            $obj.removeClass('notunique');
+          }
+        }
+
+      });
+    }
+    else {
+      console.log('name not valid');
+    //  error msg!
+      $obj.addClass('invalid');
+      $obj.removeClass('notunique');
+      handleError('err_urlNameInvalid');
+    }
+
+  }
+  else console.log('cannot be empty!')
+
 }

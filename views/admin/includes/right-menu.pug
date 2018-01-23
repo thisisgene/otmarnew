@@ -19,8 +19,10 @@
           span NUR MENÜPUNKT
 
     .menuname-container
-      span Menü-Name:
-      input(type='text', value=currentProject.latName)#menuname.w50
+      span.menuname-label URL-Name:
+      .menuname-wrapper
+        input(type='text', value=currentProject.latName, onkeyup='checkIfValid(this)', onblur='checkNameIsUnique(this)', data-projectid=currentProject._id)#menuname
+        span.invalid-msg
 
     .visible-container
       input#visible-check(type='checkbox', checked=currentProject.visible)

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400");
 /* line 3, sass/admin/1-base/main.sass */
 .noselect {
@@ -489,22 +490,50 @@ body {
 /* line 70, sass/admin/3-sections/right-menu.sass */
 .right-container .general-container .menuname-container {
   display: flex;
-  align-items: center;
-  justify-content: center; }
-  /* line 74, sass/admin/3-sections/right-menu.sass */
-  .right-container .general-container .menuname-container input {
-    margin: 1rem;
-    height: 2rem; }
+  align-items: flex-start;
+  justify-content: center;
+  margin: 1rem 0;
+  width: 100%; }
+  /* line 76, sass/admin/3-sections/right-menu.sass */
+  .right-container .general-container .menuname-container .menuname-label {
+    font-size: .9rem;
+    margin-top: .2rem; }
+  /* line 79, sass/admin/3-sections/right-menu.sass */
+  .right-container .general-container .menuname-container .menuname-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    max-width: 65%; }
+    /* line 84, sass/admin/3-sections/right-menu.sass */
+    .right-container .general-container .menuname-container .menuname-wrapper input {
+      height: 2rem; }
+      /* line 87, sass/admin/3-sections/right-menu.sass */
+      .right-container .general-container .menuname-container .menuname-wrapper input.invalid {
+        background: #f58282; }
+        /* line 90, sass/admin/3-sections/right-menu.sass */
+        .right-container .general-container .menuname-container .menuname-wrapper input.invalid + .invalid-msg::after {
+          content: 'Darf nicht leer sein. Darf keine Sonderzeichen oder Umlaute enthalten (außer _ ).'; }
+      /* line 92, sass/admin/3-sections/right-menu.sass */
+      .right-container .general-container .menuname-container .menuname-wrapper input.notunique {
+        background: #f58282; }
+        /* line 95, sass/admin/3-sections/right-menu.sass */
+        .right-container .general-container .menuname-container .menuname-wrapper input.notunique + .invalid-msg::after {
+          content: 'Name schon vergeben.'; }
+    /* line 98, sass/admin/3-sections/right-menu.sass */
+    .right-container .general-container .menuname-container .menuname-wrapper .invalid-msg {
+      font-size: .7rem;
+      line-height: 1rem;
+      color: #ed2424; }
 
-/* line 78, sass/admin/3-sections/right-menu.sass */
+/* line 103, sass/admin/3-sections/right-menu.sass */
 .right-container .general-container .visible-container {
   text-align: center; }
 
-/* line 81, sass/admin/3-sections/right-menu.sass */
+/* line 106, sass/admin/3-sections/right-menu.sass */
 .right-container .save-container {
   margin: 0 auto;
   text-align: center; }
-  /* line 84, sass/admin/3-sections/right-menu.sass */
+  /* line 109, sass/admin/3-sections/right-menu.sass */
   .right-container .save-container button {
     margin: 0 .2rem;
     border-radius: 0;
@@ -514,16 +543,16 @@ body {
     font-size: 1.2rem;
     text-transform: uppercase;
     text-align: center; }
-    /* line 95, sass/admin/3-sections/right-menu.sass */
+    /* line 120, sass/admin/3-sections/right-menu.sass */
     .right-container .save-container button.button-save {
       background: #63BEFF; }
-      /* line 98, sass/admin/3-sections/right-menu.sass */
+      /* line 123, sass/admin/3-sections/right-menu.sass */
       .right-container .save-container button.button-save:hover {
         background: #30a9ff; }
-    /* line 100, sass/admin/3-sections/right-menu.sass */
+    /* line 125, sass/admin/3-sections/right-menu.sass */
     .right-container .save-container button.button-cancel {
       background: #b3b3b3; }
-      /* line 102, sass/admin/3-sections/right-menu.sass */
+      /* line 127, sass/admin/3-sections/right-menu.sass */
       .right-container .save-container button.button-cancel:hover {
         background: #9a9a9a; }
 

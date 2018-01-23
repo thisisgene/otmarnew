@@ -15,7 +15,7 @@
 /* line 14, sass/1-base/main.sass */
 body {
   margin: 0;
-  padding: 8px;
+  padding: 14px;
   font-family: "ITC Avant Garde Condensed", sans-serif;
   color: #333;
   background: white; }
@@ -50,7 +50,7 @@ body {
     body .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
-      padding: 0 .2rem; }
+      padding: 0; }
       /* line 59, sass/1-base/main.sass */
       body .main-container .project-list li > a {
         text-decoration: none;

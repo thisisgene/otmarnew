@@ -119,6 +119,26 @@ router.post('/save_all', function(req, res) {
   })
 });
 
+router.post('/check_name', function(req, res) {
+  var body  = req.body,
+      name  = body.name,
+      id    = body.id;
+
+  Project.findById(id, function(err, project) {
+    if (!err) {
+      Project.findOne({'latName': name}, function(err, target) {
+        // console.log(target.name, target._id, project._id);
+        if (target && target._id != id){
+          console.log(target._id == id);
+          res.send('not_unique')
+        }
+        else if (err) {res.send(err)}
+        else res.send('unique')
+      } )
+    }
+  })
+});
+
 router.post('/upload', upload.single('file'), function(req, res) {
   var file = req.file;
   console.log(file);
