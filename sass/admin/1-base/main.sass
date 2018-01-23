@@ -92,7 +92,26 @@ body
   color: $slim-title-color
   text-align: center
 
-
+//button
+//  margin: 0 .2rem
+//  border-radius: 0
+//  //border: 1px solid #999
+//  box-shadow: 0 3px 1px rgba(black, .5)
+//  color: white
+//  font:
+//    family: "Open Sans Condensed", sans-serif
+//    size: 1.2rem
+//  text-transform: uppercase
+//  text-align: center
+//  &.button-save
+//    background: $blue
+//
+//    &:hover
+//      background: darken($blue, 10%)
+//  &.button-cancel
+//    background: $grey
+//    &:hover
+//      background: darken($grey, 10%)
 
 .loading-wrapper
   display: none
@@ -127,3 +146,29 @@ body
 
       h1
         opacity: 1
+
+.msg-wrapper
+  display: none
+  .msg-screen
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    background: rgba(black, .6)
+    .msg-content
+      max-width: 50%
+      padding: 1rem
+      text-align: center
+      box-shadow: 0 15px 8px rgba(black, .5)
+      background: white
+      border: 14px solid #444
+      &.warning
+        border-color: $color-warning
+
+      .msg-message
+        color: #444
+        text-align: left

@@ -85,12 +85,12 @@
           height: 2rem
 
           &.invalid
-            background: lighten($alert, 20%)
+            background: lighten($color-alert, 20%)
 
             & + .invalid-msg::after
               content: 'Darf nicht leer sein. Darf keine Sonderzeichen oder Umlaute enthalten (außer _ ).'
           &.notunique
-            background: lighten($alert, 20%)
+            background: lighten($color-alert, 20%)
 
             & + .invalid-msg::after
               content: 'Name schon vergeben.'
@@ -99,7 +99,7 @@
           font-size: .7rem
           line-height: 1rem
           //margin-left: 1rem
-          color: $alert
+          color: $color-alert
     .visible-container
       text-align: center
 

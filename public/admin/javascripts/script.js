@@ -14,8 +14,10 @@ var delay = (function(){
   };
 })();
 
+/////////////////////////// ERROR HANDLING
+
 var errorList = {
-  err_urlNameInvalid: 'Der URL-Name darf keine Sonderzeichen oder Umlaute enthalten.',
+  err_urlNameInvalid: 'Der URL-Name darf nicht leer sein. Der URL-Name darf keine Sonderzeichen oder Umlaute enthalten.',
   err_urlNameNotUnique: 'Der URL-Name existiert bereits.'
 };
 
@@ -23,8 +25,6 @@ function checkIfErrorExists(errorname) {
   if (activeErrorList.length>0) {
     return ($.inArray(errorname, activeErrorList) !== -1)
   }
-
-
 }
 
 function handleError(errorname) {
@@ -32,7 +32,6 @@ function handleError(errorname) {
     activeErrorList.push(errorname);
     errorsExist = true;
   }
-  console.log(activeErrorList, errorsExist);
 }
 
 function removeError(errorname) {
@@ -41,10 +40,52 @@ function removeError(errorname) {
     activeErrorList.splice(index, 1);
 
     if (activeErrorList.length == 0) errorsExist = false;
-    console.log(activeErrorList, errorsExist);
-
   }
 }
+
+function prepareErrorList() {
+  var msg = '';
+  var string;
+
+  $.each(activeErrorList, function(index, value){
+    string = errorList[value];
+    console.log('string: ', string);
+    msg = msg + "<p>" + string + "</p>";
+  });
+  return msg;
+}
+
+//////////////////////////////// MESSAGE BOARD
+var msgList = ['warning', 'info', 'alert'];
+
+function closeMsg() {
+  msgList.forEach(function(cat){
+    $('msg-content').removeClass(cat);
+  });
+  $('.msg-wrapper').fadeOut(300);
+}
+
+function showMsg(cat, content) {
+  var $msg = $('.msg-content');
+  var catName;
+  $msg.addClass(cat);
+  switch(cat) {
+    case 'warning':
+      catName = 'Warnung';
+      break;
+    case 'info':
+      catName = 'Information';
+      break;
+    case 'alert':
+      catName = 'Achtung';
+  }
+  $('.msg-title').html(catName);
+  $('.msg-message').html(content);
+  $('.msg-wrapper').fadeIn(300);
+
+}
+
+//////////////////////////////// FORM SUBMITTING
 
 $('.project-form form').on('submit', function(event) {
   event.preventDefault();
@@ -90,7 +131,8 @@ $('.project-form form').on('submit', function(event) {
 
 function saveAll(obj) {
   if (errorsExist) {
-
+    var list = prepareErrorList();
+    showMsg('warning', list);
   }
   else {
     var id = $(obj).data('projectid');
