@@ -27,17 +27,35 @@ router.post('/create_project', function(req, res) {
   var name = req.body.name;
 
   var latName = latinize(name).toLowerCase();
+  latName = latName.replace(/\s/g , "_");
 
-  new Project({
-    name: name,
-    latName: latName,
-    deleted: false,
-    visible: true,
-    layout : 'layout_mnu'
-  }).save(function(err, project) {
-    if (!err) res.send(project._id);
+  Project.findOne({latName: latName}, function(err, doc) {
+    if (doc) {
+      var rndNr = Math.random().toString(36).substr(2, 5);
+      latName = latName + "_" + rndNr.toString();
+
+    }
+    new Project({
+      name: name,
+      latName: latName,
+      deleted: false,
+      visible: true,
+      layout : 'layout_mnu'
+    }).save(function(err, project) {
+      if (!err) res.send(project._id);
+    });
+
   });
+
 });
+
+function match_loop(list, toCompare) {
+  for (var i=0; i<list.length; i++) {
+    console.log(list[i].latName, toCompare, list[i].latName == toCompare);
+    if (list[i].latName == toCompare) return true
+  }
+  return false
+}
 
 router.post('/create_sub_project', function(req, res) {
   var name = req.body.name;
@@ -46,29 +64,43 @@ router.post('/create_sub_project', function(req, res) {
   latName = latName.replace(/\s/g , "_");
 
   Project.findById(parentId, function(err, project) {
+
     if (err) console.log(err);
     else {
-      var newProject = new Project({
-        name: name,
-        latName: latName,
-        deleted: false,
-        visible: true,
-        hasParent: true,
-        parentId: parentId,
-        parentName: project.name,
-        layout : 'layout_mnu'
+      Project.findOne({latName: latName}, function(err, doc) {
+        if (doc) {
+          var rndNr = Math.random().toString(36).substr(2, 5);
+          latName = latName + "_" + rndNr.toString();
 
-      });
-      newProject.save();
-      // updateParent(project.parentId);
-      console.log(project);
-      project.children.push(newProject);
-      project.childrenIds.push(newProject._id);
-      project.hasChildren = true;
-      project.save(function(err, project) {
-        res.send('success');
-      });
+        }
+        var ancestors = (project.ancestors ? project.ancestors : []);
+        if (!match_loop(ancestors, project.latName)) ancestors.push({
+          name: project.name,
+          id: project._id,
+          latName: project.latName
+        }); // see if ancestor already in list (from a sibling)
+        var newProject = new Project({
+          name: name,
+          latName: latName,
+          deleted: false,
+          visible: true,
+          hasParent: true,
+          parentId: parentId,
+          parentName: project.name,
+          ancestors: ancestors,
+          layout: 'layout_mnu'
 
+        });
+        console.log('Ancestors: ', ancestors);
+        newProject.save();
+        // updateParent(project.parentId);
+        project.children.push(newProject);
+        project.childrenIds.push(newProject._id);
+        project.hasChildren = true;
+        project.save(function (err, project) {
+          res.send('success');
+        });
+      })
     }
 
   });
@@ -88,7 +120,6 @@ router.get('/delete/:id', function(req, res) {
           var child = children[i];
           console.log(child.name);
           if (child.id == project.id) {
-            console.log('id gleich');
             child.deleted = true;
           }
         }
@@ -172,7 +203,6 @@ router.post('/check_name', function(req, res) {
   Project.findById(id, function(err, project) {
     if (!err) {
       Project.findOne({'latName': name}, function(err, target) {
-        // console.log(target.name, target._id, project._id);
         if (target && target._id != id){
           res.send('not_unique')
         }

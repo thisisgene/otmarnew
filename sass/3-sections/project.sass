@@ -1,18 +1,47 @@
+h1, h2, h3, p, a
+  font-family: "ITC Avant Garde Condensed", sans-serif !important
+  line-height: 1.1
+
 .main-title
   text-transform: uppercase
   margin: 0
   font-size: 1.6rem
   letter-spacing: 1px
+
+.breadcrumbs-wrapper
+  height: 50px
+  padding: 1rem 0
+  .breadcrumbs
+    text-transform: uppercase
+    margin-bottom: 0
+    font-size: 1.2rem
+    ul
+      color: #aaa
+      li:after
+        content: '//'
+      li:last-child:after
+        content: ''
+      a
+        color: #aaa
+        &:hover
+          color: #555
+
+
 .project-wrapper
-  margin-top: 2.5rem
+
+  //margin-top: 2.5rem
   display: flex
   flex-direction: row
+
   .project-left
     width: 450px
+
+
 
   .project-main
 
     .sub-list
+
       list-style: none
       margin: 0
       padding-left: 6px

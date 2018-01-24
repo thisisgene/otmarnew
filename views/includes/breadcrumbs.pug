@@ -1,0 +1,9 @@
+nav.breadcrumbs
+  ul
+    if (project.ancestors)
+
+      each crumb in project.ancestors
+        if (crumb.id == project.id)
+          - break
+        else
+          li.crumb-link: a(href='/site/' + crumb.latName)= crumb.name

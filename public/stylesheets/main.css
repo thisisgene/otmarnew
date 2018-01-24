@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400");
 @font-face {
   font-family: 'ITC Avant Garde Condensed';
   src: url("../fonts/ITC Avant Garde Gothic LT Condensed Book.ttf"); }
@@ -31,30 +30,31 @@ body {
     background: #CECBCC;
     padding: 2px 5px;
     letter-spacing: 1px; }
-    /* line 37, sass/1-base/main.sass */
+    /* line 36, sass/1-base/main.sass */
     body .header-bar .left-header {
       width: 450px; }
-    /* line 40, sass/1-base/main.sass */
+    /* line 39, sass/1-base/main.sass */
     body .header-bar h1 {
       margin: 0;
       line-height: 1;
-      font-size: 2.3rem;
+      font-family: inherit;
+      font-size: 2.4rem;
       font-weight: 100; }
-      /* line 47, sass/1-base/main.sass */
+      /* line 48, sass/1-base/main.sass */
       body .header-bar h1.main-title {
         color: #fff; }
-      /* line 50, sass/1-base/main.sass */
+      /* line 51, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  /* line 52, sass/1-base/main.sass */
+  /* line 53, sass/1-base/main.sass */
   body .main-container {
     overflow-x: hidden; }
-    /* line 56, sass/1-base/main.sass */
+    /* line 57, sass/1-base/main.sass */
     body .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0; }
-      /* line 62, sass/1-base/main.sass */
+      /* line 63, sass/1-base/main.sass */
       body .main-container .project-list li > a {
         text-decoration: none;
         display: flex;
@@ -62,7 +62,7 @@ body {
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 71, sass/1-base/main.sass */
+        /* line 72, sass/1-base/main.sass */
         body .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
@@ -72,45 +72,74 @@ body {
           color: #4a4a4a;
           transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 82, sass/1-base/main.sass */
+        /* line 83, sass/1-base/main.sass */
         body .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .5; }
-        /* line 90, sass/1-base/main.sass */
+        /* line 91, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
           color: #111;
           transition-duration: 100ms; }
-        /* line 94, sass/1-base/main.sass */
+        /* line 95, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .project-update {
           opacity: 1; }
 
 /* line 1, sass/3-sections/project.sass */
+h1, h2, h3, p, a {
+  font-family: "ITC Avant Garde Condensed", sans-serif !important;
+  line-height: 1.1; }
+
+/* line 5, sass/3-sections/project.sass */
 .main-title {
   text-transform: uppercase;
   margin: 0;
   font-size: 1.6rem;
   letter-spacing: 1px; }
 
-/* line 6, sass/3-sections/project.sass */
+/* line 11, sass/3-sections/project.sass */
+.breadcrumbs-wrapper {
+  height: 50px;
+  padding: 1rem 0; }
+  /* line 14, sass/3-sections/project.sass */
+  .breadcrumbs-wrapper .breadcrumbs {
+    text-transform: uppercase;
+    margin-bottom: 0;
+    font-size: 1.2rem; }
+    /* line 18, sass/3-sections/project.sass */
+    .breadcrumbs-wrapper .breadcrumbs ul {
+      color: #aaa; }
+      /* line 20, sass/3-sections/project.sass */
+      .breadcrumbs-wrapper .breadcrumbs ul li:after {
+        content: '//'; }
+      /* line 22, sass/3-sections/project.sass */
+      .breadcrumbs-wrapper .breadcrumbs ul li:last-child:after {
+        content: ''; }
+      /* line 24, sass/3-sections/project.sass */
+      .breadcrumbs-wrapper .breadcrumbs ul a {
+        color: #aaa; }
+        /* line 26, sass/3-sections/project.sass */
+        .breadcrumbs-wrapper .breadcrumbs ul a:hover {
+          color: #555; }
+
+/* line 30, sass/3-sections/project.sass */
 .project-wrapper {
-  margin-top: 2.5rem;
   display: flex;
   flex-direction: row; }
-  /* line 10, sass/3-sections/project.sass */
+  /* line 36, sass/3-sections/project.sass */
   .project-wrapper .project-left {
     width: 450px; }
-  /* line 15, sass/3-sections/project.sass */
+  /* line 43, sass/3-sections/project.sass */
   .project-wrapper .project-main .sub-list {
     list-style: none;
     margin: 0;
     padding-left: 6px; }
-    /* line 21, sass/3-sections/project.sass */
+    /* line 50, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list li a {
       text-decoration: none;
       color: #4a4a4a; }
-      /* line 25, sass/3-sections/project.sass */
+      /* line 54, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list li a:hover {
         color: #0d0d0e; }

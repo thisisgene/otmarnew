@@ -1,9 +1,10 @@
 
 nav.breadcrumbs
   ul
-    if (currentProject.parentsList)
-      each crumb in currentProject.parentsList
-        if (crumb.id == currentProject._id)
+    if (currentProject.ancestors)
+
+      each crumb in currentProject.ancestors
+        if (crumb.id == currentProject.id)
           break
         else
           li.crumb-link: a(href='/admin/project/'+crumb.id)= crumb.name

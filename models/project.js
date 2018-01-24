@@ -26,6 +26,7 @@ ProjectSchema.add({
   hasParent: Boolean,
   parentId: String,
   parentName: String,
+  ancestors: Array,
   layout: String,
   images: [ImageSchema]
 
