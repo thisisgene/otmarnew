@@ -15,6 +15,7 @@ h1, h2, h3, p, a
     text-transform: uppercase
     margin-bottom: 0
     font-size: 1.2rem
+    letter-spacing: .3pt
     ul
       color: #aaa
       li:after
@@ -34,17 +35,15 @@ h1, h2, h3, p, a
   flex-direction: row
 
   .project-left
-    width: 450px
-
-
+    padding-right: 20px
 
   .project-main
-
+    //margin-left: 40px
     .sub-list
 
       list-style: none
       margin: 0
-      padding-left: 6px
+      padding-left: 0
 
       li
         a
@@ -53,3 +52,15 @@ h1, h2, h3, p, a
 
           &:hover
             color: #0d0d0e
+
+    .project-text
+      padding: 0 20% 0 3px
+      p
+        line-height: 1.2em
+        margin: 0
+
+    .cover-img
+      width: 45%
+      min-width: 360px
+      img
+        box-shadow: 4px 4px 6px rgba(black, .2)

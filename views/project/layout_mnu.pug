@@ -8,10 +8,10 @@ block content
 
   .project-wrapper
 
-    .project-left
+    .project-left.col.col-4
       h1.main-title= project.name
 
-    .project-main
+    .project-main.col.col-8
       ul.sub-list
         each child in project.children
           if (child.visible && !child.deleted)

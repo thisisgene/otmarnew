@@ -3,4 +3,18 @@ extends ../layout
 block content
   include ../includes/header
 
-  h2.main-title= project.name
+  .breadcrumbs-wrapper
+    include ../includes/breadcrumbs
+
+  .project-wrapper
+
+    .project-left.col.col-4
+      h1.main-title= project.name
+      .desc-text
+        p!= project.descHtml
+
+    .project-main.col.col-8
+      each img in project.images
+        if (img.isCover)
+          .cover-img
+            img(src='/uploads/' + img.filename)

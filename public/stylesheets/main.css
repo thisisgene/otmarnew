@@ -14,7 +14,7 @@
 /* line 14, sass/1-base/main.sass */
 body {
   margin: 0;
-  padding: 14px;
+  padding: 20px;
   font-family: "ITC Avant Garde Condensed", sans-serif;
   color: #333;
   background: white; }
@@ -30,31 +30,29 @@ body {
     background: #CECBCC;
     padding: 2px 5px;
     letter-spacing: 1px; }
-    /* line 36, sass/1-base/main.sass */
-    body .header-bar .left-header {
-      width: 450px; }
-    /* line 39, sass/1-base/main.sass */
+    /* line 40, sass/1-base/main.sass */
     body .header-bar h1 {
       margin: 0;
       line-height: 1;
       font-family: inherit;
       font-size: 2.4rem;
       font-weight: 100; }
-      /* line 48, sass/1-base/main.sass */
+      /* line 49, sass/1-base/main.sass */
       body .header-bar h1.main-title {
-        color: #fff; }
-      /* line 51, sass/1-base/main.sass */
+        color: #fff;
+        padding-right: 20px; }
+      /* line 53, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  /* line 53, sass/1-base/main.sass */
+  /* line 55, sass/1-base/main.sass */
   body .main-container {
     overflow-x: hidden; }
-    /* line 57, sass/1-base/main.sass */
+    /* line 59, sass/1-base/main.sass */
     body .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0; }
-      /* line 63, sass/1-base/main.sass */
+      /* line 65, sass/1-base/main.sass */
       body .main-container .project-list li > a {
         text-decoration: none;
         display: flex;
@@ -62,7 +60,7 @@ body {
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 72, sass/1-base/main.sass */
+        /* line 74, sass/1-base/main.sass */
         body .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
@@ -72,18 +70,18 @@ body {
           color: #4a4a4a;
           transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 83, sass/1-base/main.sass */
+        /* line 85, sass/1-base/main.sass */
         body .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .5; }
-        /* line 91, sass/1-base/main.sass */
+        /* line 93, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
           color: #111;
           transition-duration: 100ms; }
-        /* line 95, sass/1-base/main.sass */
+        /* line 97, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .project-update {
           opacity: 1; }
 
@@ -107,39 +105,54 @@ h1, h2, h3, p, a {
   .breadcrumbs-wrapper .breadcrumbs {
     text-transform: uppercase;
     margin-bottom: 0;
-    font-size: 1.2rem; }
-    /* line 18, sass/3-sections/project.sass */
+    font-size: 1.2rem;
+    letter-spacing: .3pt; }
+    /* line 19, sass/3-sections/project.sass */
     .breadcrumbs-wrapper .breadcrumbs ul {
       color: #aaa; }
-      /* line 20, sass/3-sections/project.sass */
+      /* line 21, sass/3-sections/project.sass */
       .breadcrumbs-wrapper .breadcrumbs ul li:after {
         content: '//'; }
-      /* line 22, sass/3-sections/project.sass */
+      /* line 23, sass/3-sections/project.sass */
       .breadcrumbs-wrapper .breadcrumbs ul li:last-child:after {
         content: ''; }
-      /* line 24, sass/3-sections/project.sass */
+      /* line 25, sass/3-sections/project.sass */
       .breadcrumbs-wrapper .breadcrumbs ul a {
         color: #aaa; }
-        /* line 26, sass/3-sections/project.sass */
+        /* line 27, sass/3-sections/project.sass */
         .breadcrumbs-wrapper .breadcrumbs ul a:hover {
           color: #555; }
 
-/* line 30, sass/3-sections/project.sass */
+/* line 31, sass/3-sections/project.sass */
 .project-wrapper {
   display: flex;
   flex-direction: row; }
-  /* line 36, sass/3-sections/project.sass */
+  /* line 37, sass/3-sections/project.sass */
   .project-wrapper .project-left {
-    width: 450px; }
-  /* line 43, sass/3-sections/project.sass */
+    padding-right: 20px; }
+  /* line 42, sass/3-sections/project.sass */
   .project-wrapper .project-main .sub-list {
     list-style: none;
     margin: 0;
-    padding-left: 6px; }
-    /* line 50, sass/3-sections/project.sass */
+    padding-left: 0; }
+    /* line 49, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list li a {
       text-decoration: none;
       color: #4a4a4a; }
-      /* line 54, sass/3-sections/project.sass */
+      /* line 53, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list li a:hover {
         color: #0d0d0e; }
+  /* line 56, sass/3-sections/project.sass */
+  .project-wrapper .project-main .project-text {
+    padding: 0 20% 0 3px; }
+    /* line 58, sass/3-sections/project.sass */
+    .project-wrapper .project-main .project-text p {
+      line-height: 1.2em;
+      margin: 0; }
+  /* line 62, sass/3-sections/project.sass */
+  .project-wrapper .project-main .cover-img {
+    width: 45%;
+    min-width: 360px; }
+    /* line 65, sass/3-sections/project.sass */
+    .project-wrapper .project-main .cover-img img {
+      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2); }

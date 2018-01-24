@@ -2,3 +2,15 @@ extends ../layout
 
 block content
   include ../includes/header
+
+  .breadcrumbs-wrapper
+    include ../includes/breadcrumbs
+
+  .project-wrapper
+
+    .project-left.col.col-4
+      h1.main-title= project.name
+
+    .project-main.col.col-8
+      .project-text.columns-2
+        p!= project.descHtml
