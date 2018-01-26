@@ -17,6 +17,8 @@ var delay = (function(){
 /////////////////////////// ERROR HANDLING
 
 var errorList = {
+  err_project_name_input: "Name darf nicht leer sein.",
+  err_title: "Titel darf nicht leer sein.",
   err_urlNameInvalid: 'Der URL-Name darf nicht leer sein. Der URL-Name darf keine Sonderzeichen oder Umlaute enthalten.',
   err_urlNameNotUnique: 'Der URL-Name existiert bereits. Vielleicht auch im Mistkübel.'
 };
@@ -50,9 +52,22 @@ function prepareErrorList() {
   $.each(activeErrorList, function(index, value){
     string = errorList[value];
     console.log('string: ', string);
-    msg = msg + "<p>" + string + "</p>";
+    msg = msg + "<li>" + string + "</li>";
   });
   return msg;
+}
+
+function collectErrors() {
+  $('.notempty').each(function(err, obj) {
+    var errorname = "err_" + obj.id;
+    errorname = errorname.replace(/-/g , "_");
+    if (!obj.value) {
+      handleError(errorname);
+      errorsExist = true;
+    }
+    else removeError(errorname)
+  });
+  console.log(activeErrorList);
 }
 
 //////////////////////////////// MESSAGE BOARD
@@ -127,9 +142,10 @@ $('.project-form form').on('submit', function(event) {
 });
 
 
-//       SAVE ALL!
+//////////////////////////////       SAVE ALL!
 
 function saveAll(obj) {
+  collectErrors();
   if (errorsExist) {
     var list = prepareErrorList();
     showMsg('warning', list);
@@ -139,6 +155,7 @@ function saveAll(obj) {
     var $nameObj = $('#project-name-input');
     var name = $nameObj.val();
     var oldName = $nameObj.data('currentName');
+    var title = $('#title').val();
     var description = $('#description').val();
     var layout = $('input[name=layout]:checked').val();
     var menuname = $('#menuname').val();
@@ -149,6 +166,7 @@ function saveAll(obj) {
 
     var body = {
       id            : id,
+      title         : title,
       description   : description,
       layout        : layout,
       menuname      : menuname,

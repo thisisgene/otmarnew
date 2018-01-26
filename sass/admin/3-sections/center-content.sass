@@ -52,10 +52,20 @@
   .main-content
     flex-grow: 1
     display: flex
+
     #text-container
       flex-grow: 1
+
+      .title-container
+        display: flex
+        flex-direction: row
+        align-items: center
+        //margin-bottom: 8px
+        height: 10%
+        span
+          margin-right: 5px
       textarea
-        height: 100%
+        height: 90%
         resize: none
         background: #fdffff
         border-color: #ddd

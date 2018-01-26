@@ -8,7 +8,7 @@ nav.breadcrumbs
           break
         else
           li.crumb-link: a(href='/admin/project/'+crumb.id)= crumb.name
-    li: input#project-name-input(type='text', value= currentProject.name, data-currentname= currentProject.name)
+    li: input#project-name-input(type='text', value= currentProject.name, data-currentname= currentProject.name).notempty
 
 nav.tabs(data-component='tabs', data-equals="true")
   ul.tab-list
@@ -18,6 +18,10 @@ nav.tabs(data-component='tabs', data-equals="true")
 .main-content
 
   #text-container
+    .title-container
+      span Titel:
+      input#title(type='text', value= currentProject.title).notempty
+
     textarea#description= currentProject.descMU
   #img-container
     .dropzone-container

@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/site/:name', function(req, res) {
   var name = req.params.name;
+
   Project.findOne({'latName': name }, function(err, project){
     var project_layout = project.layout;
     console.log(project.layout);

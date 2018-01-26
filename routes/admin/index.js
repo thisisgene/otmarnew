@@ -36,11 +36,12 @@ router.post('/create_project', function(req, res) {
 
     }
     new Project({
-      name: name,
-      latName: latName,
-      deleted: false,
-      visible: true,
-      layout : 'layout_mnu'
+      name    : name,
+      title   : name,
+      latName : latName,
+      deleted : false,
+      visible : true,
+      layout  : 'layout_mnu'
     }).save(function(err, project) {
       if (!err) res.send(project._id);
     });
@@ -80,15 +81,16 @@ router.post('/create_sub_project', function(req, res) {
           latName: project.latName
         }); // see if ancestor already in list (from a sibling)
         var newProject = new Project({
-          name: name,
-          latName: latName,
-          deleted: false,
-          visible: true,
-          hasParent: true,
-          parentId: parentId,
-          parentName: project.name,
-          ancestors: ancestors,
-          layout: 'layout_mnu'
+          name        : name,
+          title       : name,
+          latName     : latName,
+          deleted     : false,
+          visible     : true,
+          hasParent   : true,
+          parentId    : parentId,
+          parentName  : project.name,
+          ancestors   : ancestors,
+          layout      : 'layout_mnu'
 
         });
         console.log('Ancestors: ', ancestors);
@@ -146,9 +148,17 @@ router.get('/project/:id', function(req, res, next) {
   })
 });
 
+function createProjectList() {
+  Project.find(function(err, projects) {
+
+  })
+}
+
 router.post('/save_all', function(req, res) {
   var body = req.body;
   var id = body.id;
+  var name = body.name;
+  var title = body.title;
   var description = body.description;
   var descHtml = marked(description);
   var layout = body.layout;
@@ -157,6 +167,7 @@ router.post('/save_all', function(req, res) {
   var msg = '';
 
   Project.findById(id, function(err, project) {
+    project.title = title;
     project.descMU = description;
     project.descHtml = descHtml;
     project.layout = layout;
@@ -175,7 +186,8 @@ router.post('/save_all', function(req, res) {
           var child = children[i];
           console.log(child.name);
           if (child.id == project.id) {
-            console.log('id gleich');
+            child.name = name;
+            child.title = title;
             child.descMU = description;
             child.descHtml = descHtml;
             child.layout = layout;

@@ -1,36 +1,40 @@
 var mongoose = require('mongoose');
+var tree = require('mongoose-path-tree');
 
 var ImageSchema = new mongoose.Schema({
-  filename: String,
-  originalName: String,
-  name: String,
-  desc: String,
-  path: String,
-  fileSize: Number,
-  isCover: Boolean,
-  isVisible: Boolean,
-  isDeleted: Boolean
+  filename      : String,
+  originalName  : String,
+  name          : String,
+  desc          : String,
+  path          : String,
+  fileSize      : Number,
+  isCover       : Boolean,
+  isVisible     : Boolean,
+  isDeleted     : Boolean
 });
 
 var ProjectSchema = new mongoose.Schema();
 ProjectSchema.add({
-  name: String,
-  latName: String,
-  descMU: String,
-  descHtml: String,
-  deleted: Boolean,
-  visible: Boolean,
-  hasChildren: Boolean,
-  childrenIds: Array,
-  children: [ProjectSchema],
-  hasParent: Boolean,
-  parentId: String,
-  parentName: String,
-  ancestors: Array,
-  layout: String,
-  images: [ImageSchema]
+  name        : String,
+  title       : String,
+  latName     : String,
+  descMU      : String,
+  descHtml    : String,
+  deleted     : Boolean,
+  visible     : Boolean,
+  hasChildren : Boolean,
+  childrenIds : Array,
+  children    : [ProjectSchema],
+  hasParent   : Boolean,
+  parentId    : String,
+  parentName  : String,
+  ancestors   : Array,
+  layout      : String,
+  images      : [ImageSchema]
 
 });
+
+ProjectSchema.plugin(tree);
 
 // ProjectSchema.add({ subProjects: [ProjectSchema] });
 
