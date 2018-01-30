@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:300,400");
 .noselect {
   -webkit-touch-callout: none;
@@ -106,30 +107,77 @@ body {
       .loading-wrapper .loading-screen.success h1 {
         opacity: 1; }
 
+.msg-wrapper {
+  display: none; }
+  .msg-wrapper .msg-screen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6); }
+    .msg-wrapper .msg-screen .msg-content {
+      max-width: 50%;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 15px 8px rgba(0, 0, 0, 0.5);
+      background: white;
+      border: 14px solid #444; }
+      .msg-wrapper .msg-screen .msg-content.warning {
+        border-color: #F66712; }
+      .msg-wrapper .msg-screen .msg-content .msg-message {
+        color: #444;
+        text-align: left; }
+
 #left-menu {
   padding: 1rem; }
+  #left-menu .nothing {
+    display: none; }
   #left-menu .project-form form {
     margin: 0 auto; }
   #left-menu .project-list {
     margin-top: 2rem; }
     #left-menu .project-list ul {
       border-left: 1px dotted #eee; }
-      #left-menu .project-list ul li {
+      #left-menu .project-list ul.sub-list {
+        display: none; }
+      #left-menu .project-list ul .li-container {
         padding-left: 5px; }
-        #left-menu .project-list ul li .li-wrapper {
+        #left-menu .project-list ul .li-container .li-wrapper {
           display: flex;
           flex-direction: row;
           justify-content: space-between; }
-          #left-menu .project-list ul li .li-wrapper:hover {
+          #left-menu .project-list ul .li-container .li-wrapper:hover {
             color: #333;
             background: rgba(68, 68, 68, 0.1); }
-          #left-menu .project-list ul li .li-wrapper.active span {
+          #left-menu .project-list ul .li-container .li-wrapper.active span {
             color: #111; }
-    #left-menu .project-list a {
-      color: #aaa;
-      text-decoration: none;
-      display: inline-block; }
-      #left-menu .project-list a p {
+          #left-menu .project-list ul .li-container .li-wrapper .menu-link {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center; }
+            #left-menu .project-list ul .li-container .li-wrapper .menu-link a {
+              color: #aaa;
+              text-decoration: none; }
+            #left-menu .project-list ul .li-container .li-wrapper .menu-link .folder {
+              opacity: .5;
+              margin-right: 3px;
+              width: 10px;
+              height: 10px;
+              background-image: url(../images/folder_sprite.svg);
+              background-position: 0 0;
+              background-repeat: no-repeat;
+              background-size: cover;
+              cursor: pointer; }
+        #left-menu .project-list ul .li-container.unfold > .li-wrapper .menu-link .folder {
+          background-position: -10px 0; }
+        #left-menu .project-list ul .li-container.unfold > .sub-list {
+          display: block; }
+      #left-menu .project-list ul p {
         margin: 0;
         display: inline-block; }
 
@@ -177,8 +225,15 @@ body {
     display: flex; }
     .section#center-content .main-content #text-container {
       flex-grow: 1; }
+      .section#center-content .main-content #text-container .title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 10%; }
+        .section#center-content .main-content #text-container .title-container span {
+          margin-right: 5px; }
       .section#center-content .main-content #text-container textarea {
-        height: 100%;
+        height: 90%;
         resize: none;
         background: #fdffff;
         border-color: #ddd;
@@ -383,6 +438,38 @@ body {
   .right-container .general-container .layout-container .layout-mnu .layout-label label {
     background-image: url(../images/layout_menu.svg);
     background-size: cover; }
+
+.right-container .general-container .menuname-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 1rem 0;
+  width: 100%; }
+  .right-container .general-container .menuname-container .menuname-label {
+    font-size: .9rem;
+    margin-top: .2rem; }
+  .right-container .general-container .menuname-container .menuname-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    max-width: 65%; }
+    .right-container .general-container .menuname-container .menuname-wrapper input {
+      height: 2rem; }
+      .right-container .general-container .menuname-container .menuname-wrapper input.invalid {
+        background: #f58282; }
+        .right-container .general-container .menuname-container .menuname-wrapper input.invalid + .invalid-msg::after {
+          content: 'Darf nicht leer sein. Darf keine Sonderzeichen oder Umlaute enthalten (außer _ ).'; }
+      .right-container .general-container .menuname-container .menuname-wrapper input.notunique {
+        background: #f58282; }
+        .right-container .general-container .menuname-container .menuname-wrapper input.notunique + .invalid-msg::after {
+          content: 'Name schon vergeben. (Das jeweilige Objekt könnte sich auch im Mistkübel befinden.)'; }
+    .right-container .general-container .menuname-container .menuname-wrapper .invalid-msg {
+      font-size: .7rem;
+      line-height: 1rem;
+      color: #ed2424; }
+
+.right-container .general-container .visible-container {
+  text-align: center; }
 
 .right-container .save-container {
   margin: 0 auto;

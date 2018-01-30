@@ -100,6 +100,25 @@ function showMsg(cat, content) {
 
 }
 
+//////////////////////////////// FOLDING MENU
+
+$('.folder').on('click', function(event) {
+  $obj = $(this).closest('.li-container');
+
+  $obj.toggleClass('unfold');
+
+  var unfold = $obj.hasClass('unfold');
+  var id = $obj.attr('id');
+  var body = {
+    id: id,
+    unfold: unfold
+  };
+
+  $.post('/admin/togglefold', body, function(msg) {
+    console.log(msg);
+  });
+});
+
 //////////////////////////////// FORM SUBMITTING
 
 $('.project-form form').on('submit', function(event) {

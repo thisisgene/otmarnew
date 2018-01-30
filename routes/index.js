@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Project  = mongoose.model( 'Project' );
 var Image  = mongoose.model( 'Image' );
+var tree = require('mongoose-mpath');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,7 +20,9 @@ router.get('/site/:name', function(req, res) {
 
   Project.findOne({'latName': name }, function(err, project){
     var project_layout = project.layout;
-    console.log(project.layout);
+    // project.getChildrenTree(function(error, children) {          //// TODO: get ancestor tree
+    //   console.log(children);
+    // });
 
     res.render('project/'+project_layout, {
       title: 'Otmar Rychlick | ' + project.name,
@@ -33,3 +36,5 @@ router.get('/login', function(req, res) {
 });
 
 module.exports = router;
+
+

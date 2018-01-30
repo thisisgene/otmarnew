@@ -45,20 +45,20 @@ body {
       /* line 42, sass/admin/1-base/main.sass */
       body .navbar-container h1.sub-title {
         font-size: 1.4rem; }
-    /* line 45, sass/admin/1-base/main.sass */
+    /* line 47, sass/admin/1-base/main.sass */
     body .navbar-container .logging-area {
       display: flex;
       align-items: center; }
-      /* line 48, sass/admin/1-base/main.sass */
+      /* line 50, sass/admin/1-base/main.sass */
       body .navbar-container .logging-area p {
         font-family: "Open Sans Condensed", sans-serif;
         margin: 0; }
-        /* line 52, sass/admin/1-base/main.sass */
+        /* line 54, sass/admin/1-base/main.sass */
         body .navbar-container .logging-area p .user {
           margin-left: 5px;
           text-transform: uppercase;
           color: #4ca0f5; }
-      /* line 57, sass/admin/1-base/main.sass */
+      /* line 59, sass/admin/1-base/main.sass */
       body .navbar-container .logging-area .log-out {
         margin-left: 15px;
         display: block;
@@ -67,27 +67,27 @@ body {
         background: url(../images/exit_sign.svg);
         opacity: .8;
         transition: transform 200ms ease-in-out; }
-        /* line 66, sass/admin/1-base/main.sass */
+        /* line 68, sass/admin/1-base/main.sass */
         body .navbar-container .logging-area .log-out:hover {
           opacity: 1;
           filter: drop-shadow(0 0 4px rgba(150, 150, 150, 0.2));
           transform: scale(1.2); }
-  /* line 73, sass/admin/1-base/main.sass */
+  /* line 75, sass/admin/1-base/main.sass */
   body .main-container {
     display: flex;
     flex-direction: row;
     height: calc(100% - 50px); }
-    /* line 77, sass/admin/1-base/main.sass */
+    /* line 79, sass/admin/1-base/main.sass */
     body .main-container .main-wrapper {
       height: 100%;
       border-left: 1px solid #f4f4f4;
       flex-shrink: 0; }
-      /* line 82, sass/admin/1-base/main.sass */
+      /* line 84, sass/admin/1-base/main.sass */
       body .main-container .main-wrapper .section {
         padding: 1rem;
         height: 100%; }
 
-/* line 87, sass/admin/1-base/main.sass */
+/* line 89, sass/admin/1-base/main.sass */
 .slim-title {
   font-family: 'Open Sans Condensed';
   font-weight: 300;
@@ -95,14 +95,14 @@ body {
   color: #619A90;
   text-align: center; }
 
-/* line 116, sass/admin/1-base/main.sass */
+/* line 118, sass/admin/1-base/main.sass */
 .loading-wrapper {
   display: none;
   opacity: 0; }
-  /* line 119, sass/admin/1-base/main.sass */
+  /* line 121, sass/admin/1-base/main.sass */
   .loading-wrapper.show {
     display: block; }
-  /* line 122, sass/admin/1-base/main.sass */
+  /* line 124, sass/admin/1-base/main.sass */
   .loading-wrapper .loading-screen {
     position: absolute;
     top: 0;
@@ -117,23 +117,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center; }
-    /* line 137, sass/admin/1-base/main.sass */
+    /* line 139, sass/admin/1-base/main.sass */
     .loading-wrapper .loading-screen h1 {
       opacity: 0;
       font-size: 15vw;
       transition: opacity 300ms ease-in-out; }
-    /* line 142, sass/admin/1-base/main.sass */
+    /* line 144, sass/admin/1-base/main.sass */
     .loading-wrapper .loading-screen.success {
       background-color: rgba(176, 226, 171, 0.9);
       background-image: none; }
-      /* line 147, sass/admin/1-base/main.sass */
+      /* line 149, sass/admin/1-base/main.sass */
       .loading-wrapper .loading-screen.success h1 {
         opacity: 1; }
 
-/* line 150, sass/admin/1-base/main.sass */
+/* line 152, sass/admin/1-base/main.sass */
 .msg-wrapper {
   display: none; }
-  /* line 152, sass/admin/1-base/main.sass */
+  /* line 154, sass/admin/1-base/main.sass */
   .msg-wrapper .msg-screen {
     position: absolute;
     top: 0;
@@ -144,7 +144,7 @@ body {
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.6); }
-    /* line 162, sass/admin/1-base/main.sass */
+    /* line 164, sass/admin/1-base/main.sass */
     .msg-wrapper .msg-screen .msg-content {
       max-width: 50%;
       padding: 1rem;
@@ -152,10 +152,10 @@ body {
       box-shadow: 0 15px 8px rgba(0, 0, 0, 0.5);
       background: white;
       border: 14px solid #444; }
-      /* line 169, sass/admin/1-base/main.sass */
+      /* line 171, sass/admin/1-base/main.sass */
       .msg-wrapper .msg-screen .msg-content.warning {
         border-color: #F66712; }
-      /* line 172, sass/admin/1-base/main.sass */
+      /* line 174, sass/admin/1-base/main.sass */
       .msg-wrapper .msg-screen .msg-content .msg-message {
         color: #444;
         text-align: left; }
@@ -163,37 +163,65 @@ body {
 /* line 1, sass/admin/3-sections/left-menu.sass */
 #left-menu {
   padding: 1rem; }
-  /* line 5, sass/admin/3-sections/left-menu.sass */
+  /* line 4, sass/admin/3-sections/left-menu.sass */
+  #left-menu .nothing {
+    display: none; }
+  /* line 8, sass/admin/3-sections/left-menu.sass */
   #left-menu .project-form form {
     margin: 0 auto; }
-  /* line 8, sass/admin/3-sections/left-menu.sass */
+  /* line 11, sass/admin/3-sections/left-menu.sass */
   #left-menu .project-list {
     margin-top: 2rem; }
-    /* line 11, sass/admin/3-sections/left-menu.sass */
+    /* line 14, sass/admin/3-sections/left-menu.sass */
     #left-menu .project-list ul {
       border-left: 1px dotted #eee; }
-      /* line 14, sass/admin/3-sections/left-menu.sass */
-      #left-menu .project-list ul li {
+      /* line 16, sass/admin/3-sections/left-menu.sass */
+      #left-menu .project-list ul.sub-list {
+        display: none; }
+      /* line 19, sass/admin/3-sections/left-menu.sass */
+      #left-menu .project-list ul .li-container {
         padding-left: 5px; }
-        /* line 17, sass/admin/3-sections/left-menu.sass */
-        #left-menu .project-list ul li .li-wrapper {
+        /* line 22, sass/admin/3-sections/left-menu.sass */
+        #left-menu .project-list ul .li-container .li-wrapper {
           display: flex;
           flex-direction: row;
           justify-content: space-between; }
-          /* line 22, sass/admin/3-sections/left-menu.sass */
-          #left-menu .project-list ul li .li-wrapper:hover {
+          /* line 27, sass/admin/3-sections/left-menu.sass */
+          #left-menu .project-list ul .li-container .li-wrapper:hover {
             color: #333;
             background: rgba(68, 68, 68, 0.1); }
-          /* line 27, sass/admin/3-sections/left-menu.sass */
-          #left-menu .project-list ul li .li-wrapper.active span {
+          /* line 32, sass/admin/3-sections/left-menu.sass */
+          #left-menu .project-list ul .li-container .li-wrapper.active span {
             color: #111; }
-    /* line 31, sass/admin/3-sections/left-menu.sass */
-    #left-menu .project-list a {
-      color: #aaa;
-      text-decoration: none;
-      display: inline-block; }
-      /* line 39, sass/admin/3-sections/left-menu.sass */
-      #left-menu .project-list a p {
+          /* line 37, sass/admin/3-sections/left-menu.sass */
+          #left-menu .project-list ul .li-container .li-wrapper .menu-link {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center; }
+            /* line 44, sass/admin/3-sections/left-menu.sass */
+            #left-menu .project-list ul .li-container .li-wrapper .menu-link a {
+              color: #aaa;
+              text-decoration: none; }
+            /* line 50, sass/admin/3-sections/left-menu.sass */
+            #left-menu .project-list ul .li-container .li-wrapper .menu-link .folder {
+              opacity: .5;
+              margin-right: 3px;
+              width: 10px;
+              height: 10px;
+              background-image: url(../images/folder_sprite.svg);
+              background-position: 0 0;
+              background-repeat: no-repeat;
+              background-size: cover;
+              cursor: pointer; }
+        /* line 64, sass/admin/3-sections/left-menu.sass */
+        #left-menu .project-list ul .li-container.unfold > .li-wrapper .menu-link .folder {
+          background-position: -10px 0; }
+        /* line 67, sass/admin/3-sections/left-menu.sass */
+        #left-menu .project-list ul .li-container.unfold > .sub-list {
+          display: block; }
+      /* line 71, sass/admin/3-sections/left-menu.sass */
+      #left-menu .project-list ul p {
         margin: 0;
         display: inline-block; }
 

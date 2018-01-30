@@ -7,6 +7,7 @@ var Image  = mongoose.model( 'Image' );
 var multer = require('multer');
 var upload = multer({ dest: 'public/uploads/' });
 var latinize = require('latinize');
+// var tree = require('mongoose-mpath');
 
 
 
@@ -65,10 +66,11 @@ router.post('/create_sub_project', function(req, res) {
   latName = latName.replace(/\s/g , "_");
 
   Project.findById(parentId, function(err, project) {
-
+    // console.log(project);
     if (err) console.log(err);
     else {
       Project.findOne({latName: latName}, function(err, doc) {
+        if (err) console.log(err);
         if (doc) {
           var rndNr = Math.random().toString(36).substr(2, 5);
           latName = latName + "_" + rndNr.toString();
@@ -99,10 +101,12 @@ router.post('/create_sub_project', function(req, res) {
         project.children.push(newProject);
         project.childrenIds.push(newProject._id);
         project.hasChildren = true;
-        project.save(function (err, project) {
-          res.send('success');
+        project.save(function(err) {
+          if (err) throw err;
         });
-      })
+
+      });
+
     }
 
   });
@@ -125,6 +129,7 @@ router.get('/delete/:id', function(req, res) {
             child.deleted = true;
           }
         }
+        if (parent.children.length <= 0) parent.hasChildren = false;
         parent.save();
 
       });
@@ -148,11 +153,17 @@ router.get('/project/:id', function(req, res, next) {
   })
 });
 
-function createProjectList() {
-  Project.find(function(err, projects) {
-
+router.post('/togglefold', function(req, res){
+  var body = req.body;
+  Project.findById(body.id, function(err, project) {
+    project.unfold = body.unfold;
+    project.save(function(err){
+      if (!err) {
+        res.send('success');
+      }
+    })
   })
-}
+});
 
 router.post('/save_all', function(req, res) {
   var body = req.body;

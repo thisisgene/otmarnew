@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var tree = require('mongoose-path-tree');
 
 var ImageSchema = new mongoose.Schema({
   filename      : String,
@@ -23,6 +22,7 @@ ProjectSchema.add({
   deleted     : Boolean,
   visible     : Boolean,
   hasChildren : Boolean,
+  unfold      : Boolean,
   childrenIds : Array,
   children    : [ProjectSchema],
   hasParent   : Boolean,
@@ -34,7 +34,7 @@ ProjectSchema.add({
 
 });
 
-ProjectSchema.plugin(tree);
+// ProjectSchema.plugin(tree);
 
 // ProjectSchema.add({ subProjects: [ProjectSchema] });
 

@@ -1,6 +1,9 @@
 #left-menu
   padding: 1rem
 
+  .nothing
+    display: none
+
   .project-form
     form
       margin: 0 auto
@@ -10,8 +13,10 @@
     //padding: 5px 0 0
     ul
       border-left: 1px dotted #eee
+      &.sub-list
+        display: none
 
-      li
+      .li-container
         padding-left: 5px
 
         .li-wrapper
@@ -28,12 +33,39 @@
               color: #111
             //background: rgba(#0C9A9A, .3)
 
-    a
-      color: #aaa
-      text-decoration: none
-      display: inline-block
+
+          .menu-link
+
+            display: flex
+            flex-direction: row
+            justify-content: flex-start
+            align-items: center
+
+            a
+              color: #aaa
+              text-decoration: none
 
 
+
+            .folder
+              opacity: .5
+              margin-right: 3px
+              width: 10px
+              height: 10px
+              background:
+                image: url(../images/folder_sprite.svg)
+                position: 0 0
+                repeat: no-repeat
+                size: cover
+              cursor: pointer
+
+        &.unfold
+
+          & > .li-wrapper .menu-link .folder
+            background-position: -10px 0
+
+          & > .sub-list
+            display: block
 
 
       p
