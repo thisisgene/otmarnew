@@ -3,7 +3,6 @@ var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Project  = mongoose.model( 'Project' );
 var Image  = mongoose.model( 'Image' );
-var tree = require('mongoose-mpath');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

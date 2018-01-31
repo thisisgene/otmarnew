@@ -7,7 +7,6 @@ var Image  = mongoose.model( 'Image' );
 var multer = require('multer');
 var upload = multer({ dest: 'public/uploads/' });
 var latinize = require('latinize');
-// var tree = require('mongoose-mpath');
 
 
 
@@ -22,14 +21,25 @@ router.get('/', function(req, res, next) {
   });
 });
 
+// GET Project
+router.get('/project/:id', function(req, res, next) {
+  Project.find(function(err, projects) {
 
+    res.render('admin/index', {
+      title: 'Admin',
+      projects: projects,
+      currentProjectId: req.params.id
+    })
+
+  })
+});
 
 router.post('/create_project', function(req, res) {
   var name = req.body.name;
-
+  console.log(name);
   var latName = latinize(name).toLowerCase();
   latName = latName.replace(/\s/g , "_");
-
+  console.log(latName);
   Project.findOne({latName: latName}, function(err, doc) {
     if (doc) {
       var rndNr = Math.random().toString(36).substr(2, 5);
@@ -44,6 +54,7 @@ router.post('/create_project', function(req, res) {
       visible : true,
       layout  : 'layout_mnu'
     }).save(function(err, project) {
+      if (err) console.log(err);
       if (!err) res.send(project._id);
     });
 
@@ -95,7 +106,7 @@ router.post('/create_sub_project', function(req, res) {
           layout      : 'layout_mnu'
 
         });
-        console.log('Ancestors: ', ancestors);
+        // console.log('Ancestors: ', ancestors);
         newProject.save();
         // updateParent(project.parentId);
         project.children.push(newProject);
@@ -120,14 +131,16 @@ router.get('/delete/:id', function(req, res) {
 
     if (project.hasParent) {
       Project.findById(project.parentId, function(err, parent) {
-        console.log('parent: ', parent.name);
         var children = parent.children;
         for (var i=0; i < children.length; i++) {
           var child = children[i];
-          console.log(child.name);
           if (child.id == project.id) {
-            child.deleted = true;
+            // child.deleted = true;
+            var index = children.indexOf(child);
+            parent.children.splice(index, 1);
+            console.log('children: ',parent.children);
           }
+
         }
         if (parent.children.length <= 0) parent.hasChildren = false;
         parent.save();
@@ -142,16 +155,6 @@ router.get('/delete/:id', function(req, res) {
   })
 });
 
-router.get('/project/:id', function(req, res, next) {
-  Project.find(function(err, projects) {
-    res.render('admin/index', {
-      title: 'Admin',
-      projects: projects,
-      currentProjectId: req.params.id
-    })
-
-  })
-});
 
 router.post('/togglefold', function(req, res){
   var body = req.body;
@@ -236,12 +239,14 @@ router.post('/check_name', function(req, res) {
   })
 });
 
+//////////////////////////////////////////////// IMAGE UPLOAD
+
 router.post('/upload', upload.single('file'), function(req, res) {
   var file = req.file;
   console.log(file);
   if ( !file.mimetype.startsWith( 'image/' ) ) {
     return res.status( 422 ).json( {
-      error : 'Die Datei muss ein Bildformat sein.'
+      error : 'Die Datei muss ein Bildformat sein. (.jpg, .png, ...)'
     } );
   }
   else {

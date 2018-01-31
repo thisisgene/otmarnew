@@ -52,7 +52,6 @@ function checkAuth(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);
-// app.use('/admin/create_project', admin);
 
 app.post('/login/authenticate', function (req, res) {
   var post = req.body;

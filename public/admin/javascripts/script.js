@@ -85,7 +85,6 @@ function collectErrors() {
     }
     else removeError(errorname)
   });
-  console.log(activeErrorList);
 }
 
 //////////////////////////////// MESSAGE BOARD
@@ -145,7 +144,7 @@ $('.project-form form').on('submit', function(event) {
   var name = $projectName.val();
   // var $table = $('.project-list table tbody');
   var projectParentId = $projectName.data('whoid');
-
+  console.log(name, projectParentId)
   if (name!=='' && projectParentId == undefined) {
 
     $.post('/admin/create_project', {name: name}, function (data) {
