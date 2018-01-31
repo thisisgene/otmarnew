@@ -3,7 +3,7 @@
 - var parentsList = new Array
 
 mixin parseSubProjects(obj, parentName, parentId, pList)
-  ul.unstyled.sub-list
+  ul.unstyled.sub-list.sortable.connect-sortable
     each projectId in obj
       each project in projects
 
@@ -44,7 +44,7 @@ mixin parseSubProjects(obj, parentName, parentId, pList)
           button.button.outline Go
 
   .project-list
-    ul.unstyled
+    ul.unstyled.sortable.connect-sortable
 
       each project in projects
         if (!project.deleted && !project.hasParent)

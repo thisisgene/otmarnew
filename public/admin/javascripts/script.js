@@ -14,6 +14,24 @@ var delay = (function(){
   };
 })();
 
+/////////////////////////// SORTABLE LISTS
+
+$(function() {
+  $(".sortable").sortable({
+    connectWith: ".connect-sortable",
+    stop: function(event, ui) {
+        var item_sortable_list_id = $(this).attr('id');
+        console.log(item_sortable_list_id);
+        //alert($(ui.sender).attr('id'))
+    },
+    receive: function (event, ui) {
+      console.log("dropped on = " + this.id); // Where the item is dropped
+      console.log("sender = " + ui.sender[0].id); // Where it came from
+      console.log("item = " + ui.item[0].innerHTML); //Which item (or ui.item[0].id)
+    }
+  }).disableSelection();
+
+});
 /////////////////////////// ERROR HANDLING
 
 var errorList = {
