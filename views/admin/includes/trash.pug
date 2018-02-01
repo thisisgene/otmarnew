@@ -6,7 +6,11 @@
 
   .trash-project-container
 
+    a#empty-trash Papierkorb leeren
+
     ul.trash-project-list
+
     each project in projects
       if (project.deleted)
-        li= project.name
+        li(id= project._id).trash-project
+          a(href='/admin/revive/' + project._id)= project.name

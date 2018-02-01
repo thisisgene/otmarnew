@@ -21,7 +21,6 @@
     background: rgba(100, 100, 100, .3)
 
     #trash
-
       .trash-compartment
         box-shadow: -4px 0 3px rgba(0,0,0,.2)
 
@@ -65,7 +64,7 @@
       display: flex
       align-items: center
       justify-content: center
-      z-index: 12
+      z-index: 120
       transition: all 200ms ease-in-out
 
       &:after
@@ -91,7 +90,7 @@
         transform: translateX(6px)
 
     .trash-compartment
-      z-index: -1
+      //z-index: -1
       background: $trash-color
       padding: 1rem
       width: calc(100% - 30px)

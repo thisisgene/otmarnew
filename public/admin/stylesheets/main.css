@@ -644,29 +644,29 @@ body {
     width: 100vw;
     padding-left: 50vw;
     background: rgba(100, 100, 100, 0.3); }
-    /* line 25, sass/admin/3-sections/trash.sass */
+    /* line 24, sass/admin/3-sections/trash.sass */
     .trash-wrapper.show-trash #trash .trash-compartment {
       box-shadow: -4px 0 3px rgba(0, 0, 0, 0.2); }
-    /* line 29, sass/admin/3-sections/trash.sass */
+    /* line 28, sass/admin/3-sections/trash.sass */
     .trash-wrapper.show-trash #trash .trash-handle {
       transform: translateX(0px);
       opacity: 1;
       box-shadow: -4px 0 3px rgba(0, 0, 0, 0.2); }
-      /* line 34, sass/admin/3-sections/trash.sass */
+      /* line 33, sass/admin/3-sections/trash.sass */
       .trash-wrapper.show-trash #trash .trash-handle:hover {
         transform: none; }
-      /* line 37, sass/admin/3-sections/trash.sass */
+      /* line 36, sass/admin/3-sections/trash.sass */
       .trash-wrapper.show-trash #trash .trash-handle .trash-img {
         height: 20px;
         width: 20px;
         background-image: url("../images/close.svg");
         transform: translateX(4px) scale(0.8);
         opacity: .6; }
-        /* line 45, sass/admin/3-sections/trash.sass */
+        /* line 44, sass/admin/3-sections/trash.sass */
         .trash-wrapper.show-trash #trash .trash-handle .trash-img:hover {
           opacity: 1;
           transform: translateX(4px) scale(1); }
-  /* line 52, sass/admin/3-sections/trash.sass */
+  /* line 51, sass/admin/3-sections/trash.sass */
   .trash-wrapper #trash .trash-handle {
     position: relative;
     width: 30px;
@@ -683,9 +683,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 12;
+    z-index: 120;
     transition: all 200ms ease-in-out; }
-    /* line 71, sass/admin/3-sections/trash.sass */
+    /* line 70, sass/admin/3-sections/trash.sass */
     .trash-wrapper #trash .trash-handle:after {
       content: '';
       position: absolute;
@@ -695,24 +695,23 @@ body {
       background: #eebf74;
       width: 2px;
       transform: translateX(2px); }
-    /* line 81, sass/admin/3-sections/trash.sass */
+    /* line 80, sass/admin/3-sections/trash.sass */
     .trash-wrapper #trash .trash-handle .trash-img {
       height: 20px;
       width: 20px;
       background-image: url("../images/trash_big.svg");
       background-repeat: no-repeat; }
-    /* line 89, sass/admin/3-sections/trash.sass */
+    /* line 88, sass/admin/3-sections/trash.sass */
     .trash-wrapper #trash .trash-handle:hover {
       opacity: 1;
       transform: translateX(6px); }
-  /* line 93, sass/admin/3-sections/trash.sass */
+  /* line 92, sass/admin/3-sections/trash.sass */
   .trash-wrapper #trash .trash-compartment {
-    z-index: -1;
     background: #eebf74;
     padding: 1rem;
     width: calc(100% - 30px);
     height: 100%;
     border-left: 2px solid #4ca0f5; }
-    /* line 100, sass/admin/3-sections/trash.sass */
+    /* line 99, sass/admin/3-sections/trash.sass */
     .trash-wrapper #trash .trash-compartment h1 {
       color: white; }

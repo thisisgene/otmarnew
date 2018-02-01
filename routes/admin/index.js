@@ -138,7 +138,6 @@ router.get('/delete/:id', function(req, res) {
             // child.deleted = true;
             var index = children.indexOf(child);
             parent.children.splice(index, 1);
-            console.log('children: ',parent.children);
           }
 
         }
@@ -155,6 +154,16 @@ router.get('/delete/:id', function(req, res) {
   })
 });
 
+
+////////////////////////////////// REMOVE PROJECT PERMANENTLY
+
+router.post('/remove_project', function(req, res) {
+  console.log(req.body.id);
+  Project.findById(req.body.id).remove(function(err) {
+    if (err) console.log(err);
+    else res.send('success');
+  })
+});
 
 router.post('/togglefold', function(req, res){
   var body = req.body;
