@@ -18,7 +18,7 @@ $(document).ready(function() {
   var $active = $('.project-list').find('.active');
   if ($active) {
 
-    $active.parents('.li-container').each(function(i, obj) {
+    $active.parents('.li-container').parents('.li-container').each(function(i, obj) {
       $(obj).addClass('hasActiveChild');
     })
 
@@ -30,18 +30,43 @@ $(document).ready(function() {
 
 $(function() {
   $(".sortable").sortable({
-    connectWith: ".connect-sortable",
-    stop: function(event, ui) {
-        var item_sortable_list_id = $(this).attr('id');
-        console.log(item_sortable_list_id);
-        //alert($(ui.sender).attr('id'))
-    },
-    receive: function (event, ui) {
-      console.log("dropped on = " + this.id); // Where the item is dropped
-      console.log("sender = " + ui.sender[0].id); // Where it came from
-      console.log("item = " + ui.item[0].innerHTML); //Which item (or ui.item[0].id)
+    update: function(event, ui){
+      var ul = ui.item.parent();
+      var dataObj = { };
+      var projectId;
+      ul.children('.li-container').each(function(i, ui) {
+        var li = $(this);
+        projectId = li.attr('id');
+        dataObj['position' + projectId] = i;
+      });
+      console.log(dataObj);
+      $.ajax({
+        url: '/admin/projectsort',
+        type: 'post',
+        data: dataObj
+      }).done(function() {
+        // location.reload();
+      });
     }
-  }).disableSelection();
+  });
+  // $(".sortable").on('sortupdate', function(event, ui){
+  //   var ul = ui.item.parent();
+  //   var dataObj = { };
+  //   var projectId;
+  //   ul.children('.li-container').each(function(i, ui) {
+  //     var li = $(this);
+  //     projectId = li.attr('id');
+  //     dataObj['position' + projectId] = i;
+  //   });
+  //   console.log(dataObj);
+  //   // $.ajax({
+  //   //   url: '/admin/projectsort',
+  //   //   type: 'post',
+  //   //   data: dataObj
+  //   // }).done(function() {
+  //   //   // location.reload();
+  //   // });
+  // })
 
 });
 /////////////////////////// ERROR HANDLING

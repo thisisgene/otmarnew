@@ -3,7 +3,7 @@
 - var parentsList = new Array
 
 mixin parseSubProjects(obj, parentName, parentId, pList)
-  ul.unstyled.sub-list.sortable.connect-sortable
+  ul.unstyled.sub-list
     each projectId in obj
       each project in projects
 
@@ -47,7 +47,7 @@ mixin parseSubProjects(obj, parentName, parentId, pList)
 
   .project-list
     a(href='/admin').list-start Start
-    ul.unstyled.sortable.connect-sortable.project-ul
+    ul.unstyled.sortable.project-ul
 
       each project in projects
         if (!project.deleted && !project.hasParent)

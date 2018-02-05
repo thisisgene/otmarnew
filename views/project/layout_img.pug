@@ -16,9 +16,11 @@ block content
     .project-main.col.col-8.no-select
 
       .image-gallery
+        - var realImages = [];
         each img in project.images
 
           if (img.isVisible && !img.isDeleted)
+            - realImages.push(img);
             if (img.isCover)
               .image.cover-img.img-active
                 img(src='/uploads/' + img.filename)
@@ -27,9 +29,19 @@ block content
                 img(src='/uploads/' + img.filename)
 
         button.button.close.close-button
-        if (project.images.length > 1)
+        if (realImages.length > 1)
           .gallery-navigation
             .gal-control.back
             .gal-control.forward
+    .project-control
+      if (prevProject)
+        a(href= '/site/' + prevProject)
+          .p-control.back
+      else
+        span
+      if (nextProject)
+
+        a(href= '/site/' + nextProject)
+          .p-control.forward
 
 

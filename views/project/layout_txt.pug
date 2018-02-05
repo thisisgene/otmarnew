@@ -14,3 +14,14 @@ block content
     .project-main.col.col-8
       .project-text.columns-2
         p!= project.descHtml
+
+    .project-control
+      if (prevProject)
+        a(href= '/site/' + prevProject)
+          .p-control.back
+      else
+        span
+      if (nextProject)
+
+        a(href= '/site/' + nextProject)
+          .p-control.forward

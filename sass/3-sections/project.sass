@@ -34,6 +34,12 @@ h1, h2, h3, p, a
   display: flex
   flex-direction: row
 
+  @media(max-width: 800px)
+    flex-direction: column
+
+    .project-left
+      padding: 0
+
   .project-left
     padding-right: 20px
 
@@ -61,6 +67,7 @@ h1, h2, h3, p, a
         text-align: justify
 
     .image-gallery
+      z-index: 1
       //position: absolute
       display: flex
       flex-direction: column
@@ -108,9 +115,17 @@ h1, h2, h3, p, a
         align-items: center
         justify-content: center
         transition-duration: 300ms
+        display: flex
 
         .gal-img, .img-active
           left: auto
+          display: flex
+          justify-content: center
+          align-items: center
+
+          img
+            max-height: 95vh
+            max-width: 80vw
 
         .close-button
           display: block
@@ -120,12 +135,13 @@ h1, h2, h3, p, a
           right: 10px
 
         .gallery-navigation
-          width: 60%
+          width: 90%
           display: flex
           align-items: center
           justify-content: space-between
 
           .gal-control
+            z-index: 1
             width: 50px
             height: 23px
             background:
@@ -142,3 +158,24 @@ h1, h2, h3, p, a
             &.disable
               opacity: 0
               cursor: default
+  .project-control
+    position: fixed
+    left: 6%
+    right: 6%
+    bottom: 2rem
+
+    display: flex
+    justify-content: space-between
+    .p-control
+      width: 50px
+      height: 23px
+      background:
+        repeat: no-repeat
+      opacity: .5
+      cursor: pointer
+      &.back
+        background-image: url(../images/hand_point-left.svg)
+      &.forward
+        background-image: url(../images/hand_point-right.svg)
+      &:hover
+        opacity: 1

@@ -31,6 +31,7 @@ ProjectSchema.add({
   parentName  : String,
   ancestors   : Array,
   layout      : String,
+  position    : String,
   images      : [ImageSchema]
 
 });

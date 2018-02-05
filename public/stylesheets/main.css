@@ -50,24 +50,48 @@ body {
       /* line 60, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  /* line 62, sass/1-base/main.sass */
-  body .main-container {
+
+@media (max-width: 919px) {
+  /* line 64, sass/1-base/main.sass */
+  .header-bar {
+    justify-content: space-between; }
+    /* line 67, sass/1-base/main.sass */
+    .header-bar .main-title, .header-bar .sub-title {
+      font-size: 1.5rem; }
+  /* line 69, sass/1-base/main.sass */
+  .mobile-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    text-align: center; }
+  /* line 77, sass/1-base/main.sass */
+  .main-container {
+    display: none; } }
+
+@media (min-width: 920px) {
+  /* line 80, sass/1-base/main.sass */
+  .mobile-container {
+    display: none; }
+  /* line 83, sass/1-base/main.sass */
+  .main-container {
     overflow-x: hidden; }
-    /* line 66, sass/1-base/main.sass */
-    body .main-container .project-list {
+    /* line 87, sass/1-base/main.sass */
+    .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0; }
-      /* line 72, sass/1-base/main.sass */
-      body .main-container .project-list li > a {
+      /* line 93, sass/1-base/main.sass */
+      .main-container .project-list li > a {
         text-decoration: none;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 81, sass/1-base/main.sass */
-        body .main-container .project-list li > a .link {
+        /* line 102, sass/1-base/main.sass */
+        .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
           font-size: 8vh;
@@ -76,20 +100,20 @@ body {
           color: #4a4a4a;
           transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 92, sass/1-base/main.sass */
-        body .main-container .project-list li > a .project-update {
+        /* line 113, sass/1-base/main.sass */
+        .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .5; }
-        /* line 100, sass/1-base/main.sass */
-        body .main-container .project-list li > a:hover .link {
+        /* line 121, sass/1-base/main.sass */
+        .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
           color: #111;
           transition-duration: 100ms; }
-        /* line 104, sass/1-base/main.sass */
-        body .main-container .project-list li > a:hover .project-update {
-          opacity: 1; }
+        /* line 125, sass/1-base/main.sass */
+        .main-container .project-list li > a:hover .project-update {
+          opacity: 1; } }
 
 /* line 1, sass/3-sections/project.sass */
 h1, h2, h3, p, a {
@@ -133,58 +157,66 @@ h1, h2, h3, p, a {
 .project-wrapper {
   display: flex;
   flex-direction: row; }
-  /* line 37, sass/3-sections/project.sass */
+  @media (max-width: 800px) {
+    /* line 31, sass/3-sections/project.sass */
+    .project-wrapper {
+      flex-direction: column; }
+      /* line 40, sass/3-sections/project.sass */
+      .project-wrapper .project-left {
+        padding: 0; } }
+  /* line 43, sass/3-sections/project.sass */
   .project-wrapper .project-left {
     padding-right: 20px; }
-  /* line 42, sass/3-sections/project.sass */
+  /* line 48, sass/3-sections/project.sass */
   .project-wrapper .project-main .sub-list {
     list-style: none;
     margin: 0;
     padding-left: 0; }
-    /* line 49, sass/3-sections/project.sass */
+    /* line 55, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list li a {
       text-decoration: none;
       color: #4a4a4a; }
-      /* line 53, sass/3-sections/project.sass */
+      /* line 59, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list li a:hover {
         color: #0d0d0e; }
-  /* line 56, sass/3-sections/project.sass */
+  /* line 62, sass/3-sections/project.sass */
   .project-wrapper .project-main .project-text {
     padding: 0 20% 0 3px; }
-    /* line 58, sass/3-sections/project.sass */
+    /* line 64, sass/3-sections/project.sass */
     .project-wrapper .project-main .project-text p {
       line-height: 1.2em;
       margin: 0;
       text-align: justify; }
-  /* line 63, sass/3-sections/project.sass */
+  /* line 69, sass/3-sections/project.sass */
   .project-wrapper .project-main .image-gallery {
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     transition: all 0ms ease-in-out; }
-    /* line 76, sass/3-sections/project.sass */
+    /* line 83, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery .close-button {
       display: none; }
-    /* line 79, sass/3-sections/project.sass */
+    /* line 86, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery .image {
       position: absolute;
       opacity: 0;
       transition: opacity 400ms ease-in-out; }
-      /* line 85, sass/3-sections/project.sass */
+      /* line 92, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image img {
         cursor: pointer;
         box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
         max-width: 500px;
         max-height: 500px; }
-      /* line 94, sass/3-sections/project.sass */
+      /* line 101, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image.gal-img {
         left: -100000px; }
-      /* line 97, sass/3-sections/project.sass */
+      /* line 104, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image.img-active {
         opacity: 1;
         left: auto; }
-    /* line 100, sass/3-sections/project.sass */
+    /* line 107, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery.opened {
       position: absolute;
       left: 0;
@@ -195,39 +227,72 @@ h1, h2, h3, p, a {
       background: #0d0d0e;
       align-items: center;
       justify-content: center;
-      transition-duration: 300ms; }
-      /* line 112, sass/3-sections/project.sass */
+      transition-duration: 300ms;
+      display: flex; }
+      /* line 120, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .gal-img, .project-wrapper .project-main .image-gallery.opened .img-active {
-        left: auto; }
-      /* line 115, sass/3-sections/project.sass */
+        left: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        /* line 126, sass/3-sections/project.sass */
+        .project-wrapper .project-main .image-gallery.opened .gal-img img, .project-wrapper .project-main .image-gallery.opened .img-active img {
+          max-height: 95vh;
+          max-width: 80vw; }
+      /* line 130, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .close-button {
         display: block;
         position: fixed;
         top: 10px;
         right: 10px; }
-      /* line 122, sass/3-sections/project.sass */
+      /* line 137, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .gallery-navigation {
-        width: 60%;
+        width: 90%;
         display: flex;
         align-items: center;
         justify-content: space-between; }
-        /* line 128, sass/3-sections/project.sass */
+        /* line 143, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control {
+          z-index: 1;
           width: 50px;
           height: 23px;
           background-repeat: no-repeat;
           opacity: .8;
           cursor: pointer; }
-          /* line 135, sass/3-sections/project.sass */
+          /* line 151, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.back {
             background-image: url(../images/hand_point-left.svg); }
-          /* line 137, sass/3-sections/project.sass */
+          /* line 153, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.forward {
             background-image: url(../images/hand_point-right.svg); }
-          /* line 139, sass/3-sections/project.sass */
+          /* line 155, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control:hover {
             opacity: 1; }
-          /* line 142, sass/3-sections/project.sass */
+          /* line 158, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.disable {
             opacity: 0;
             cursor: default; }
+  /* line 161, sass/3-sections/project.sass */
+  .project-wrapper .project-control {
+    position: fixed;
+    left: 6%;
+    right: 6%;
+    bottom: 2rem;
+    display: flex;
+    justify-content: space-between; }
+    /* line 169, sass/3-sections/project.sass */
+    .project-wrapper .project-control .p-control {
+      width: 50px;
+      height: 23px;
+      background-repeat: no-repeat;
+      opacity: .5;
+      cursor: pointer; }
+      /* line 176, sass/3-sections/project.sass */
+      .project-wrapper .project-control .p-control.back {
+        background-image: url(../images/hand_point-left.svg); }
+      /* line 178, sass/3-sections/project.sass */
+      .project-wrapper .project-control .p-control.forward {
+        background-image: url(../images/hand_point-right.svg); }
+      /* line 180, sass/3-sections/project.sass */
+      .project-wrapper .project-control .p-control:hover {
+        opacity: 1; }

@@ -12,7 +12,7 @@ var latinize = require('latinize');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Project.find(function(err, projects) {
+  Project.find().sort('position').exec(function(err, projects) {
     res.render('admin/index', {
       title: 'Admin',
       projects: projects
@@ -47,7 +47,7 @@ router.get('/', function(req, res, next) {
 router.get('/project/:id', function(req, res, next) {
   var id = req.params.id;
 
-  Project.find(function(err, projects) {
+  Project.find().sort('position').exec(function(err, projects) {
     // Project.findById(id, function(err, project) {
     //   if (project.hasParent) {
     //     // console.log(project.hasParent);
@@ -361,6 +361,23 @@ router.post('/check_name', function(req, res) {
       } )
     }
   })
+});
+
+//////////////////////////////////////////////// SORT PROJECTS
+
+router.post('/projectsort', function ( req, res, next) {
+  Project.find().exec(function (err, projects){
+    var pos;
+    projects.forEach(function(project){
+
+      pos = req.body['position' + project.id];
+
+      project.position = pos;
+      project.save();
+
+    });
+    res.send("success");
+  });
 });
 
 //////////////////////////////////////////////// IMAGE UPLOAD
