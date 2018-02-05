@@ -26,6 +26,7 @@
     position: absolute
     top: 35px
     height: 110px
+    width: calc(100% - 2rem)
     .project-form
       form
         margin: 0 auto
@@ -36,6 +37,7 @@
     top: 130px
     overflow-y: auto
     margin-top: 2rem
+    width: calc(100% - 2rem)
 
     height: calc(100% - 170px)
     //padding: 5px 0 0
@@ -58,6 +60,8 @@
       .li-container
         padding-left: 5px
 
+        &.hasActiveChild
+          border-left: 2px solid rgba($blue, .7)
 
         .li-wrapper
           display: flex

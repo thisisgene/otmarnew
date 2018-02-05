@@ -141,14 +141,23 @@ router.post('/create_sub_project', function(req, res) {
 
         });
         // console.log('Ancestors: ', ancestors);
-        newProject.save();
-        // updateParent(project.parentId);
-        project.children.push(newProject);
-        project.childrenIds.push(newProject._id);
-        project.hasChildren = true;
-        project.save(function(err) {
-          if (err) throw err;
+        newProject.save(function(err, p) {
+          if (err) res.send(err);
+          else {
+            project.children.push(newProject);
+            project.childrenIds.push(newProject._id);
+            project.hasChildren = true;
+            project.unfold = true;
+            project.save(function(err) {
+              console.log(p.id);
+              if (err) throw err;
+              else res.send(p.id);
+            });
+          }
+
         });
+        // updateParent(project.parentId);
+
 
       });
 

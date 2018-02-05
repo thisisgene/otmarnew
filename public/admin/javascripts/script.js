@@ -14,6 +14,18 @@ var delay = (function(){
   };
 })();
 
+$(document).ready(function() {
+  var $active = $('.project-list').find('.active');
+  if ($active) {
+
+    $active.parents('.li-container').each(function(i, obj) {
+      $(obj).addClass('hasActiveChild');
+    })
+
+
+  }
+});
+
 /////////////////////////// SORTABLE LISTS
 
 $(function() {
@@ -125,6 +137,17 @@ $('.folder').on('click', function(event) {
   $obj.toggleClass('unfold');
 
   var unfold = $obj.hasClass('unfold');
+  // var $active = $obj.find('.active');
+  // if ($active) {
+  //   if (!unfold) {
+  //
+  //     $active.parents('.li-container').each(function(i, obj) {
+  //       $(obj).addClass('hasActiveChild');
+  //     })
+  //   }
+  //
+  // }
+
   var id = $obj.attr('id');
   var body = {
     id: id,
@@ -140,16 +163,14 @@ $('.folder').on('click', function(event) {
 
 $('.project-form form').on('submit', function(event) {
   event.preventDefault();
+
   var $projectName = $('#project-name');
   var name = $projectName.val();
-  var $list = $('.project-list > .project-ul');
   var projectParentId = $projectName.data('whoid');
   if (name!=='' && projectParentId == undefined) {
 
     $.post('/admin/create_project', {name: name}, function (data) {
-      console.log(data);
-
-      // TODO: ADD PROJECTS AS SOON ON THE FLY
+      var $list = $('.project-list > .project-ul');
 
       $list.append('<li class="li-container" id='+data+'>\n' +
         '  <div class="li-wrapper">\n' +
@@ -157,32 +178,49 @@ $('.project-form form').on('submit', function(event) {
         '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">'+ name +'</span></a>\n' +
         '    </div><a href="/admin/delete/' + data + '" class="delete"><img/></a>\n' +
         '  </div>\n' +
-        '</li>');
+        '</li>')
 
-      // $table.append(' <tr id='+ data +'>\n' +
-      //   '  <td class="w60">\n' +
-      //   '    <a href="/admin/project/'+data+'"><p class="upper small">' + name + '</p></a>\n' +
-      //   '  </td>\n' +
-      //   '  <td class="w20">\n' +
-      //   '    <div class="smaller"><a href="#">edit</a></div>\n' +
-      //   '  </td>\n' +
-      //   '  <td class="w20">\n' +
-      //   '    <div class="smaller"><a href="/admin/delete/' +data+ '">delete</a></div>\n' +
-      //   '  </td>\n' +
-      //   '  <td class="w20">\n' +
-      //   '    <div class="smaller"><a href="#">+</a></div>\n' +
-      //   '  </td>\n' +
-      //   '</tr> ');
 
-      $projectName.val('');
 
-    });
-  }
-  else if (name!=='' && projectParentId !== undefined) {
-    $.post('/admin/create_sub_project', {name: name, parentId: projectParentId}, function (data) {
-      console.log('success: ', data);
     })
   }
+  else if (name!=='' && projectParentId !== undefined) {
+    var $parent = $('#' + projectParentId);
+    var $list = $('#' + projectParentId + ' > .sub-list');
+    if (!$list.length) {
+      $parent.append('<ul class="unstyled sub-list sortable connect-sortable"></ul>');
+      $list = $list = $('#' + projectParentId + ' > .sub-list');
+
+    }
+    $.post('/admin/create_sub_project', {name: name, parentId: projectParentId}, function (data) {
+      $list.append('<li class="li-container" id='+data+'>\n' +
+        '  <div class="li-wrapper">\n' +
+        '    <div class="menu-link">\n' +
+        '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">'+ name +'</span></a>\n' +
+        '    </div><a href="/admin/delete/' + data + '" class="delete"><img/></a>\n' +
+        '  </div>\n' +
+        '</li>');
+      $('#' + projectParentId + ' > .li-wrapper > .menu-link > .nothing').addClass('folder').removeClass('nothing').click(function() {
+        $obj = $(this).closest('.li-container');
+
+        $obj.toggleClass('unfold');
+
+        var unfold = $obj.hasClass('unfold');
+        var id = $obj.attr('id');
+        var body = {
+          id: id,
+          unfold: unfold
+        };
+
+        $.post('/admin/togglefold', body, function(msg) {
+          console.log(msg);
+        });
+      });
+      $('#' + projectParentId).addClass('unfold');
+    })
+  }
+  $projectName.val('');
+
 });
 
 
