@@ -622,52 +622,84 @@ body {
     background-size: cover; }
 
 /* line 70, sass/admin/3-sections/right-menu.sass */
+.right-container .general-container .listtype-container {
+  display: flex;
+  justify-content: center; }
+  /* line 74, sass/admin/3-sections/right-menu.sass */
+  .right-container .general-container .listtype-container input {
+    opacity: 0;
+    position: absolute; }
+    /* line 78, sass/admin/3-sections/right-menu.sass */
+    .right-container .general-container .listtype-container input:checked ~ .listtype-label label {
+      opacity: 1;
+      border: 2px solid #4ca0f5;
+      filter: grayscale(0);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
+  /* line 83, sass/admin/3-sections/right-menu.sass */
+  .right-container .general-container .listtype-container .listtype-label {
+    width: 100%;
+    text-align: center;
+    background: rgba(187, 187, 187, 0.1);
+    padding: .8rem; }
+    /* line 88, sass/admin/3-sections/right-menu.sass */
+    .right-container .general-container .listtype-container .listtype-label label {
+      margin: 0 auto .2rem;
+      height: 50px;
+      width: 50px;
+      border: 2px solid #aaa;
+      cursor: pointer;
+      background-image: url(../images/orderedList.svg);
+      background-size: cover;
+      opacity: .5;
+      filter: grayscale(1); }
+
+/* line 101, sass/admin/3-sections/right-menu.sass */
 .right-container .general-container .menuname-container {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   margin: 1rem 0;
   width: 100%; }
-  /* line 76, sass/admin/3-sections/right-menu.sass */
+  /* line 107, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .menuname-container .menuname-label {
     font-size: .9rem;
     margin-top: .2rem; }
-  /* line 79, sass/admin/3-sections/right-menu.sass */
+  /* line 110, sass/admin/3-sections/right-menu.sass */
   .right-container .general-container .menuname-container .menuname-wrapper {
     display: flex;
     flex-direction: column;
     padding-left: 1rem;
     max-width: 65%; }
-    /* line 84, sass/admin/3-sections/right-menu.sass */
+    /* line 115, sass/admin/3-sections/right-menu.sass */
     .right-container .general-container .menuname-container .menuname-wrapper input {
       height: 2rem; }
-      /* line 87, sass/admin/3-sections/right-menu.sass */
+      /* line 118, sass/admin/3-sections/right-menu.sass */
       .right-container .general-container .menuname-container .menuname-wrapper input.invalid {
         background: #f58282; }
-        /* line 90, sass/admin/3-sections/right-menu.sass */
+        /* line 121, sass/admin/3-sections/right-menu.sass */
         .right-container .general-container .menuname-container .menuname-wrapper input.invalid + .invalid-msg::after {
           content: 'Darf nicht leer sein. Darf keine Sonderzeichen oder Umlaute enthalten (außer _ ).'; }
-      /* line 92, sass/admin/3-sections/right-menu.sass */
+      /* line 123, sass/admin/3-sections/right-menu.sass */
       .right-container .general-container .menuname-container .menuname-wrapper input.notunique {
         background: #f58282; }
-        /* line 95, sass/admin/3-sections/right-menu.sass */
+        /* line 126, sass/admin/3-sections/right-menu.sass */
         .right-container .general-container .menuname-container .menuname-wrapper input.notunique + .invalid-msg::after {
           content: 'Name schon vergeben. (Das jeweilige Objekt könnte sich auch im Mistkübel befinden.)'; }
-    /* line 98, sass/admin/3-sections/right-menu.sass */
+    /* line 129, sass/admin/3-sections/right-menu.sass */
     .right-container .general-container .menuname-container .menuname-wrapper .invalid-msg {
       font-size: .7rem;
       line-height: 1rem;
       color: #ed2424; }
 
-/* line 103, sass/admin/3-sections/right-menu.sass */
+/* line 134, sass/admin/3-sections/right-menu.sass */
 .right-container .general-container .visible-container {
   text-align: center; }
 
-/* line 106, sass/admin/3-sections/right-menu.sass */
+/* line 137, sass/admin/3-sections/right-menu.sass */
 .right-container .save-container {
   margin: 0 auto;
   text-align: center; }
-  /* line 109, sass/admin/3-sections/right-menu.sass */
+  /* line 140, sass/admin/3-sections/right-menu.sass */
   .right-container .save-container button {
     margin: 0 .2rem;
     border-radius: 0;
@@ -677,16 +709,16 @@ body {
     font-size: 1.2rem;
     text-transform: uppercase;
     text-align: center; }
-    /* line 120, sass/admin/3-sections/right-menu.sass */
+    /* line 151, sass/admin/3-sections/right-menu.sass */
     .right-container .save-container button.button-save {
       background: #63BEFF; }
-      /* line 123, sass/admin/3-sections/right-menu.sass */
+      /* line 154, sass/admin/3-sections/right-menu.sass */
       .right-container .save-container button.button-save:hover {
         background: #30a9ff; }
-    /* line 125, sass/admin/3-sections/right-menu.sass */
+    /* line 156, sass/admin/3-sections/right-menu.sass */
     .right-container .save-container button.button-cancel {
       background: #b3b3b3; }
-      /* line 127, sass/admin/3-sections/right-menu.sass */
+      /* line 158, sass/admin/3-sections/right-menu.sass */
       .right-container .save-container button.button-cancel:hover {
         background: #9a9a9a; }
 

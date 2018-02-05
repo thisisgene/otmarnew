@@ -229,6 +229,7 @@ router.post('/save_all', function(req, res) {
   var description = body.description;
   var descHtml = marked(description);
   var layout = body.layout;
+  var orderedList = body.orderedList;
   var latName = body.menuname;
   var visible = body.visible;
   var msg = '';
@@ -240,6 +241,7 @@ router.post('/save_all', function(req, res) {
     project.descMU = description;
     project.descHtml = descHtml;
     project.layout = layout;
+    project.orderedList = orderedList;
     project.latName = latName;
     project.visible = visible;
     if (body.namechanged) {

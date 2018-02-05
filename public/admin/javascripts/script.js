@@ -248,7 +248,6 @@ $('.project-form form').on('submit', function(event) {
 
 });
 
-
 //////////////////////////////       SAVE ALL!
 
 function saveAll(obj) {
@@ -265,6 +264,7 @@ function saveAll(obj) {
     var title = $('#title').val();
     var description = $('#description').val();
     var layout = $('input[name=layout]:checked').val();
+    var orderedList = $('#listtype').is(':checked');
     var menuname = $('#menuname').val();
     var visible = $('#visible-check').is(':checked');
 
@@ -277,6 +277,7 @@ function saveAll(obj) {
       oldname       : oldName,
       description   : description,
       layout        : layout,
+      orderedList   : orderedList,
       menuname      : menuname,
       visible       : visible
     };

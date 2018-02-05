@@ -17,13 +17,17 @@
         .layout-label
           label(for='option-3')
           span NUR MENÜPUNKT
+    .listtype-container
+      input#listtype(type='checkbox' checked=currentProject.orderedList)
+      .listtype-label
+        label(for='listtype')
+        span Nummerierte Liste
 
     .menuname-container
       span.menuname-label URL-Name:
       .menuname-wrapper
         input(type='text', value=currentProject.latName, onkeyup='checkIfValid(this)', onblur='checkNameIsUnique(this)', data-projectid=currentProject._id)#menuname
         span.invalid-msg
-
     .visible-container
       input#visible-check(type='checkbox', checked=currentProject.visible)
       span Wird angezeigt

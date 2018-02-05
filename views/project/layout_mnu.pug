@@ -12,10 +12,18 @@ block content
       h1.main-title= project.name
 
     .project-main.col.col-8
-      ul.sub-list
-        each child in project.children
+      if (!project.orderedList)
+        ul.sub-list.unordered
+          each child in project.children
 
-          if (child.visible && !child.deleted)
-            li
-              a(href= child.latName)
-                h1.main-title= child.name
+            if (child.visible && !child.deleted)
+              li
+                a(href= child.latName)
+                  h1.main-title= child.name
+      else
+        ol.sub-list.ordered
+          each child in project.children
+
+            if (child.visible && !child.deleted)
+              li
+                a.main-title(href= child.latName)= child.name

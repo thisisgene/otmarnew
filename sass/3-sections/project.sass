@@ -47,17 +47,26 @@ h1, h2, h3, p, a
     //margin-left: 40px
     .sub-list
 
-      list-style: none
       margin: 0
       padding-left: 0
 
+      &.unordered
+        list-style: none
+
+
+      &.ordered
+
+        list-style: decimal
+        font-size: 1.4rem
+
       li
-        a
+        h1, a
+
           text-decoration: none
           color: $project-title-color
 
           &:hover
-            color: #0d0d0e
+            color: darken($project-title-color, 30%)
 
     .project-text
       padding: 0 20% 0 3px

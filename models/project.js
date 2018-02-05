@@ -21,6 +21,7 @@ ProjectSchema.add({
   descMU      : String,
   descHtml    : String,
   deleted     : Boolean,
+  orderedList : Boolean,
   visible     : Boolean,
   hasChildren : Boolean,
   unfold      : Boolean,

@@ -88,7 +88,8 @@ body
       list-style: none
       margin: 2rem 0
       padding: 0
-
+      .project-update-title
+        color: $red
 
       li > a
         text-decoration: none
@@ -111,10 +112,12 @@ body
 
 
         .project-update
+
           font-size: 4.6vh
           line-height: .9
           color: $red
-          opacity: .5
+          opacity: .8
+          transition: transform 100ms ease-in-out
 
         &:hover
           //border-bottom: 1px solid #eee
@@ -124,3 +127,4 @@ body
             transition-duration: 100ms
           .project-update
             opacity: 1
+            transform: scale(1.1)
