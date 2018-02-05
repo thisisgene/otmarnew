@@ -29,22 +29,25 @@ mixin parseSubProjects(obj, parentName, parentId, pList)
                 div(class=project.hasChildren ? 'folder' : 'nothing')
                 a(href='/admin/project/' + project._id)
                   span.upper.small= project.name
-              a(href='/admin/delete/' + project._id).smaller delete
+              a(href='/admin/delete/' + project._id).delete
+                img
             if (project.hasChildren)
               +parseSubProjects(project.childrenIds, project.name, project._id, project.parentsList)
 
 .left-container
-  h1.slim-title MENÜPUNKTE
-  .project-form
-    form.form
-      .form-item
-        //label Neues Projekt erstellen
-        .append.w100
-          input(type='text', name='project', data-whoid=currentProjectId)#project-name
-          button.button.outline Go
+  .top-section
+    h1.slim-title MENÜPUNKTE
+    .project-form
+      form.form
+        .form-item
+          //label Neues Projekt erstellen
+          .append.w100
+            input(type='text', name='project', data-whoid=currentProjectId)#project-name
+            button.button.outline Go
 
   .project-list
-    ul.unstyled.sortable.connect-sortable
+    a(href='/admin').list-start Start
+    ul.unstyled.sortable.connect-sortable.project-ul
 
       each project in projects
         if (!project.deleted && !project.hasParent)
@@ -61,6 +64,7 @@ mixin parseSubProjects(obj, parentName, parentId, pList)
                 div(class=project.hasChildren ? 'folder' : 'nothing')
                 a(href='/admin/project/' + project._id)
                   span.upper.small= project.name
-              a(href='/admin/delete/' + project._id).smaller delete
+              a(href='/admin/delete/' + project._id).delete
+                img
             if (project.hasChildren)
               +parseSubProjects(project.childrenIds, project.name, project._id)

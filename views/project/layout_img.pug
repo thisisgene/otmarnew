@@ -13,8 +13,23 @@ block content
       .desc-text
         p!= project.descHtml
 
-    .project-main.col.col-8
-      each img in project.images
-        if (img.isCover)
-          .cover-img
-            img(src='/uploads/' + img.filename)
+    .project-main.col.col-8.no-select
+
+      .image-gallery
+        each img in project.images
+
+          if (img.isVisible && !img.isDeleted)
+            if (img.isCover)
+              .image.cover-img.img-active
+                img(src='/uploads/' + img.filename)
+            else
+              .image.gal-img
+                img(src='/uploads/' + img.filename)
+
+        button.button.close.close-button
+        if (project.images.length > 1)
+          .gallery-navigation
+            .gal-control.back back
+            .gal-control.forward forward
+
+

@@ -162,48 +162,97 @@ body {
 
 /* line 1, sass/admin/3-sections/left-menu.sass */
 #left-menu {
-  padding: 1rem; }
-  /* line 4, sass/admin/3-sections/left-menu.sass */
-  #left-menu .nothing {
-    display: none; }
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  padding: 1rem;
+  overflow-y: hidden;
+  position: relative; }
+  /* line 3, sass/admin/3-sections/left-menu.sass */
+  #left-menu ::-webkit-scrollbar {
+    width: 4px; }
   /* line 8, sass/admin/3-sections/left-menu.sass */
-  #left-menu .project-form form {
-    margin: 0 auto; }
-  /* line 11, sass/admin/3-sections/left-menu.sass */
+  #left-menu ::-webkit-scrollbar-track {
+    background: transparent; }
+  /* line 13, sass/admin/3-sections/left-menu.sass */
+  #left-menu ::-webkit-scrollbar-thumb {
+    background: #aaa; }
+  /* line 18, sass/admin/3-sections/left-menu.sass */
+  #left-menu ::-webkit-scrollbar-thumb:hover {
+    background: #555; }
+  /* line 25, sass/admin/3-sections/left-menu.sass */
+  #left-menu .top-section {
+    position: absolute;
+    top: 35px;
+    height: 110px; }
+    /* line 30, sass/admin/3-sections/left-menu.sass */
+    #left-menu .top-section .project-form form {
+      margin: 0 auto; }
+  /* line 34, sass/admin/3-sections/left-menu.sass */
   #left-menu .project-list {
-    margin-top: 2rem; }
-    /* line 14, sass/admin/3-sections/left-menu.sass */
+    position: absolute;
+    top: 130px;
+    overflow-y: auto;
+    margin-top: 2rem;
+    height: calc(100% - 170px); }
+    /* line 43, sass/admin/3-sections/left-menu.sass */
+    #left-menu .project-list .list-start {
+      display: block;
+      text-decoration: none;
+      background: rgba(200, 220, 200, 0.1);
+      padding-left: 3px;
+      color: #888;
+      text-transform: uppercase;
+      font-size: .9rem; }
+    /* line 52, sass/admin/3-sections/left-menu.sass */
     #left-menu .project-list ul {
-      border-left: 1px dotted #eee; }
-      /* line 16, sass/admin/3-sections/left-menu.sass */
+      border-left: 1px dotted #ddd;
+      background: rgba(200, 220, 200, 0.1); }
+      /* line 55, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list ul.sub-list {
         display: none; }
-      /* line 19, sass/admin/3-sections/left-menu.sass */
+      /* line 58, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list ul .li-container {
         padding-left: 5px; }
-        /* line 22, sass/admin/3-sections/left-menu.sass */
+        /* line 62, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container .li-wrapper {
           display: flex;
           flex-direction: row;
-          justify-content: space-between; }
-          /* line 27, sass/admin/3-sections/left-menu.sass */
+          justify-content: space-between;
+          background: rgba(200, 200, 200, 0.1);
+          margin: 2px 0; }
+          /* line 69, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul .li-container .li-wrapper:hover {
             color: #333;
             background: rgba(68, 68, 68, 0.1); }
-          /* line 32, sass/admin/3-sections/left-menu.sass */
-          #left-menu .project-list ul .li-container .li-wrapper.active span {
-            color: #111; }
-          /* line 37, sass/admin/3-sections/left-menu.sass */
+          /* line 73, sass/admin/3-sections/left-menu.sass */
+          #left-menu .project-list ul .li-container .li-wrapper.active {
+            background: rgba(99, 190, 255, 0.3); }
+            /* line 74, sass/admin/3-sections/left-menu.sass */
+            #left-menu .project-list ul .li-container .li-wrapper.active span {
+              color: #111; }
+          /* line 79, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul .li-container .li-wrapper .menu-link {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center; }
-            /* line 44, sass/admin/3-sections/left-menu.sass */
+            /* line 85, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper .menu-link a {
-              color: #aaa;
+              color: #777;
               text-decoration: none; }
-            /* line 50, sass/admin/3-sections/left-menu.sass */
+            /* line 89, sass/admin/3-sections/left-menu.sass */
+            #left-menu .project-list ul .li-container .li-wrapper .menu-link .nothing {
+              opacity: .5;
+              margin-right: 3px;
+              width: 10px;
+              height: 10px;
+              background-image: url(../images/no_folder_small.svg);
+              background-position: 0 0;
+              background-repeat: no-repeat;
+              background-size: cover;
+              cursor: default; }
+            /* line 100, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper .menu-link .folder {
               opacity: .5;
               margin-right: 3px;
@@ -214,13 +263,26 @@ body {
               background-repeat: no-repeat;
               background-size: cover;
               cursor: pointer; }
-        /* line 64, sass/admin/3-sections/left-menu.sass */
+          /* line 113, sass/admin/3-sections/left-menu.sass */
+          #left-menu .project-list ul .li-container .li-wrapper .delete {
+            display: block;
+            width: 12px;
+            height: auto;
+            margin-right: 4px;
+            filter: grayscale(1);
+            background-image: url(../images/trash.svg);
+            background-position: center;
+            background-repeat: no-repeat; }
+            /* line 123, sass/admin/3-sections/left-menu.sass */
+            #left-menu .project-list ul .li-container .li-wrapper .delete:hover {
+              filter: grayscale(0); }
+        /* line 130, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container.unfold > .li-wrapper .menu-link .folder {
           background-position: -10px 0; }
-        /* line 67, sass/admin/3-sections/left-menu.sass */
+        /* line 133, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container.unfold > .sub-list {
           display: block; }
-      /* line 71, sass/admin/3-sections/left-menu.sass */
+      /* line 137, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list ul p {
         margin: 0;
         display: inline-block; }

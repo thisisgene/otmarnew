@@ -8,9 +8,9 @@
 
     a#empty-trash Papierkorb leeren
 
-    ul.trash-project-list
+    ul.trash-project-list.sortable.connect-sortable
 
-    each project in projects
-      if (project.deleted)
-        li(id= project._id).trash-project
-          a(href='/admin/revive/' + project._id)= project.name
+      each project in projects
+        if (project.deleted)
+          li(id= project._id).trash-project
+            a(href='/admin/revive/' + project._id)= project.name

@@ -21,31 +21,64 @@ router.get('/', function(req, res, next) {
   });
 });
 
+// function getAncestors(id, ancestors) {
+//   Project.findById(id, function(err, project) {
+//     if (err) console.log(err);
+//     else {
+//       ancestors.push({
+//         name: project.name,
+//         latname: project.latName,
+//         id: project._id
+//       });
+//       if (project.hasParent) {
+//         getAncestors(project.parentId, ancestors)
+//       }
+//
+//       else {
+//         console.log(ancestors);
+//         return ancestors;
+//       }
+//
+//     }
+//   })
+// }
+
 // GET Project
 router.get('/project/:id', function(req, res, next) {
-  Project.find(function(err, projects) {
+  var id = req.params.id;
 
+  Project.find(function(err, projects) {
+    // Project.findById(id, function(err, project) {
+    //   if (project.hasParent) {
+    //     // console.log(project.hasParent);
+    //     var ancestors = getAncestors(project.parentId, []);
+    //     console.log('ANCESTORS: ', ancestors);
+    //   }
+    //
+    //
+    // })
     res.render('admin/index', {
       title: 'Admin',
       projects: projects,
-      currentProjectId: req.params.id
-    })
+      currentProjectId: id
 
+
+    })
   })
 });
 
 router.post('/create_project', function(req, res) {
   var name = req.body.name;
-  console.log(name);
+  name = name.trim();
   var latName = latinize(name).toLowerCase();
   latName = latName.replace(/\s/g , "_");
-  console.log(latName);
   Project.findOne({latName: latName}, function(err, doc) {
     if (doc) {
       var rndNr = Math.random().toString(36).substr(2, 5);
       latName = latName + "_" + rndNr.toString();
 
     }
+
     new Project({
       name    : name,
       title   : name,
@@ -53,9 +86,9 @@ router.post('/create_project', function(req, res) {
       deleted : false,
       visible : true,
       layout  : 'layout_mnu'
-    }).save(function(err, project) {
+    }).save(function(err, p) {
       if (err) console.log(err);
-      if (!err) res.send(project._id);
+      if (!err) res.send(p.id);
     });
 
   });
@@ -72,6 +105,7 @@ function match_loop(list, toCompare) {
 
 router.post('/create_sub_project', function(req, res) {
   var name = req.body.name;
+  name = name.trim();
   var parentId = req.body.parentId;
   var latName = latinize(name).toLowerCase();
   latName = latName.replace(/\s/g , "_");
@@ -177,17 +211,22 @@ router.post('/togglefold', function(req, res){
   })
 });
 
+////////////////////////////////// SAVE ALL
+
 router.post('/save_all', function(req, res) {
   var body = req.body;
   var id = body.id;
   var name = body.name;
   var title = body.title;
+  var oldname = body.oldname;
   var description = body.description;
   var descHtml = marked(description);
   var layout = body.layout;
   var latName = body.menuname;
   var visible = body.visible;
   var msg = '';
+  var ObjectId = 'ObjectId("'+id+'")';
+  console.log(oldname);
 
   Project.findById(id, function(err, project) {
     project.title = title;
@@ -215,7 +254,7 @@ router.post('/save_all', function(req, res) {
             child.descHtml = descHtml;
             child.layout = layout;
             child.latName = latName;
-            child.visible = visible;        
+            child.visible = visible;
           }
         }
         parent.save();
@@ -228,6 +267,75 @@ router.post('/save_all', function(req, res) {
       else res.send(msg);
     })
   })
+
+  // Project.find({'ancestors.name': oldname}).each( function(err, doc) {   // TODO: UPDATE ANCESTORS FOR ALL CHILDREN
+  //   if (err) console.log(err);
+  //   else{
+  //     if (body.namechanged) {
+  //       if (doc.parentName == oldname) doc.parentName = name;
+  //
+  //       for (var j=0; j<doc.ancestors.length; j++) {
+  //         var ancestor = doc.ancestors[j];
+  //         console.log("ANCI: ", ancestor);
+  //
+  //         if (ancestor.name == oldname) {
+  //           ancestor.name = name;
+  //           // ancestor.latName = latName;
+  //           console.log("ANCI new: ", ancestor);
+  //           doc.save();  ////////////////////////////////////////////////// FIXME: SAVE DOC!!??
+  //         }
+  //
+  //       }
+  //       doc.save(function(err) {
+  //         if (err) console.log(err);
+  //         else console.log('doc changed')
+  //       });
+  //
+  //     }
+  //
+  //     Project.findById(id, function(err, project) {
+  //       project.title = title;
+  //       project.descMU = description;
+  //       project.descHtml = descHtml;
+  //       project.layout = layout;
+  //       project.latName = latName;
+  //       project.visible = visible;
+  //       if (body.namechanged) {
+  //         project.name = body.name;
+  //         msg = 'changed';
+  //       }
+  //
+  //       if (project.hasParent) {
+  //         Project.findById(project.parentId, function(err, parent) {
+  //           console.log('parent: ', parent.name);
+  //           var children = parent.children;
+  //           for (var i=0; i < children.length; i++) {
+  //             var child = children[i];
+  //             console.log(child.name);
+  //             if (child.id == project.id) {
+  //               child.name = name;
+  //               child.title = title;
+  //               child.descMU = description;
+  //               child.descHtml = descHtml;
+  //               child.layout = layout;
+  //               child.latName = latName;
+  //               child.visible = visible;
+  //             }
+  //           }
+  //           parent.save();
+  //
+  //         });
+  //       }
+  //
+  //       project.save(function(err) {
+  //         if (err) res.send(err);
+  //         else res.send(msg);
+  //       })
+  //     })
+  //   }
+  //
+  // });
+
 });
 
 router.post('/check_name', function(req, res) {

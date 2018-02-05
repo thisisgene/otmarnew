@@ -142,14 +142,22 @@ $('.project-form form').on('submit', function(event) {
   event.preventDefault();
   var $projectName = $('#project-name');
   var name = $projectName.val();
-  // var $table = $('.project-list table tbody');
+  var $list = $('.project-list > .project-ul');
   var projectParentId = $projectName.data('whoid');
-  console.log(name, projectParentId)
   if (name!=='' && projectParentId == undefined) {
 
     $.post('/admin/create_project', {name: name}, function (data) {
+      console.log(data);
 
       // TODO: ADD PROJECTS AS SOON ON THE FLY
+
+      $list.append('<li class="li-container" id='+data+'>\n' +
+        '  <div class="li-wrapper">\n' +
+        '    <div class="menu-link">\n' +
+        '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">'+ name +'</span></a>\n' +
+        '    </div><a href="/admin/delete/' + data + '" class="delete"><img/></a>\n' +
+        '  </div>\n' +
+        '</li>');
 
       // $table.append(' <tr id='+ data +'>\n' +
       //   '  <td class="w60">\n' +
@@ -190,7 +198,7 @@ function saveAll(obj) {
     var id = $(obj).data('projectid');
     var $nameObj = $('#project-name-input');
     var name = $nameObj.val();
-    var oldName = $nameObj.data('currentName');
+    var oldName = $nameObj.data('currentname');
     var title = $('#title').val();
     var description = $('#description').val();
     var layout = $('input[name=layout]:checked').val();
@@ -199,10 +207,11 @@ function saveAll(obj) {
 
     var $loadingWrapper = $('.loading-wrapper');
     var $loadingScreen = $('.loading-screen');
-
+    console.log(oldName);
     var body = {
       id            : id,
       title         : title,
+      oldname       : oldName,
       description   : description,
       layout        : layout,
       menuname      : menuname,
@@ -218,7 +227,9 @@ function saveAll(obj) {
     $loadingWrapper.fadeTo(300, 1, function(next){
       $.post('/admin/save_all', body, function(msg) {
         if (msg=='changed') {
-          $('.li-wrapper.active > a > span').text(name);
+          console.log(msg);
+          $('.li-wrapper.active > .menu-link > a > span').text(name);
+          $nameObj.data('currentname', name);
         }
         $loadingScreen.addClass('success').delay(100).queue(function(next) {
 

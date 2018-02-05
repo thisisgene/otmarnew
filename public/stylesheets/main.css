@@ -18,10 +18,16 @@ body {
   font-family: "ITC Avant Garde Condensed", sans-serif;
   color: #333;
   background: white; }
-  /* line 25, sass/1-base/main.sass */
+  /* line 26, sass/1-base/main.sass */
+  body .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  /* line 32, sass/1-base/main.sass */
   body a {
     text-decoration: none; }
-  /* line 28, sass/1-base/main.sass */
+  /* line 35, sass/1-base/main.sass */
   body .header-bar {
     display: flex;
     flex-direction: row;
@@ -30,29 +36,29 @@ body {
     background: #CECBCC;
     padding: 2px 5px;
     letter-spacing: 1px; }
-    /* line 40, sass/1-base/main.sass */
+    /* line 47, sass/1-base/main.sass */
     body .header-bar h1 {
       margin: 0;
       line-height: 1;
       font-family: inherit;
       font-size: 2.4rem;
       font-weight: 100; }
-      /* line 49, sass/1-base/main.sass */
+      /* line 56, sass/1-base/main.sass */
       body .header-bar h1.main-title {
         color: #fff;
         padding-right: 20px; }
-      /* line 53, sass/1-base/main.sass */
+      /* line 60, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: #DB2633; }
-  /* line 55, sass/1-base/main.sass */
+  /* line 62, sass/1-base/main.sass */
   body .main-container {
     overflow-x: hidden; }
-    /* line 59, sass/1-base/main.sass */
+    /* line 66, sass/1-base/main.sass */
     body .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0; }
-      /* line 65, sass/1-base/main.sass */
+      /* line 72, sass/1-base/main.sass */
       body .main-container .project-list li > a {
         text-decoration: none;
         display: flex;
@@ -60,7 +66,7 @@ body {
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 74, sass/1-base/main.sass */
+        /* line 81, sass/1-base/main.sass */
         body .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
@@ -70,18 +76,18 @@ body {
           color: #4a4a4a;
           transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 85, sass/1-base/main.sass */
+        /* line 92, sass/1-base/main.sass */
         body .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .5; }
-        /* line 93, sass/1-base/main.sass */
+        /* line 100, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
           color: #111;
           transition-duration: 100ms; }
-        /* line 97, sass/1-base/main.sass */
+        /* line 104, sass/1-base/main.sass */
         body .main-container .project-list li > a:hover .project-update {
           opacity: 1; }
 
@@ -150,9 +156,64 @@ h1, h2, h3, p, a {
       line-height: 1.2em;
       margin: 0; }
   /* line 62, sass/3-sections/project.sass */
-  .project-wrapper .project-main .cover-img {
-    width: 45%;
-    min-width: 360px; }
-    /* line 65, sass/3-sections/project.sass */
-    .project-wrapper .project-main .cover-img img {
-      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2); }
+  .project-wrapper .project-main .image-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: all 0ms ease-in-out; }
+    /* line 75, sass/3-sections/project.sass */
+    .project-wrapper .project-main .image-gallery .close-button {
+      display: none; }
+    /* line 78, sass/3-sections/project.sass */
+    .project-wrapper .project-main .image-gallery .image {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 400ms ease-in-out; }
+      /* line 84, sass/3-sections/project.sass */
+      .project-wrapper .project-main .image-gallery .image img {
+        cursor: pointer;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        max-height: 500px; }
+      /* line 93, sass/3-sections/project.sass */
+      .project-wrapper .project-main .image-gallery .image.gal-img {
+        left: -100000px; }
+      /* line 96, sass/3-sections/project.sass */
+      .project-wrapper .project-main .image-gallery .image.img-active {
+        opacity: 1;
+        left: auto; }
+    /* line 99, sass/3-sections/project.sass */
+    .project-wrapper .project-main .image-gallery.opened {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      background: #0d0d0e;
+      align-items: center;
+      justify-content: center;
+      transition-duration: 300ms; }
+      /* line 111, sass/3-sections/project.sass */
+      .project-wrapper .project-main .image-gallery.opened .gal-img, .project-wrapper .project-main .image-gallery.opened .img-active {
+        left: auto; }
+      /* line 114, sass/3-sections/project.sass */
+      .project-wrapper .project-main .image-gallery.opened .close-button {
+        display: block;
+        position: fixed;
+        top: 10px;
+        right: 10px; }
+      /* line 121, sass/3-sections/project.sass */
+      .project-wrapper .project-main .image-gallery.opened .gallery-navigation {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; }
+        /* line 127, sass/3-sections/project.sass */
+        .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control {
+          cursor: pointer; }
+          /* line 130, sass/3-sections/project.sass */
+          .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.disable {
+            opacity: 0;
+            cursor: default; }
