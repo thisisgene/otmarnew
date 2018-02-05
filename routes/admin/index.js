@@ -140,7 +140,6 @@ router.post('/create_sub_project', function(req, res) {
           layout      : 'layout_mnu'
 
         });
-        // console.log('Ancestors: ', ancestors);
         newProject.save(function(err, p) {
           if (err) res.send(err);
           else {
@@ -149,7 +148,6 @@ router.post('/create_sub_project', function(req, res) {
             project.hasChildren = true;
             project.unfold = true;
             project.save(function(err) {
-              console.log(p.id);
               if (err) throw err;
               else res.send(p.id);
             });
@@ -225,7 +223,7 @@ router.post('/togglefold', function(req, res){
 router.post('/save_all', function(req, res) {
   var body = req.body;
   var id = body.id;
-  var name = body.name;
+  var name;
   var title = body.title;
   var oldname = body.oldname;
   var description = body.description;
@@ -255,9 +253,9 @@ router.post('/save_all', function(req, res) {
         var children = parent.children;
         for (var i=0; i < children.length; i++) {
           var child = children[i];
-          console.log(child.name);
+          console.log('childname: ', child.name);
           if (child.id == project.id) {
-            child.name = name;
+            if (body.namechanged) child.name = body.name;
             child.title = title;
             child.descMU = description;
             child.descHtml = descHtml;

@@ -9,7 +9,7 @@ block content
   .project-wrapper
 
     .project-left.col.col-4
-      h1.main-title= project.name
+      h1.main-title= project.title
       .desc-text
         p!= project.descHtml
 
@@ -29,7 +29,7 @@ block content
         button.button.close.close-button
         if (project.images.length > 1)
           .gallery-navigation
-            .gal-control.back back
-            .gal-control.forward forward
+            .gal-control.back
+            .gal-control.forward
 
 

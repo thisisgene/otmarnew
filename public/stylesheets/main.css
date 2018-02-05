@@ -154,36 +154,37 @@ h1, h2, h3, p, a {
     /* line 58, sass/3-sections/project.sass */
     .project-wrapper .project-main .project-text p {
       line-height: 1.2em;
-      margin: 0; }
-  /* line 62, sass/3-sections/project.sass */
+      margin: 0;
+      text-align: justify; }
+  /* line 63, sass/3-sections/project.sass */
   .project-wrapper .project-main .image-gallery {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     transition: all 0ms ease-in-out; }
-    /* line 75, sass/3-sections/project.sass */
+    /* line 76, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery .close-button {
       display: none; }
-    /* line 78, sass/3-sections/project.sass */
+    /* line 79, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery .image {
       position: absolute;
       opacity: 0;
       transition: opacity 400ms ease-in-out; }
-      /* line 84, sass/3-sections/project.sass */
+      /* line 85, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image img {
         cursor: pointer;
         box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
         max-width: 500px;
         max-height: 500px; }
-      /* line 93, sass/3-sections/project.sass */
+      /* line 94, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image.gal-img {
         left: -100000px; }
-      /* line 96, sass/3-sections/project.sass */
+      /* line 97, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image.img-active {
         opacity: 1;
         left: auto; }
-    /* line 99, sass/3-sections/project.sass */
+    /* line 100, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery.opened {
       position: absolute;
       left: 0;
@@ -195,25 +196,38 @@ h1, h2, h3, p, a {
       align-items: center;
       justify-content: center;
       transition-duration: 300ms; }
-      /* line 111, sass/3-sections/project.sass */
+      /* line 112, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .gal-img, .project-wrapper .project-main .image-gallery.opened .img-active {
         left: auto; }
-      /* line 114, sass/3-sections/project.sass */
+      /* line 115, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .close-button {
         display: block;
         position: fixed;
         top: 10px;
         right: 10px; }
-      /* line 121, sass/3-sections/project.sass */
+      /* line 122, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .gallery-navigation {
         width: 60%;
         display: flex;
         align-items: center;
         justify-content: space-between; }
-        /* line 127, sass/3-sections/project.sass */
+        /* line 128, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control {
+          width: 50px;
+          height: 23px;
+          background-repeat: no-repeat;
+          opacity: .8;
           cursor: pointer; }
-          /* line 130, sass/3-sections/project.sass */
+          /* line 135, sass/3-sections/project.sass */
+          .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.back {
+            background-image: url(../images/hand_point-left.svg); }
+          /* line 137, sass/3-sections/project.sass */
+          .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.forward {
+            background-image: url(../images/hand_point-right.svg); }
+          /* line 139, sass/3-sections/project.sass */
+          .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control:hover {
+            opacity: 1; }
+          /* line 142, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.disable {
             opacity: 0;
             cursor: default; }

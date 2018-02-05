@@ -58,6 +58,7 @@ h1, h2, h3, p, a
       p
         line-height: 1.2em
         margin: 0
+        text-align: justify
 
     .image-gallery
       //position: absolute
@@ -125,8 +126,19 @@ h1, h2, h3, p, a
           justify-content: space-between
 
           .gal-control
-
+            width: 50px
+            height: 23px
+            background:
+              repeat: no-repeat
+            opacity: .8
             cursor: pointer
+            &.back
+              background-image: url(../images/hand_point-left.svg)
+            &.forward
+              background-image: url(../images/hand_point-right.svg)
+            &:hover
+              opacity: 1
+
             &.disable
               opacity: 0
               cursor: default
