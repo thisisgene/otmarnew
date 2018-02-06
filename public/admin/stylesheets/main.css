@@ -540,23 +540,31 @@ body {
                 .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item {
                   margin: 10px 5px; }
                   /* line 248, sass/admin/3-sections/center-content.sass */
+                  .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item .ref-link {
+                    font-family: "Courier", monospace;
+                    font-size: .7rem;
+                    background: rgba(255, 255, 255, 0.7);
+                    border: 1px dotted #aaa;
+                    padding: 3px 2px;
+                    color: #777; }
+                  /* line 258, sass/admin/3-sections/center-content.sass */
                   .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item textarea {
                     resize: none; }
-                  /* line 251, sass/admin/3-sections/center-content.sass */
+                  /* line 261, sass/admin/3-sections/center-content.sass */
                   .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-form .form-item button {
                     margin-right: 8px; }
-              /* line 254, sass/admin/3-sections/center-content.sass */
+              /* line 264, sass/admin/3-sections/center-content.sass */
               .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-thumb {
                 margin-right: 10px;
                 height: 100%; }
-                /* line 258, sass/admin/3-sections/center-content.sass */
+                /* line 268, sass/admin/3-sections/center-content.sass */
                 .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-thumb img {
                   width: auto;
                   height: 290px; }
-              /* line 261, sass/admin/3-sections/center-content.sass */
+              /* line 271, sass/admin/3-sections/center-content.sass */
               .section#center-content .main-content #img-container .image-list.big-view ul .active .img-preview .img-name p {
                 display: none; }
-          /* line 265, sass/admin/3-sections/center-content.sass */
+          /* line 275, sass/admin/3-sections/center-content.sass */
           .section#center-content .main-content #img-container .image-list.big-view ul .img-preview .img-name {
             max-width: none;
             width: auto; }

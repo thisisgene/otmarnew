@@ -44,8 +44,12 @@ nav.tabs(data-component='tabs', data-equals="true")
                         label Name
                         input(type='text', name='img_name', value= image.name, data-imgname=image.name).form-img--name.w80
                       .form-item
+                        label Referenz (als Schlüsselwort zur Einbindung im Fließtext)
+                        //input(type='text', name='img_ref', value= image.reference, data-imgref=image.reference).form-img--ref.w80
+                        span.ref-link= '![' + image.name + '](' + image.truePath + ')'
+                      .form-item
                         label Beschreibung
-                        textarea(name='img_desc', rows='4', data-imgdesc=image.desc).form-img--desc= image.desc
+                        textarea(name='img_desc', rows='2', data-imgdesc=image.desc).form-img--desc= image.desc
                       .form-item
                         button(onclick='saveImgEdit("'+ currentProject._id + '", "'+ image._id +'")') Speichern
                         button(onclick='cancelImgEdit()').button.secondary.outline Verwerfen

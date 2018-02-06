@@ -234,7 +234,8 @@ router.post('/save_all', function(req, res) {
   var visible = body.visible;
   var msg = '';
   var ObjectId = 'ObjectId("'+id+'")';
-  console.log(oldname);
+
+
 
   Project.findById(id, function(err, project) {
     project.title = title;
@@ -386,7 +387,6 @@ router.post('/projectsort', function ( req, res, next) {
 
 router.post('/upload', upload.single('file'), function(req, res) {
   var file = req.file;
-  console.log(file);
   if ( !file.mimetype.startsWith( 'image/' ) ) {
     return res.status( 422 ).json( {
       error : 'Die Datei muss ein Bildformat sein. (.jpg, .png, ...)'
@@ -397,11 +397,17 @@ router.post('/upload', upload.single('file'), function(req, res) {
     Project.findById(id, function(err, project) {
       if (err) res.send(err);
       else {
+        var oName = file.originalname;
+        var truePath = file.path.substring(6);
+        console.log(file.path, truePath);
+        var shortname = oName.substr(0, oName.lastIndexOf("."));
         var image = new Image({
           filename: file.filename,
           originalName: file.originalname,
-          name: file.originalname,
+          name: shortname,
+          reference: shortname,
           path: file.path,
+          truePath: truePath,
           fileSize: file.size,
           isVisible: true,
           isDeleted: false
@@ -453,6 +459,7 @@ router.post('/edit_image', function(req, res) {
       if (images[i]._id == body.image_id) {
         var img = images[i];
         img.name = body.name;
+        img.reference = body.reference;
         img.desc = body.desc;
       }
     }

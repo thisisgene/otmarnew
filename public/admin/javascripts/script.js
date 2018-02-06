@@ -377,6 +377,8 @@ function saveImgEdit(pId, iId) {
   var $imgli = $(".img-li.active");
   var $imgname = $imgli.find('.form-img--name:first');
   var imgname = $imgname.val();
+  var $imgref = $imgli.find('.form-img--ref:first');
+  var imgref = $imgref.val();
   var $imgdesc = $imgli.find('.form-img--desc:first');
   var imgdesc = $imgdesc.val();
   var $imgNameP = $imgli.find('.img-name-p');
@@ -385,6 +387,7 @@ function saveImgEdit(pId, iId) {
     project_id  : pId,
     image_id    : iId,
     name        : imgname,
+    reference   : imgref,
     desc        : imgdesc
 
   };
@@ -393,6 +396,7 @@ function saveImgEdit(pId, iId) {
     $.post('/admin/edit_image', body, function(data){
       if (data == 'success') {
         $imgname.data('imgname', imgname);
+        $imgname.data('imgref', imgref);
         $imgdesc.data('imgdesc', imgdesc);
         $imgNameP.text(imgname);
         successAnimation($imgli);
