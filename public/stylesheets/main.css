@@ -41,25 +41,30 @@ body {
       margin: 0;
       line-height: 1;
       font-family: inherit;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 100; }
-      /* line 56, sass/1-base/main.sass */
+      /* line 57, sass/1-base/main.sass */
+      body .header-bar h1.header-title {
+        font-family: "Arial Black", sans-serif !important;
+        font-weight: 400;
+        color: #fff; }
+      /* line 63, sass/1-base/main.sass */
       body .header-bar h1.main-title {
         color: #fff;
         padding-right: 20px; }
-      /* line 60, sass/1-base/main.sass */
+      /* line 67, sass/1-base/main.sass */
       body .header-bar h1.sub-title {
         color: white;
-        font-family: serif; }
+        font-family: "Times New Roman", serif !important; }
 
 @media (max-width: 919px) {
-  /* line 65, sass/1-base/main.sass */
+  /* line 72, sass/1-base/main.sass */
   .header-bar {
     justify-content: space-between; }
-    /* line 68, sass/1-base/main.sass */
+    /* line 75, sass/1-base/main.sass */
     .header-bar .main-title, .header-bar .sub-title {
       font-size: 1.5rem; }
-  /* line 70, sass/1-base/main.sass */
+  /* line 77, sass/1-base/main.sass */
   .mobile-container {
     height: 80vh;
     display: flex;
@@ -67,26 +72,26 @@ body {
     align-items: center;
     font-size: 2rem;
     text-align: center; }
-  /* line 78, sass/1-base/main.sass */
+  /* line 85, sass/1-base/main.sass */
   .main-container {
     display: none; } }
 
 @media (min-width: 920px) {
-  /* line 81, sass/1-base/main.sass */
+  /* line 88, sass/1-base/main.sass */
   .mobile-container {
     display: none; }
-  /* line 84, sass/1-base/main.sass */
+  /* line 91, sass/1-base/main.sass */
   .main-container {
     overflow-x: hidden; }
-    /* line 88, sass/1-base/main.sass */
+    /* line 95, sass/1-base/main.sass */
     .main-container .project-list {
       list-style: none;
       margin: 2rem 0;
       padding: 0; }
-      /* line 92, sass/1-base/main.sass */
+      /* line 99, sass/1-base/main.sass */
       .main-container .project-list .project-update-title {
         color: #DB2633; }
-      /* line 95, sass/1-base/main.sass */
+      /* line 102, sass/1-base/main.sass */
       .main-container .project-list li > a {
         text-decoration: none;
         display: flex;
@@ -94,7 +99,7 @@ body {
         justify-content: space-between;
         align-items: baseline;
         padding-right: 10rem; }
-        /* line 104, sass/1-base/main.sass */
+        /* line 111, sass/1-base/main.sass */
         .main-container .project-list li > a .link {
           display: block;
           text-decoration: none;
@@ -104,19 +109,19 @@ body {
           color: #4a4a4a;
           transition: all 200ms ease-in-out;
           transform-origin: left; }
-        /* line 115, sass/1-base/main.sass */
+        /* line 122, sass/1-base/main.sass */
         .main-container .project-list li > a .project-update {
           font-size: 4.6vh;
           line-height: .9;
           color: #DB2633;
           opacity: .8;
           transition: transform 100ms ease-in-out; }
-        /* line 125, sass/1-base/main.sass */
+        /* line 132, sass/1-base/main.sass */
         .main-container .project-list li > a:hover .link {
           transform: scaleX(1.1);
           color: #111;
           transition-duration: 100ms; }
-        /* line 129, sass/1-base/main.sass */
+        /* line 136, sass/1-base/main.sass */
         .main-container .project-list li > a:hover .project-update {
           opacity: 1;
           transform: scale(1.1); } }

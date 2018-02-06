@@ -42,7 +42,7 @@ body
     letter-spacing: 1px
     //.left-header
     //  width: 450px
-    .right-header
+    //.right-header
     //margin-left: 40px
     h1
       //width: 230px
@@ -51,15 +51,22 @@ body
       line-height: 1
       font:
         family: inherit
-        size: 2.4rem
+        size: 2.2rem
         weight: 100
+
+      &.header-title
+        font:
+          family: "Arial Black", sans-serif !important
+          weight: 400
+        color: #fff
+
       &.main-title
         color: #fff
         padding-right: 20px
 
       &.sub-title
         color: white
-        font-family: serif
+        font-family: "Times New Roman", serif !important
 
 @media(max-width: 919px)
   .header-bar
