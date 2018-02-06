@@ -88,51 +88,78 @@ body
   .mobile-container
     display: none
 
-  .main-container
-    overflow-x: hidden
-    //letter-spacing: normal
+  //.main-container
+  //  overflow-x: hidden
+  //  //letter-spacing: normal
 
-    .project-list
-      list-style: none
-      margin: 2rem 0
-      padding: 0
-      .project-update-title
-        color: $red
+  .breadcrumbs.startpage
+    margin-top: 1.7rem
 
-      li > a
-        text-decoration: none
-        display: flex
-        flex-direction: row
-        justify-content: space-between
-        align-items: baseline
-        padding-right: 10rem
-        //border: 1px solid transparent
-        //transition: all 100ms ease-in-out
-        .link
-          display: block
-          text-decoration: none
-          font-size: 8vh
-          line-height: .9
-          text-transform: uppercase
-          color: $project-title-color
-          transition: all 200ms ease-in-out
-          transform-origin: left
+  .project-wrapper
+
+    //margin-top: 2.5rem
+    display: flex
+    flex-direction: row
 
 
-        .project-update
 
-          font-size: 4.6vh
-          line-height: .9
-          color: $red
-          opacity: .8
-          transition: transform 100ms ease-in-out
+    @media(max-width: 800px)
+      flex-direction: column
 
-        &:hover
-          //border-bottom: 1px solid #eee
-          .link
-            transform: scaleX(1.1)
-            color: #111
-            transition-duration: 100ms
-          .project-update
-            opacity: 1
-            transform: scale(1.1)
+      .project-left
+        padding: 0
+
+    .project-left
+      padding-right: 20px
+
+    .project-main
+      //margin-left: 40px
+      .sub-list
+
+        margin: 0
+        padding-left: 0
+
+    //.project-list
+    //  list-style: none
+    //  margin: 2rem 0
+    //  padding: 0
+    //  .project-update-title
+    //    color: $red
+    //
+    //  li > a
+    //    text-decoration: none
+    //    display: flex
+    //    flex-direction: row
+    //    justify-content: space-between
+    //    align-items: baseline
+    //    padding-right: 10rem
+    //    //border: 1px solid transparent
+    //    //transition: all 100ms ease-in-out
+    //    .link
+    //      display: block
+    //      text-decoration: none
+    //      font-size: 8vh
+    //      line-height: .9
+    //      text-transform: uppercase
+    //      color: $project-title-color
+    //      transition: all 200ms ease-in-out
+    //      transform-origin: left
+    //
+    //
+    //    .project-update
+    //
+    //      font-size: 4.6vh
+    //      line-height: .9
+    //      color: $red
+    //      opacity: .8
+    //      transition: transform 100ms ease-in-out
+    //
+    //    &:hover
+    //      //border-bottom: 1px solid #eee
+    //      .link
+    //        transform: scaleX(1.1)
+    //        color: #111
+    //        transition-duration: 100ms
+    //      .project-update
+    //        opacity: 1
+    //        transform: scale(1.1)

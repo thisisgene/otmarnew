@@ -5,16 +5,24 @@ block content
       //h1.ghost-title
   .mobile-container
     p Diese Seite ist nicht für mobile Geräte bzw. Displays mit einer geringeren Auflösung als ~920x560px optimiert.
-  .main-container
-    ul.project-list
-      li.h-li
-        a
-          .link
-          span.project-update-title ZULETZT GEÄNDERT
-      each project in projects
-        if (!project.deleted && project.visible && !project.hasParent)
 
-          li
-            a(href='/site/'+ project.latName)
-              .link= project.name
-              span.project-update 1.4.2017
+  nav.breadcrumbs.startpage
+    ul
+      li.crumb-link
+  .project-wrapper.start-wrapper
+    .project-left.col.col-4
+
+    .project-main.col.col-8
+
+      ul.sub-list.unordered
+        li.h-li
+          a
+            .link
+            //span.project-update-title ZULETZT GEÄNDERT
+        each project in projects
+          if (!project.deleted && project.visible && !project.hasParent)
+
+            li
+              a(href='/site/'+ project.latName)
+                h1.main-title= project.name
+                //span.project-update 1.4.2017

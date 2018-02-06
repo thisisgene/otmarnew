@@ -80,51 +80,29 @@ body {
   /* line 88, sass/1-base/main.sass */
   .mobile-container {
     display: none; }
-  /* line 91, sass/1-base/main.sass */
-  .main-container {
-    overflow-x: hidden; }
-    /* line 95, sass/1-base/main.sass */
-    .main-container .project-list {
-      list-style: none;
-      margin: 2rem 0;
-      padding: 0; }
-      /* line 99, sass/1-base/main.sass */
-      .main-container .project-list .project-update-title {
-        color: #DB2633; }
-      /* line 102, sass/1-base/main.sass */
-      .main-container .project-list li > a {
-        text-decoration: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline;
-        padding-right: 10rem; }
-        /* line 111, sass/1-base/main.sass */
-        .main-container .project-list li > a .link {
-          display: block;
-          text-decoration: none;
-          font-size: 8vh;
-          line-height: .9;
-          text-transform: uppercase;
-          color: #4a4a4a;
-          transition: all 200ms ease-in-out;
-          transform-origin: left; }
-        /* line 122, sass/1-base/main.sass */
-        .main-container .project-list li > a .project-update {
-          font-size: 4.6vh;
-          line-height: .9;
-          color: #DB2633;
-          opacity: .8;
-          transition: transform 100ms ease-in-out; }
-        /* line 132, sass/1-base/main.sass */
-        .main-container .project-list li > a:hover .link {
-          transform: scaleX(1.1);
-          color: #111;
-          transition-duration: 100ms; }
-        /* line 136, sass/1-base/main.sass */
-        .main-container .project-list li > a:hover .project-update {
-          opacity: 1;
-          transform: scale(1.1); } }
+  /* line 95, sass/1-base/main.sass */
+  .breadcrumbs.startpage {
+    margin-top: 1.7rem; }
+  /* line 98, sass/1-base/main.sass */
+  .project-wrapper {
+    display: flex;
+    flex-direction: row; } }
+  @media (min-width: 920px) and (max-width: 800px) {
+    /* line 98, sass/1-base/main.sass */
+    .project-wrapper {
+      flex-direction: column; }
+      /* line 109, sass/1-base/main.sass */
+      .project-wrapper .project-left {
+        padding: 0; } }
+
+@media (min-width: 920px) {
+    /* line 112, sass/1-base/main.sass */
+    .project-wrapper .project-left {
+      padding-right: 20px; }
+    /* line 117, sass/1-base/main.sass */
+    .project-wrapper .project-main .sub-list {
+      margin: 0;
+      padding-left: 0; } }
 
 /* line 1, sass/3-sections/project.sass */
 h1, h2, h3, p, a {
