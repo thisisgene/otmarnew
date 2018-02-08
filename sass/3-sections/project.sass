@@ -4,25 +4,44 @@ h1, h2, h3, p, a
 
 .title-container
   margin: -2px 0 0
-  .main-title
-    margin: 0
-    text-transform: uppercase
-    font-size: 1.6rem
-    letter-spacing: 1px
-    line-height: 1
+.main-title
+  margin: 0
+  text-transform: uppercase
+  font-size: 1.6rem
+  letter-spacing: 1px
+  line-height: 1
 
 
-  .sub-title
-    font:
-      size: 1.1rem
-      weight: 400
-    color: #888
-    text-transform: uppercase
-    margin-bottom: 0
+.sub-title
+  font:
+    size: 1.1rem
+    weight: 400
+  color: #888
+  text-transform: uppercase
+  margin-bottom: 0
 
 .info-text
+
+  h1
+    font-size: 1.2rem
+  h2
+    font-size: 1rem
+
   p
     margin-bottom: 12px
+
+  hr
+    width: 20%
+    margin: 1.2rem 0
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+
+    a
+      color: #aaa
+      &:hover
+        color: #555
 
 .breadcrumbs-wrapper
   height: 50px
@@ -101,12 +120,19 @@ h1, h2, h3, p, a
                                                           // TEXT LAYOUT
     .project-text
       padding: 0 20% 0 3px
+      h1, h2, h3
+        margin-top: 0
+        clear: both
+        line-height: 70%
       p
         font-size: 1.2rem
         line-height: 1.2em
-        margin: 0
+        margin: 0 0 1.6rem
         text-align: justify
         clear: both
+
+        &:first-child
+          margin: 0
 
       img
         float: right

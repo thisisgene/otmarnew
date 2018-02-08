@@ -112,100 +112,135 @@ h1, h2, h3, p, a {
 /* line 5, sass/3-sections/project.sass */
 .title-container {
   margin: -2px 0 0; }
-  /* line 7, sass/3-sections/project.sass */
-  .title-container .main-title {
-    margin: 0;
-    text-transform: uppercase;
-    font-size: 1.6rem;
-    letter-spacing: 1px;
-    line-height: 1; }
-  /* line 15, sass/3-sections/project.sass */
-  .title-container .sub-title {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #888;
-    text-transform: uppercase;
-    margin-bottom: 0; }
 
-/* line 24, sass/3-sections/project.sass */
+/* line 7, sass/3-sections/project.sass */
+.main-title {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  line-height: 1; }
+
+/* line 15, sass/3-sections/project.sass */
+.sub-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 0; }
+
+/* line 25, sass/3-sections/project.sass */
+.info-text h1 {
+  font-size: 1.2rem; }
+
+/* line 27, sass/3-sections/project.sass */
+.info-text h2 {
+  font-size: 1rem; }
+
+/* line 30, sass/3-sections/project.sass */
 .info-text p {
   margin-bottom: 12px; }
 
-/* line 27, sass/3-sections/project.sass */
+/* line 33, sass/3-sections/project.sass */
+.info-text hr {
+  width: 20%;
+  margin: 1.2rem 0; }
+
+/* line 36, sass/3-sections/project.sass */
+.info-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  /* line 41, sass/3-sections/project.sass */
+  .info-text ul a {
+    color: #aaa; }
+    /* line 43, sass/3-sections/project.sass */
+    .info-text ul a:hover {
+      color: #555; }
+
+/* line 46, sass/3-sections/project.sass */
 .breadcrumbs-wrapper {
   height: 50px;
   padding: 1rem 0; }
-  /* line 30, sass/3-sections/project.sass */
+  /* line 49, sass/3-sections/project.sass */
   .breadcrumbs-wrapper .breadcrumbs {
     text-transform: uppercase;
     margin-bottom: 0;
     font-size: 1.2rem;
     letter-spacing: .3pt; }
-    /* line 35, sass/3-sections/project.sass */
+    /* line 54, sass/3-sections/project.sass */
     .breadcrumbs-wrapper .breadcrumbs ul {
       color: #aaa; }
-      /* line 51, sass/3-sections/project.sass */
+      /* line 70, sass/3-sections/project.sass */
       .breadcrumbs-wrapper .breadcrumbs ul li:after {
         content: '|';
         color: #eaeaea; }
-      /* line 54, sass/3-sections/project.sass */
+      /* line 73, sass/3-sections/project.sass */
       .breadcrumbs-wrapper .breadcrumbs ul li:last-child:after {
         content: ''; }
-      /* line 56, sass/3-sections/project.sass */
+      /* line 75, sass/3-sections/project.sass */
       .breadcrumbs-wrapper .breadcrumbs ul a {
         color: #aaa; }
-        /* line 58, sass/3-sections/project.sass */
+        /* line 77, sass/3-sections/project.sass */
         .breadcrumbs-wrapper .breadcrumbs ul a:hover {
           color: #555; }
 
-/* line 62, sass/3-sections/project.sass */
+/* line 81, sass/3-sections/project.sass */
 .project-wrapper {
   display: flex;
   flex-direction: row; }
   @media (max-width: 800px) {
-    /* line 62, sass/3-sections/project.sass */
+    /* line 81, sass/3-sections/project.sass */
     .project-wrapper {
       flex-direction: column; }
-      /* line 71, sass/3-sections/project.sass */
+      /* line 90, sass/3-sections/project.sass */
       .project-wrapper .project-left {
         padding: 0; } }
-  /* line 74, sass/3-sections/project.sass */
+  /* line 93, sass/3-sections/project.sass */
   .project-wrapper .project-left {
     padding-right: 20px; }
-  /* line 79, sass/3-sections/project.sass */
+  /* line 98, sass/3-sections/project.sass */
   .project-wrapper .project-main .sub-list {
     margin: 0;
     padding-left: 0; }
-    /* line 84, sass/3-sections/project.sass */
+    /* line 103, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list.unordered {
       list-style: none; }
-    /* line 88, sass/3-sections/project.sass */
+    /* line 107, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list.ordered {
       list-style: decimal;
       font-size: 1.4rem; }
-    /* line 94, sass/3-sections/project.sass */
+    /* line 113, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list li h1, .project-wrapper .project-main .sub-list li a {
       text-decoration: none;
       color: #4a4a4a; }
-      /* line 99, sass/3-sections/project.sass */
+      /* line 118, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list li h1:hover, .project-wrapper .project-main .sub-list li a:hover {
         color: black; }
-  /* line 102, sass/3-sections/project.sass */
+  /* line 121, sass/3-sections/project.sass */
   .project-wrapper .project-main .project-text {
     padding: 0 20% 0 3px; }
-    /* line 104, sass/3-sections/project.sass */
+    /* line 123, sass/3-sections/project.sass */
+    .project-wrapper .project-main .project-text h1, .project-wrapper .project-main .project-text h2, .project-wrapper .project-main .project-text h3 {
+      margin-top: 0;
+      clear: both;
+      line-height: 70%; }
+    /* line 127, sass/3-sections/project.sass */
     .project-wrapper .project-main .project-text p {
       font-size: 1.2rem;
       line-height: 1.2em;
-      margin: 0;
+      margin: 0 0 1.6rem;
       text-align: justify;
       clear: both; }
-    /* line 111, sass/3-sections/project.sass */
+      /* line 134, sass/3-sections/project.sass */
+      .project-wrapper .project-main .project-text p:first-child {
+        margin: 0; }
+    /* line 137, sass/3-sections/project.sass */
     .project-wrapper .project-main .project-text img {
       float: right;
       margin: 1rem 0 1rem 1rem;
       max-height: 80vh; }
-  /* line 119, sass/3-sections/project.sass */
+  /* line 145, sass/3-sections/project.sass */
   .project-wrapper .project-main .image-gallery {
     z-index: 1;
     display: flex;
@@ -213,28 +248,28 @@ h1, h2, h3, p, a {
     align-items: flex-start;
     justify-content: flex-start;
     transition: all 0ms ease-in-out; }
-    /* line 133, sass/3-sections/project.sass */
+    /* line 159, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery .close-button {
       display: none; }
-    /* line 136, sass/3-sections/project.sass */
+    /* line 162, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery .image {
       position: absolute;
       opacity: 0;
       transition: opacity 400ms ease-in-out; }
-      /* line 142, sass/3-sections/project.sass */
+      /* line 168, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image img {
         cursor: pointer;
         box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
         max-width: 500px;
         max-height: 500px; }
-      /* line 151, sass/3-sections/project.sass */
+      /* line 177, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image.gal-img {
         left: -100000px; }
-      /* line 154, sass/3-sections/project.sass */
+      /* line 180, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image.img-active {
         opacity: 1;
         left: auto; }
-    /* line 157, sass/3-sections/project.sass */
+    /* line 183, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery.opened {
       position: absolute;
       left: 0;
@@ -247,29 +282,29 @@ h1, h2, h3, p, a {
       justify-content: center;
       transition-duration: 300ms;
       display: flex; }
-      /* line 170, sass/3-sections/project.sass */
+      /* line 196, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .gal-img, .project-wrapper .project-main .image-gallery.opened .img-active {
         left: auto;
         display: flex;
         justify-content: center;
         align-items: center; }
-        /* line 176, sass/3-sections/project.sass */
+        /* line 202, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gal-img img, .project-wrapper .project-main .image-gallery.opened .img-active img {
           max-height: 95vh;
           max-width: 80vw; }
-      /* line 180, sass/3-sections/project.sass */
+      /* line 206, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .close-button {
         display: block;
         position: fixed;
         top: 10px;
         right: 10px; }
-      /* line 187, sass/3-sections/project.sass */
+      /* line 213, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened .gallery-navigation {
         width: 90%;
         display: flex;
         align-items: center;
         justify-content: space-between; }
-        /* line 193, sass/3-sections/project.sass */
+        /* line 219, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control {
           z-index: 1;
           width: 50px;
@@ -277,20 +312,20 @@ h1, h2, h3, p, a {
           background-repeat: no-repeat;
           opacity: .8;
           cursor: pointer; }
-          /* line 201, sass/3-sections/project.sass */
+          /* line 227, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.back {
             background-image: url(../images/hand_point-left.svg); }
-          /* line 203, sass/3-sections/project.sass */
+          /* line 229, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.forward {
             background-image: url(../images/hand_point-right.svg); }
-          /* line 205, sass/3-sections/project.sass */
+          /* line 231, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control:hover {
             opacity: 1; }
-          /* line 208, sass/3-sections/project.sass */
+          /* line 234, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.disable {
             opacity: 0;
             cursor: default; }
-  /* line 211, sass/3-sections/project.sass */
+  /* line 237, sass/3-sections/project.sass */
   .project-wrapper .project-control {
     position: fixed;
     left: 6%;
@@ -298,19 +333,19 @@ h1, h2, h3, p, a {
     bottom: 2rem;
     display: flex;
     justify-content: space-between; }
-    /* line 219, sass/3-sections/project.sass */
+    /* line 245, sass/3-sections/project.sass */
     .project-wrapper .project-control .p-control {
       width: 50px;
       height: 23px;
       background-repeat: no-repeat;
       opacity: .5;
       cursor: pointer; }
-      /* line 226, sass/3-sections/project.sass */
+      /* line 252, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control.back {
         background-image: url(../images/hand_point-left.svg); }
-      /* line 228, sass/3-sections/project.sass */
+      /* line 254, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control.forward {
         background-image: url(../images/hand_point-right.svg); }
-      /* line 230, sass/3-sections/project.sass */
+      /* line 256, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control:hover {
         opacity: 1; }

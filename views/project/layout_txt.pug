@@ -9,7 +9,12 @@ block content
   .project-wrapper
 
     .project-left.col.col-4
-      h1.main-title= project.title
+      .title-container
+        h1.main-title= project.title
+        if (project.subtitle)
+          h1.sub-title= project.subtitle
+      .info-text
+        p!= project.infoHtml
 
     .project-main.col.col-8
       .project-text

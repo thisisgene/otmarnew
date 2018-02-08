@@ -26,6 +26,17 @@ $(document).ready(function() {
   }
 });
 
+$(document).keydown(function(event) {
+    // If Control or Command key is pressed and the S key is pressed
+    // run save function. 83 is the key code for S.
+    if((event.ctrlKey || event.metaKey) && event.which == 83) {
+      // Save Function
+      event.preventDefault();
+      saveAll();
+    }
+  }
+);
+
 /////////////////////////// SORTABLE LISTS
 
 $(function() {
@@ -250,14 +261,14 @@ $('.project-form form').on('submit', function(event) {
 
 //////////////////////////////       SAVE ALL!
 
-function saveAll(obj) {
+function saveAll() {
   collectErrors();
   if (errorsExist) {
     var list = prepareErrorList();
     showMsg('warning', list);
   }
   else {
-    var id = $(obj).data('projectid');
+    var id = $('.button-save').data('projectid');
     var $nameObj = $('#project-name-input');
     var name = $nameObj.val();
     var oldName = $nameObj.data('currentname');
