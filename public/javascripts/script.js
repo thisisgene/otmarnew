@@ -12,20 +12,42 @@ function changeImage(direction) {
   }
 
 }
+///////////////////////////////////// IMAGE GALLERY
+
+
+
+
+
 
 $(document).ready(function(){
-  $('.image').click(function(e) {
-    console.log('asdfgdhf')
-    $obj = $(this).parent();
-    if (!$obj.hasClass('opened')) {
-      $obj.addClass('opened');
+  $gal = $('.image-gallery');
 
+  function openGallery() {
+    if (!$gal.hasClass('opened')) {
+      $gal.addClass('opened');
     }
+  }
+  
+  $(document).keydown(function(event) {
+      if((event.keyCode == 27) && $gal.hasClass('opened')) {
+        event.preventDefault();
+        $('.opened').removeClass('opened');
+      }
+    }
+  );
+
+
+  $('.image').click(function(e) {
+    openGallery();
   });
+  $('.gal-indicator').click(function(e) {
+    openGallery();
+  });
+
+
   $('.close-button').click(function () {
-    console.log('adf');
     $('.opened').removeClass('opened');
-  })
+  });
 
   $('.gal-control').click(function () {
     $this = $(this);

@@ -14,6 +14,9 @@ var delay = (function(){
   };
 })();
 
+
+//////////////////////////////////////////////// INDICATE active child elements when menu folded
+
 $(document).ready(function() {
   var $active = $('.project-list').find('.active');
   if ($active) {
@@ -25,6 +28,8 @@ $(document).ready(function() {
 
   }
 });
+
+/////////////////////////////////////////////// CTRL-S/COMMAND-S to save project
 
 $(document).keydown(function(event) {
     // If Control or Command key is pressed and the S key is pressed

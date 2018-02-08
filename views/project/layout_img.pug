@@ -17,9 +17,9 @@ block content
         p!= project.infoHtml
 
     .project-main.col.col-8.no-select
+      - var realImages = [];
 
       .image-gallery
-        - var realImages = [];
         each img in project.images
 
           if (img.isVisible && !img.isDeleted)
@@ -31,11 +31,19 @@ block content
               .image.gal-img
                 img(src='/uploads/' + img.filename)
 
+
+
+
         button.button.close.close-button
         if (realImages.length > 1)
           .gallery-navigation
             .gal-control.back
             .gal-control.forward
+      .project-right
+        if (realImages.length > 1)
+          .gal-indicator
+            p Bitte blättern Sie weiter
+            .hand-point.hand-point__left
     .project-control
       if (prevProject)
         a(href= '/site/' + prevProject)
