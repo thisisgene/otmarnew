@@ -19,9 +19,12 @@ var ProjectSchema = new mongoose.Schema();
 ProjectSchema.add({
   name        : String,
   title       : String,
+  subtitle    : String,
   latName     : String,
   descMU      : String,
   descHtml    : String,
+  infoMU      : String,
+  infoHtml    : String,
   deleted     : Boolean,
   orderedList : Boolean,
   visible     : Boolean,

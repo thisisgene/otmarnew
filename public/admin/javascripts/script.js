@@ -262,7 +262,9 @@ function saveAll(obj) {
     var name = $nameObj.val();
     var oldName = $nameObj.data('currentname');
     var title = $('#title').val();
+    var subtitle = $('#subtitle').val();
     var description = $('#description').val();
+    var info = $('#info').val();
     var layout = $('input[name=layout]:checked').val();
     var orderedList = $('#listtype').is(':checked');
     var menuname = $('#menuname').val();
@@ -274,8 +276,10 @@ function saveAll(obj) {
     var body = {
       id            : id,
       title         : title,
+      subtitle      : subtitle,
       oldname       : oldName,
       description   : description,
+      info          : info,
       layout        : layout,
       orderedList   : orderedList,
       menuname      : menuname,

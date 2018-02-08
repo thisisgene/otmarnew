@@ -225,9 +225,12 @@ router.post('/save_all', function(req, res) {
   var id = body.id;
   var name;
   var title = body.title;
+  var subtitle = body.subtitle;
   var oldname = body.oldname;
   var description = body.description;
   var descHtml = marked(description);
+  var info = body.info;
+  var infoHtml = marked(info);
   var layout = body.layout;
   var orderedList = body.orderedList;
   var latName = body.menuname;
@@ -239,8 +242,11 @@ router.post('/save_all', function(req, res) {
 
   Project.findById(id, function(err, project) {
     project.title = title;
+    project.subtitle = subtitle;
     project.descMU = description;
     project.descHtml = descHtml;
+    project.infoMU = info;
+    project.infoHtml = infoHtml;
     project.layout = layout;
     project.orderedList = orderedList;
     project.latName = latName;

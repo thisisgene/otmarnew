@@ -5,7 +5,7 @@
 
   .breadcrumbs
     flex-grow: 0
-    height: 25px
+    height: 55px
     box-sizing: border-box
     font-size: .7rem
     .crumb-link
@@ -23,7 +23,16 @@
       &:hover
         border-color: #aaa
 
-
+  .title-container
+    display: flex
+    flex-direction: row
+    align-items: center
+    //margin-bottom: 8px
+    //height: 10%
+    span
+      margin-right: 5px
+    input
+      height: 25px
   .tabs
     flex-grow: 0
     height: 35px
@@ -31,10 +40,13 @@
       display: flex
       flex-direction: row
       justify-content: center
+      border: none
 
       li
         width: 50%
         background: #c9c9c9
+        margin: 1px
+
 
         a
           color: #aaa
@@ -53,19 +65,12 @@
     flex-grow: 1
     display: flex
 
-    #text-container
+    .textarea-wrapper
       flex-grow: 1
 
-      .title-container
-        display: flex
-        flex-direction: row
-        align-items: center
-        //margin-bottom: 8px
-        height: 10%
-        span
-          margin-right: 5px
+
       textarea
-        height: 90%
+        height: 100%
         resize: none
         background: #fdffff
         border-color: #ddd

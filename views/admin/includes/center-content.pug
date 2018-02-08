@@ -9,20 +9,25 @@ nav.breadcrumbs
         else
           li.crumb-link: a(href='/admin/project/'+crumb.id)= crumb.name
     li: input#project-name-input(type='text', value= currentProject.name, data-currentname= currentProject.name).notempty
-
+  .title-container
+    span Titel:
+    input#title(type='text', value= currentProject.title).notempty
+    span Untertitel:
+    input#subtitle(type='text', value= currentProject.subtitle)
 nav.tabs(data-component='tabs', data-equals="true")
   ul.tab-list
     li: a(href='#text-container').slim-title TEXT
+
+    li: a(href='#info-container').slim-title INFO
+
     li: a(href='#img-container').slim-title BILDER
 
 .main-content
 
-  #text-container
-    .title-container
-      span Titel:
-      input#title(type='text', value= currentProject.title).notempty
-
+  #text-container.textarea-wrapper
     textarea#description= currentProject.descMU
+  #info-container.textarea-wrapper
+    textarea#info= currentProject.infoMU
   #img-container
     .dropzone-container
       form(action='/admin/upload').dropzone
