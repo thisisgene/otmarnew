@@ -44,6 +44,15 @@ block content
           .gal-indicator
             p Bitte blättern Sie weiter
             .hand-point.hand-point__left
+
+        if (project.children)
+          .chapter-container
+            h3 INHALT
+              .small (Zum Weiterlesen klicken)
+            each child in project.children
+              if (child.visible && !child.deleted)
+                p.sub-title: a(href='/site/' + child.latName)= child.name
+
     .project-control
       if (prevProject)
         a(href= '/site/' + prevProject)

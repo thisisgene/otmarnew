@@ -256,11 +256,24 @@ h1, h2, h3, p, a {
         float: right;
         margin: 1rem 0 1rem 1rem;
         max-height: 80vh; }
-    /* line 158, sass/3-sections/project.sass */
-    .project-wrapper .project-main .project-right .gal-indicator {
-      padding-left: 1rem;
-      cursor: pointer; }
-    /* line 162, sass/3-sections/project.sass */
+    /* line 157, sass/3-sections/project.sass */
+    .project-wrapper .project-main .project-right {
+      padding-left: 1rem; }
+      /* line 160, sass/3-sections/project.sass */
+      .project-wrapper .project-main .project-right .gal-indicator {
+        cursor: pointer;
+        opacity: .8;
+        margin-bottom: 2rem; }
+        /* line 165, sass/3-sections/project.sass */
+        .project-wrapper .project-main .project-right .gal-indicator:hover {
+          opacity: 1; }
+      /* line 169, sass/3-sections/project.sass */
+      .project-wrapper .project-main .project-right .chapter-container a {
+        color: #888; }
+        /* line 172, sass/3-sections/project.sass */
+        .project-wrapper .project-main .project-right .chapter-container a:hover {
+          color: #555; }
+    /* line 175, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery {
       z-index: 1;
       width: 360px;
@@ -268,28 +281,28 @@ h1, h2, h3, p, a {
       flex-direction: row;
       align-items: flex-start;
       justify-content: flex-start; }
-      /* line 177, sass/3-sections/project.sass */
+      /* line 190, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .close-button {
         display: none; }
-      /* line 180, sass/3-sections/project.sass */
+      /* line 193, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image {
         position: absolute;
         opacity: 0;
         transition: opacity 400ms ease-in-out; }
-        /* line 186, sass/3-sections/project.sass */
+        /* line 199, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery .image img {
           cursor: pointer;
           box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
           max-width: 360px;
           max-height: 500px; }
-        /* line 192, sass/3-sections/project.sass */
+        /* line 205, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery .image.gal-img {
           left: -100000px; }
-        /* line 195, sass/3-sections/project.sass */
+        /* line 208, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery .image.img-active {
           opacity: 1;
           left: auto; }
-      /* line 202, sass/3-sections/project.sass */
+      /* line 215, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened {
         position: absolute;
         left: 0;
@@ -301,30 +314,30 @@ h1, h2, h3, p, a {
         align-items: center;
         justify-content: center;
         display: flex; }
-        /* line 215, sass/3-sections/project.sass */
+        /* line 228, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gal-img, .project-wrapper .project-main .image-gallery.opened .img-active {
           left: auto;
           display: flex;
           justify-content: center;
           align-items: center; }
-          /* line 221, sass/3-sections/project.sass */
+          /* line 234, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gal-img img, .project-wrapper .project-main .image-gallery.opened .img-active img {
             max-height: 95vh;
             max-width: 80vw; }
-        /* line 225, sass/3-sections/project.sass */
+        /* line 238, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .close-button {
           display: block;
           position: fixed;
           background: transparent;
           top: 10px;
           right: 10px; }
-        /* line 232, sass/3-sections/project.sass */
+        /* line 245, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gallery-navigation {
           width: 90%;
           display: flex;
           align-items: center;
           justify-content: space-between; }
-          /* line 238, sass/3-sections/project.sass */
+          /* line 251, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control {
             z-index: 1;
             width: 50px;
@@ -332,20 +345,20 @@ h1, h2, h3, p, a {
             background-repeat: no-repeat;
             opacity: .8;
             cursor: pointer; }
-            /* line 246, sass/3-sections/project.sass */
+            /* line 259, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.back {
               background-image: url(../images/hand_point-left.svg); }
-            /* line 248, sass/3-sections/project.sass */
+            /* line 261, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.forward {
               background-image: url(../images/hand_point-right.svg); }
-            /* line 250, sass/3-sections/project.sass */
+            /* line 263, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control:hover {
               opacity: 1; }
-            /* line 253, sass/3-sections/project.sass */
+            /* line 266, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.disable {
               opacity: 0;
               cursor: default; }
-  /* line 256, sass/3-sections/project.sass */
+  /* line 269, sass/3-sections/project.sass */
   .project-wrapper .project-control {
     position: fixed;
     left: 6%;
@@ -353,19 +366,19 @@ h1, h2, h3, p, a {
     bottom: 2rem;
     display: flex;
     justify-content: space-between; }
-    /* line 264, sass/3-sections/project.sass */
+    /* line 277, sass/3-sections/project.sass */
     .project-wrapper .project-control .p-control {
       width: 50px;
       height: 23px;
       background-repeat: no-repeat;
       opacity: .5;
       cursor: pointer; }
-      /* line 271, sass/3-sections/project.sass */
+      /* line 284, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control.back {
         background-image: url(../images/hand_point-left.svg); }
-      /* line 273, sass/3-sections/project.sass */
+      /* line 286, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control.forward {
         background-image: url(../images/hand_point-right.svg); }
-      /* line 275, sass/3-sections/project.sass */
+      /* line 288, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control:hover {
         opacity: 1; }

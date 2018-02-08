@@ -27,7 +27,7 @@ $(document).ready(function(){
       $gal.addClass('opened');
     }
   }
-  
+
   $(document).keydown(function(event) {
       if((event.keyCode == 27) && $gal.hasClass('opened')) {
         event.preventDefault();
