@@ -57,6 +57,8 @@ h1, h2, h3, p, a
 .breadcrumbs-wrapper
   height: 50px
   padding: 1rem 0
+  display: flex
+  justify-content: space-between
   .breadcrumbs
     text-transform: uppercase
     margin-bottom: 0
@@ -88,6 +90,11 @@ h1, h2, h3, p, a
         &:hover
           color: #555
 
+  .update-title
+    margin-right: 200px
+
+    &.hidden
+      display: none
 
 .project-wrapper
 
@@ -112,6 +119,7 @@ h1, h2, h3, p, a
 
       margin: 0
       padding-left: 0
+      width: 100%
 
       &.unordered
         list-style: none
@@ -123,6 +131,11 @@ h1, h2, h3, p, a
         font-size: 1.4rem
 
       li
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+        width: 100%
         h1, a
 
           text-decoration: none
@@ -130,6 +143,10 @@ h1, h2, h3, p, a
 
           &:hover
             color: darken($project-title-color, 30%)
+
+        .update
+          padding-right: 200px
+          color: $red
                                                           // TEXT LAYOUT
     .project-text
       padding: 0 20% 0 3px

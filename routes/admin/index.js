@@ -7,8 +7,21 @@ var Image  = mongoose.model( 'Image' );
 var multer = require('multer');
 var upload = multer({ dest: 'public/uploads/' });
 var latinize = require('latinize');
+var dateFormat = require('dateformat')
 
-
+dateFormat.i18n = {
+  dayNames: [
+    'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+  ],
+  monthNames: [
+    'Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez',
+    'Jänner', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
+  ],
+  timeNames: [
+    'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+  ]
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -233,13 +246,18 @@ router.post('/save_all', function(req, res) {
   var infoHtml = marked(info);
   var layout = body.layout;
   var orderedList = body.orderedList;
+  var showUpdate = body.showUpdate;
+  var setUpdate = body.setUpdate;
+  var ownUpdate = body.ownUpdate;
   var latName = body.menuname;
   var visible = body.visible;
   var msg = '';
   var ObjectId = 'ObjectId("'+id+'")';
 
-
-
+  var now = new Date().now;
+  var update = dateFormat(now, 'd. mmmm yyyy');
+  var ownUpdatePretty = dateFormat(ownUpdate, 'd. mmmm yyyy');
+  console.log(update, ownUpdate);
   Project.findById(id, function(err, project) {
     project.title = title;
     project.subtitle = subtitle;
@@ -249,6 +267,11 @@ router.post('/save_all', function(req, res) {
     project.infoHtml = infoHtml;
     project.layout = layout;
     project.orderedList = orderedList;
+    project.showUpdate = showUpdate;
+    project.update = update;
+    project.setUpdate = setUpdate;
+    project.ownUpdate = ownUpdate;
+    project.ownUpdatePretty = ownUpdatePretty;
     project.latName = latName;
     project.visible = visible;
     if (body.namechanged) {
@@ -269,6 +292,10 @@ router.post('/save_all', function(req, res) {
             child.descMU = description;
             child.descHtml = descHtml;
             child.layout = layout;
+            child.showUpdate = showUpdate;
+            child.update = update;
+            child.setUpdate = setUpdate;
+            child.ownUpdate = ownUpdate;
             child.latName = latName;
             child.visible = visible;
           }

@@ -15,18 +15,20 @@ var delay = (function(){
 })();
 
 
-//////////////////////////////////////////////// INDICATE active child elements when menu folded
 
 $(document).ready(function() {
+//////////////////////////////////////////////// INDICATE active child elements when menu folded
+
   var $active = $('.project-list').find('.active');
   if ($active) {
 
     $active.parents('.li-container').parents('.li-container').each(function(i, obj) {
       $(obj).addClass('hasActiveChild');
     })
-
-
   }
+
+
+
 });
 
 /////////////////////////////////////////////// CTRL-S/COMMAND-S to save project
@@ -65,24 +67,6 @@ $(function() {
       });
     }
   });
-  // $(".sortable").on('sortupdate', function(event, ui){
-  //   var ul = ui.item.parent();
-  //   var dataObj = { };
-  //   var projectId;
-  //   ul.children('.li-container').each(function(i, ui) {
-  //     var li = $(this);
-  //     projectId = li.attr('id');
-  //     dataObj['position' + projectId] = i;
-  //   });
-  //   console.log(dataObj);
-  //   // $.ajax({
-  //   //   url: '/admin/projectsort',
-  //   //   type: 'post',
-  //   //   data: dataObj
-  //   // }).done(function() {
-  //   //   // location.reload();
-  //   // });
-  // })
 
 });
 /////////////////////////// ERROR HANDLING
@@ -283,12 +267,15 @@ function saveAll() {
     var info = $('#info').val();
     var layout = $('input[name=layout]:checked').val();
     var orderedList = $('#listtype').is(':checked');
+    var showUpdate = $('.show-update').is(':checked');
+    var setUpdate = $('.set-update').is(':checked');
+    var ownUpdate = $('.date-picker').val();
+
     var menuname = $('#menuname').val();
     var visible = $('#visible-check').is(':checked');
 
     var $loadingWrapper = $('.loading-wrapper');
     var $loadingScreen = $('.loading-screen');
-    console.log(oldName);
     var body = {
       id            : id,
       title         : title,
@@ -298,6 +285,9 @@ function saveAll() {
       info          : info,
       layout        : layout,
       orderedList   : orderedList,
+      showUpdate    : showUpdate,
+      setUpdate     : setUpdate,
+      ownUpdate     : ownUpdate,
       menuname      : menuname,
       visible       : visible
     };
@@ -317,7 +307,7 @@ function saveAll() {
         }
         $loadingScreen.addClass('success').delay(100).queue(function(next) {
 
-          $loadingWrapper.fadeTo(1800,0, function() {
+          $loadingWrapper.fadeTo(1000,0, function() {
 
             $(this).removeClass('show');
           });

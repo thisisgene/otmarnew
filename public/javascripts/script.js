@@ -12,14 +12,18 @@ function changeImage(direction) {
   }
 
 }
-///////////////////////////////////// IMAGE GALLERY
-
-
-
-
-
 
 $(document).ready(function(){
+
+  ////////////////////////////////////////////// SHOW OR HIDE update title
+
+  if (!$('.update').length) {
+    $('.update-title').addClass('hidden');
+  }
+
+
+  ///////////////////////////////////// IMAGE GALLERY
+
   $gal = $('.image-gallery');
 
   function openGallery() {

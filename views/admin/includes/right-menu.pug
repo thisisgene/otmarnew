@@ -17,11 +17,22 @@
         .layout-label
           label(for='option-3')
           span NUR MENÜPUNKT
-    .listtype-container
-      input#listtype(type='checkbox' checked=currentProject.orderedList)
-      .listtype-label
-        label(for='listtype')
-        span Nummerierte Liste
+
+    .update-container
+      .update__show-update
+        input.show-update(type='checkbox', checked=currentProject.showUpdate)
+        span Update-Datum anzeigen
+        .update__choose-date
+          input.set-update(type='checkbox', checked=currentProject.setUpdate)
+          span Datum selbst wählen
+
+          input.date-picker(type='date', checked=currentProject.ownUpdate, value= currentProject.ownUpdate)
+
+    //.listtype-container
+      //  input#listtype(type='checkbox' checked=currentProject.orderedList)
+      //  .listtype-label
+      //    label(for='listtype')
+      //    span Nummerierte Liste
 
     .menuname-container
       span.menuname-label URL-Name:

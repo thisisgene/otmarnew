@@ -2,9 +2,9 @@ extends ../layout
 
 block content
   include ../includes/header
-
   .breadcrumbs-wrapper
     include ../includes/breadcrumbs
+    .update-title: span Zuletzt geändert
 
   .project-wrapper
 
@@ -12,18 +12,14 @@ block content
       h1.main-title= project.name
 
     .project-main.col.col-8
-      if (!project.orderedList)
-        ul.sub-list.unordered
-          each child in project.children
+      ul.sub-list.unordered
 
-            if (child.visible && !child.deleted)
-              li
-                a(href= child.latName)
-                  h1.main-title= child.name
-      else
-        ol.sub-list.ordered
-          each child in project.children
+        each child in project.children
 
-            if (child.visible && !child.deleted)
-              li
-                a.main-title(href= child.latName)= child.name
+          if (child.visible && !child.deleted)
+            li
+              a(href= child.latName)
+                h1.main-title= child.name
+              if (child.showUpdate)
+                .update
+                  span= (child.setUpdate ? child.ownUpdatePretty : child.update)
