@@ -222,82 +222,83 @@ h1, h2, h3, p, a {
     padding-right: 20px; }
     /* line 114, sass/3-sections/project.sass */
     .project-wrapper .project-left img {
-      max-width: 80%; }
-  /* line 117, sass/3-sections/project.sass */
+      max-width: 80%;
+      max-height: 340px; }
+  /* line 118, sass/3-sections/project.sass */
   .project-wrapper .project-main {
     display: flex;
     flex-direction: row; }
-    /* line 121, sass/3-sections/project.sass */
+    /* line 122, sass/3-sections/project.sass */
     .project-wrapper .project-main .sub-list {
       margin: 0;
       padding-left: 0;
       width: 100%; }
-      /* line 127, sass/3-sections/project.sass */
+      /* line 128, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list.unordered {
         list-style: none; }
-      /* line 131, sass/3-sections/project.sass */
+      /* line 132, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list.ordered {
         list-style: decimal;
         font-size: 1.4rem; }
-      /* line 136, sass/3-sections/project.sass */
+      /* line 137, sass/3-sections/project.sass */
       .project-wrapper .project-main .sub-list li {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         width: 100%; }
-        /* line 142, sass/3-sections/project.sass */
+        /* line 143, sass/3-sections/project.sass */
         .project-wrapper .project-main .sub-list li h1, .project-wrapper .project-main .sub-list li a {
           text-decoration: none;
           color: #4a4a4a; }
-          /* line 147, sass/3-sections/project.sass */
+          /* line 148, sass/3-sections/project.sass */
           .project-wrapper .project-main .sub-list li h1:hover, .project-wrapper .project-main .sub-list li a:hover {
             color: black; }
-        /* line 150, sass/3-sections/project.sass */
+        /* line 151, sass/3-sections/project.sass */
         .project-wrapper .project-main .sub-list li .update {
           padding-right: 200px;
           color: #DB2633; }
-    /* line 154, sass/3-sections/project.sass */
+    /* line 155, sass/3-sections/project.sass */
     .project-wrapper .project-main .project-text {
       padding: 0 20% 0 3px; }
-      /* line 156, sass/3-sections/project.sass */
+      /* line 157, sass/3-sections/project.sass */
       .project-wrapper .project-main .project-text h1, .project-wrapper .project-main .project-text h2, .project-wrapper .project-main .project-text h3 {
         margin-top: 0;
         clear: both;
         line-height: 70%; }
-      /* line 160, sass/3-sections/project.sass */
+      /* line 161, sass/3-sections/project.sass */
       .project-wrapper .project-main .project-text p {
         font-size: 1.2rem;
         line-height: 1.2em;
         margin: 0 0 1.6rem;
         text-align: justify;
         clear: both; }
-        /* line 167, sass/3-sections/project.sass */
+        /* line 168, sass/3-sections/project.sass */
         .project-wrapper .project-main .project-text p:first-child {
           margin: 0; }
-      /* line 170, sass/3-sections/project.sass */
+      /* line 171, sass/3-sections/project.sass */
       .project-wrapper .project-main .project-text img {
         float: right;
         margin: 1rem 0 1rem 1rem;
         max-height: 80vh; }
-    /* line 177, sass/3-sections/project.sass */
+    /* line 178, sass/3-sections/project.sass */
     .project-wrapper .project-main .project-right {
       padding-left: 1rem; }
-      /* line 180, sass/3-sections/project.sass */
+      /* line 181, sass/3-sections/project.sass */
       .project-wrapper .project-main .project-right .gal-indicator {
         cursor: pointer;
         opacity: .8;
         margin-bottom: 2rem; }
-        /* line 185, sass/3-sections/project.sass */
+        /* line 186, sass/3-sections/project.sass */
         .project-wrapper .project-main .project-right .gal-indicator:hover {
           opacity: 1; }
-      /* line 189, sass/3-sections/project.sass */
+      /* line 190, sass/3-sections/project.sass */
       .project-wrapper .project-main .project-right .chapter-container a {
         color: #888; }
-        /* line 192, sass/3-sections/project.sass */
+        /* line 193, sass/3-sections/project.sass */
         .project-wrapper .project-main .project-right .chapter-container a:hover {
           color: #555; }
-    /* line 195, sass/3-sections/project.sass */
+    /* line 196, sass/3-sections/project.sass */
     .project-wrapper .project-main .image-gallery {
       z-index: 1;
       width: 360px;
@@ -305,28 +306,28 @@ h1, h2, h3, p, a {
       flex-direction: row;
       align-items: flex-start;
       justify-content: flex-start; }
-      /* line 210, sass/3-sections/project.sass */
+      /* line 211, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .close-button {
         display: none; }
-      /* line 213, sass/3-sections/project.sass */
+      /* line 214, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery .image {
         position: absolute;
         opacity: 0;
         transition: opacity 400ms ease-in-out; }
-        /* line 219, sass/3-sections/project.sass */
+        /* line 220, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery .image img {
           cursor: pointer;
           box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
           max-width: 360px;
           max-height: 500px; }
-        /* line 225, sass/3-sections/project.sass */
+        /* line 226, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery .image.gal-img {
           left: -100000px; }
-        /* line 228, sass/3-sections/project.sass */
+        /* line 229, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery .image.img-active {
           opacity: 1;
           left: auto; }
-      /* line 235, sass/3-sections/project.sass */
+      /* line 236, sass/3-sections/project.sass */
       .project-wrapper .project-main .image-gallery.opened {
         position: absolute;
         left: 0;
@@ -338,30 +339,30 @@ h1, h2, h3, p, a {
         align-items: center;
         justify-content: center;
         display: flex; }
-        /* line 248, sass/3-sections/project.sass */
+        /* line 249, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gal-img, .project-wrapper .project-main .image-gallery.opened .img-active {
           left: auto;
           display: flex;
           justify-content: center;
           align-items: center; }
-          /* line 254, sass/3-sections/project.sass */
+          /* line 255, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gal-img img, .project-wrapper .project-main .image-gallery.opened .img-active img {
             max-height: 95vh;
             max-width: 80vw; }
-        /* line 258, sass/3-sections/project.sass */
+        /* line 259, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .close-button {
           display: block;
           position: fixed;
           background: transparent;
           top: 10px;
           right: 10px; }
-        /* line 265, sass/3-sections/project.sass */
+        /* line 266, sass/3-sections/project.sass */
         .project-wrapper .project-main .image-gallery.opened .gallery-navigation {
           width: 90%;
           display: flex;
           align-items: center;
           justify-content: space-between; }
-          /* line 271, sass/3-sections/project.sass */
+          /* line 272, sass/3-sections/project.sass */
           .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control {
             z-index: 1;
             width: 50px;
@@ -369,20 +370,20 @@ h1, h2, h3, p, a {
             background-repeat: no-repeat;
             opacity: .8;
             cursor: pointer; }
-            /* line 279, sass/3-sections/project.sass */
+            /* line 280, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.back {
               background-image: url(../images/hand_point-left.svg); }
-            /* line 281, sass/3-sections/project.sass */
+            /* line 282, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.forward {
               background-image: url(../images/hand_point-right.svg); }
-            /* line 283, sass/3-sections/project.sass */
+            /* line 284, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control:hover {
               opacity: 1; }
-            /* line 286, sass/3-sections/project.sass */
+            /* line 287, sass/3-sections/project.sass */
             .project-wrapper .project-main .image-gallery.opened .gallery-navigation .gal-control.disable {
               opacity: 0;
               cursor: default; }
-  /* line 289, sass/3-sections/project.sass */
+  /* line 290, sass/3-sections/project.sass */
   .project-wrapper .project-control {
     position: fixed;
     left: 6%;
@@ -390,19 +391,19 @@ h1, h2, h3, p, a {
     bottom: 2rem;
     display: flex;
     justify-content: space-between; }
-    /* line 297, sass/3-sections/project.sass */
+    /* line 298, sass/3-sections/project.sass */
     .project-wrapper .project-control .p-control {
       width: 50px;
       height: 23px;
       background-repeat: no-repeat;
       opacity: .5;
       cursor: pointer; }
-      /* line 304, sass/3-sections/project.sass */
+      /* line 305, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control.back {
         background-image: url(../images/hand_point-left.svg); }
-      /* line 306, sass/3-sections/project.sass */
+      /* line 307, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control.forward {
         background-image: url(../images/hand_point-right.svg); }
-      /* line 308, sass/3-sections/project.sass */
+      /* line 309, sass/3-sections/project.sass */
       .project-wrapper .project-control .p-control:hover {
         opacity: 1; }
