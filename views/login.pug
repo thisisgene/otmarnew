@@ -1,9 +1,21 @@
-extends layout
+extends admin/layout
 
 block content
-  h1 Otmar Rychlik Admin
-
-  form(action='/login/authenticate', method='post')
-    input(type='text', name='uname')
-    input(type='password', name='upass')
-    input(type='submit')
+  .navbar-container
+    a(href='/admin').nav-section: h1.main-title OTMAR RYCHLIK
+    h1.nav-section.sub-title ADMINBEREICH
+    .logging-area.nav-section
+      form(action='/login/authenticate', method='post')
+        input(type='text', name='uname')
+        input(type='password', name='upass')
+        button.submit(type='submit')
+  .main-container
+    if(messages.wrong_user)
+      p.wronguser= messages.wrong_user
+    if(messages.logout)
+      p.logout= messages.logout
+    else
+      .welcome-arrow
+      .welcome
+        h1 WILKOMMEN
+        h2 Zum Anfangen einloggen!

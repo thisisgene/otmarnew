@@ -8,6 +8,16 @@
   -ms-user-select: none
   user-select: none
 
+@keyframes blink
+  0%
+    filter: drop-shadow(0 0 0px rgba(black, .5))
+  50%
+    transform: translate(15px, -20px) scale(1.02)
+    filter: drop-shadow(-15px 15px 4px rgba(black, .2))
+  100%
+    //transform:
+    filter: drop-shadow(0 0 0px rgba(black, .5))
+
 html, body
   margin: 0
   padding: 0
@@ -50,6 +60,9 @@ body
     align-items: center
     padding: .5rem 1rem
 
+    .nav-section
+      width: 33%
+
     a
       text-decoration: none
     h1
@@ -62,6 +75,7 @@ body
         color: white
       &.sub-title
         font-size: 1.4rem
+        text-align: center
 
 
 
@@ -76,6 +90,22 @@ body
           margin-left: 5px
           text-transform: uppercase
           color: #4ca0f5
+      form
+        display: flex
+        margin: 0
+        .submit
+          margin-left: 15px
+          display: block
+          width: 20px
+          height: 20px
+          background: url(../images/login_sign.svg)
+          opacity: .8
+          transition: transform 200ms ease-in-out
+
+          &:hover
+            opacity: 1
+            filter: drop-shadow(0 0 4px rgba(150, 150, 150, .2))
+            transform: scale(1.2)
 
       .log-out
         margin-left: 15px
@@ -97,6 +127,46 @@ body
     display: flex
     flex-direction: row
     height: calc(100% - 50px)
+
+    .wronguser
+      color: red
+      position: absolute
+      right: 0px
+      background: #eee
+      padding: 4px 110px
+
+    .welcome-arrow
+      background:
+        image: url(../images/welcome_arrow.png)
+      width: 105px
+      height: 120px
+      position: absolute
+      right: 420px
+      top: 100px
+      //filter: drop-shadow(0 0 0px rgba(black, .5))
+      transform-origin: bottom left
+      animation: blink 1000ms ease-in-out infinite
+    .welcome
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      width: 100%
+      h1
+        color: #777
+        font:
+          family: "Open Sans Condensed", sans-serif
+          size: 8rem
+          weight: lighter
+        line-height: 1
+      h2
+        font:
+          family: "Open Sans Condensed", sans-serif
+          size: 4rem
+          weight: lighter
+        text-transform: uppercase
+        color: #6ad5cb
+
     .main-wrapper
       height: 100%
       border-left: 1px solid #f4f4f4

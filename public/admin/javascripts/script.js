@@ -266,7 +266,9 @@ function saveAll() {
     var description = $('#description').val();
     var info = $('#info').val();
     var layout = $('input[name=layout]:checked').val();
-    var orderedList = $('#listtype').is(':checked');
+    var subAsChapters = $('.sub-as-chapters').is(':checked');
+    console.log(subAsChapters);
+    // var orderedList = $('#listtype').is(':checked');
     var showUpdate = $('.show-update').is(':checked');
     var setUpdate = $('.set-update').is(':checked');
     var ownUpdate = $('.date-picker').val();
@@ -284,7 +286,7 @@ function saveAll() {
       description   : description,
       info          : info,
       layout        : layout,
-      orderedList   : orderedList,
+      subAsChapters : subAsChapters,
       showUpdate    : showUpdate,
       setUpdate     : setUpdate,
       ownUpdate     : ownUpdate,

@@ -8,8 +8,8 @@ block content
     h1.sub-title ADMINBEREICH
     .logging-area
       p LOGGED IN AS
-        span.user Username
-      a.log-out(href='')
+        span.user= user
+      a.log-out(href='/logout')
 
   .main-container.row
     .main-wrapper.main-wrapper--left.col.col-3

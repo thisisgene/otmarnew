@@ -200,7 +200,8 @@ h1, h2, h3, p, a {
           color: #555; }
   /* line 93, sass/3-sections/project.sass */
   .breadcrumbs-wrapper .update-title {
-    margin-right: 200px; }
+    margin-right: 200px;
+    color: #888; }
     /* line 96, sass/3-sections/project.sass */
     .breadcrumbs-wrapper .update-title.hidden {
       display: none; }

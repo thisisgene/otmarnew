@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('express-flash');
 
 var session = require('express-session');
 
@@ -33,21 +34,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false,
-  cookie: { secure: true }
+  saveUninitialized: false
 }));
+app.use(flash());
 
 function checkAuth(req, res, next) {
-  if (!req.session.user_id) {
+  if (!req.session.user) {
     res.redirect("/login");
-    console.log(req.session);
+    console.log('not logged in');
   } else {
+    console.log(req.session.user);
     next();
   }
 }
 
-// app.all("/admin", checkAuth);
-// app.all("/admin/*", checkAuth);
+app.all("/admin", checkAuth);
+app.all("/admin/*", checkAuth);
 
 app.use('/', index);
 app.use('/users', users);
@@ -57,13 +59,21 @@ app.post('/login/authenticate', function (req, res) {
   var post = req.body;
   console.log(post.uname, post.upass);
   if (post.uname == 'admin' && post.upass == 'otmar') {
-    req.session.user_id = "admin";
+    req.session.user = "admin";
     console.log('right', req.session);
     res.redirect('/admin');
   } else {
-    console.log('wrong');
+    req.flash('wrong_user', 'Falscher Username oder Passwort.');
     res.redirect('/login');
   }
+});
+
+app.get('/logout', function(req, res) {
+  if (req.session.user) {
+    req.session.destroy();
+    res.redirect('/login');
+  }
+
 });
 
 // catch 404 and forward to error handler

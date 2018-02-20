@@ -28,7 +28,8 @@ router.get('/', function(req, res, next) {
   Project.find().sort('position').exec(function(err, projects) {
     res.render('admin/index', {
       title: 'Admin',
-      projects: projects
+      projects: projects,
+      user: req.session.user
     });
 
   });
@@ -73,7 +74,9 @@ router.get('/project/:id', function(req, res, next) {
     res.render('admin/index', {
       title: 'Admin',
       projects: projects,
-      currentProjectId: id
+      currentProjectId: id,
+      user: req.session.user
+
 
 
     })
@@ -245,6 +248,7 @@ router.post('/save_all', function(req, res) {
   var info = body.info;
   var infoHtml = marked(info);
   var layout = body.layout;
+  var subAsChapters = body.subAsChapters;
   var orderedList = body.orderedList;
   var showUpdate = body.showUpdate;
   var setUpdate = body.setUpdate;
@@ -266,7 +270,7 @@ router.post('/save_all', function(req, res) {
     project.infoMU = info;
     project.infoHtml = infoHtml;
     project.layout = layout;
-    project.orderedList = orderedList;
+    project.subAsChapters = subAsChapters;
     project.showUpdate = showUpdate;
     project.update = update;
     project.setUpdate = setUpdate;

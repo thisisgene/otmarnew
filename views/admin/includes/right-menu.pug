@@ -4,9 +4,13 @@
     .layout-container
       .layout.layout-img
         input#option-1(type='radio', name='layout', value='layout_img', checked=(currentProject.layout==='layout_img'))
+
         .layout-label
           label(for='option-1')
           span LAYOUT MIT BILD
+        .layout-img__sub-container
+          input.sub-as-chapters(type='checkbox', checked=currentProject.subAsChapters)
+          span Submenüs als Kapitel
       .layout.layout-txt
         input#option-2(type='radio', name='layout', value='layout_txt', checked=(currentProject.layout==='layout_txt'))
         .layout-label
