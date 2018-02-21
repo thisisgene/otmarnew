@@ -296,14 +296,18 @@ router.post('/save_all', function(req, res) {
             child.descMU = description;
             child.descHtml = descHtml;
             child.layout = layout;
+            child.subAsChapters = subAsChapters;
             child.showUpdate = showUpdate;
             child.update = update;
             child.setUpdate = setUpdate;
             child.ownUpdate = ownUpdate;
+            child.ownUpdatePretty = ownUpdatePretty;
             child.latName = latName;
             child.visible = visible;
+            console.log('adfsghfjghdf')
           }
         }
+
         parent.save();
 
       });
