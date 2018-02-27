@@ -1,14 +1,13 @@
 /////////////////////////////////////// TRASH
 
 $('#empty-trash').click(function(e) {
-  $('.trash-project').each(function(index, project) {
-    var id = $(project).attr('id');
-    var body = {id: id};
-    console.log(id);
-    $.post('/admin/remove_project', body, function(msg) {
-      if (msg=='success') $(project).remove();
-    })
+
+  $.get('/admin/remove_project', function(msg) {
+    if (msg=='success') {
+      $(".trash-project-list").remove();
+    }
   });
+
 });
 
 function toggleTrash(){

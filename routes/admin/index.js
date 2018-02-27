@@ -96,7 +96,7 @@ router.get('/project/:id', function(req, res, next) {
       title: 'Admin',
       projects: tree,
       currentProjectId: id,
-      thisProject: currentProject,        ////// <-- FIXME: Not sent to client??
+      thisProject: currentProject,
       ancestors: ancestorPath,
       user: req.session.user
     }, console.log(currentProject.name));
@@ -166,6 +166,19 @@ router.get('/delete/:id', function(req, res) {
 
 
 ////////////////////////////////// REMOVE PROJECT PERMANENTLY //////// FIXME: Recursive headf...
+
+async function removeAllDeletedProjects() {
+  let projectsToRemove = await Project.find({deleted: true});
+  for (let project of projectsToRemove) {
+    project.remove();
+  }
+  return 'success';
+}
+
+router.get('/remove_project', async function(req, res) {
+  let msg = await removeAllDeletedProjects();
+  res.send(msg);
+});
 
 removeProject = function(p) {
   if (p.hasChildren) {

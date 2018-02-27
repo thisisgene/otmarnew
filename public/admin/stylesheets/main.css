@@ -844,7 +844,7 @@ body {
     transform: translateX(0);
     width: 100vw;
     padding-left: 50vw;
-    background: rgba(100, 100, 100, 0.3); }
+    background: rgba(100, 100, 100, 0.2); }
     /* line 24, sass/admin/3-sections/trash.sass */
     .trash-wrapper.show-trash #trash .trash-compartment {
       box-shadow: -4px 0 3px rgba(0, 0, 0, 0.2); }
