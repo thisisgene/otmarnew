@@ -25,23 +25,22 @@ dateFormat.i18n = {
 };
 
 async function fetchProject(id) {
-  let project = await Project.findById(id);
-  return project;
+  return await Project.findById(id);
 }
 
-async function getAllChildren(projectId) {
-  let children = await Project.find({parentId: projectId}).sort('position');
-  return children;
+async function getAllChildren(projectId, query) {
+  return await Project.find({$and: [{parentId: projectId}, query]}).sort('position');
 }
 
-async function buildTree(projects) {
+async function buildTree(projects, query) {
   let tree = [];
   for (let project of projects) {
+    console.log(query +": " + project.deleted);
     let hasChildren = false;
-    let children = await getAllChildren(project._id);
+    let children = await getAllChildren(project._id, query);
     if (children.length > 0) {
       hasChildren = true;
-      children = await buildTree(children)
+      children = await buildTree(children, query)
     }
     let data = {
       name : project.name,
@@ -59,24 +58,31 @@ async function buildTree(projects) {
   return tree;
 }
 
+async function getProjectTree(query1, query2) {
+  let projects = await Project.find({$and: [query1, query2]}).sort('position');
+
+  return await buildTree(projects, query2);
+}
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  Project.find({parentId:"rootProject"}).sort('position').exec(async function(err, projects) {
-    let tree = await buildTree(projects);
-    res.render('admin/index', {
-      title: 'Admin',
-      projects: tree,
-      user: req.session.user
-    });
+router.get('/', async function(req, res, next) {
+
+  let regTree = await getProjectTree({parentId:"rootProject"}, {deleted: false});
+  let delTree = await getProjectTree({parentId:"rootProject"}, {});
+  console.log("deltree: "+delTree);
+  res.render('admin/index', {
+    title: 'Admin',
+    projects: regTree,
+    delPros: delTree,
+    user: req.session.user
   });
+
 });
 
 
-// GET Project
+// Build Path for bread crumbs
 
 async function buildPath(projectLeafId, path = []) {
-  console.log(projectLeafId);
   let project = await Project.findById(projectLeafId);
   path.unshift(project);
   if (project.parentId != null && project.parentId !== 'rootProject') {
@@ -85,22 +91,24 @@ async function buildPath(projectLeafId, path = []) {
   return path;
 }
 
-router.get('/project/:id', function(req, res, next) {
+router.get('/project/:id', async function(req, res, next) {
   const id = req.params.id;
 
-  Project.find({parentId:"rootProject"}).sort('position').exec(async function(err, projects) {
-    let tree = await buildTree(projects);
-    let ancestorPath = await buildPath(id);
-    let currentProject = await fetchProject(id);
-    res.render('admin/index', {
-      title: 'Admin',
-      projects: tree,
-      currentProjectId: id,
-      thisProject: currentProject,
-      ancestors: ancestorPath,
-      user: req.session.user
-    }, console.log(currentProject.name));
+
+  let regTree = await getProjectTree({parentId:"rootProject"}, {deleted: false});
+  let delTree = await getProjectTree({parentId:"rootProject"}, {});
+  let ancestorPath = await buildPath(id);
+  let currentProject = await fetchProject(id);
+  res.render('admin/index', {
+    title: 'Admin',
+    projects: regTree,
+    delPros: delTree,
+    currentProjectId: id,
+    thisProject: currentProject,
+    ancestors: ancestorPath,
+    user: req.session.user
   });
+
 });
 
 //////////////////////////////////// CREATE PROJECT
@@ -147,7 +155,7 @@ async function deleteProject(projectId)  {
   await project.save();
 
 
-  let children = await getAllChildren(projectId);
+  let children = await getAllChildren(projectId, {});
   if (children.length > 0) {
     for (var child of children) {
       await deleteProject(child._id);

@@ -263,10 +263,11 @@ body {
     position: absolute;
     top: 85px;
     overflow-y: auto;
+    overflow-x: hidden;
     margin-top: 2rem;
     width: calc(100% - 2rem);
     height: calc(100% - 130px); }
-    /* line 27, sass/admin/3-sections/left-menu.sass */
+    /* line 28, sass/admin/3-sections/left-menu.sass */
     #left-menu .project-list .list-start {
       display: block;
       text-decoration: none;
@@ -275,47 +276,50 @@ body {
       color: #888;
       text-transform: uppercase;
       font-size: .9rem; }
-    /* line 36, sass/admin/3-sections/left-menu.sass */
+      /* line 37, sass/admin/3-sections/left-menu.sass */
+      #left-menu .project-list .list-start.active {
+        background: rgba(99, 190, 255, 0.3); }
+    /* line 40, sass/admin/3-sections/left-menu.sass */
     #left-menu .project-list ul {
       border-left: 1px dotted #ddd;
       background: rgba(200, 220, 200, 0.1); }
-      /* line 39, sass/admin/3-sections/left-menu.sass */
+      /* line 43, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list ul.sub-list {
         display: none; }
-      /* line 42, sass/admin/3-sections/left-menu.sass */
+      /* line 46, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list ul .li-container {
         padding-left: 5px; }
-        /* line 45, sass/admin/3-sections/left-menu.sass */
+        /* line 49, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container.hasActiveChild {
           border-left: 2px solid rgba(99, 190, 255, 0.7); }
-        /* line 48, sass/admin/3-sections/left-menu.sass */
+        /* line 52, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container .li-wrapper {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           background: rgba(200, 200, 200, 0.1);
           margin: 2px 0; }
-          /* line 55, sass/admin/3-sections/left-menu.sass */
+          /* line 59, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul .li-container .li-wrapper:hover {
             color: #333;
             background: rgba(68, 68, 68, 0.1); }
-          /* line 59, sass/admin/3-sections/left-menu.sass */
+          /* line 63, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul .li-container .li-wrapper.active {
             background: rgba(99, 190, 255, 0.3); }
-            /* line 60, sass/admin/3-sections/left-menu.sass */
+            /* line 64, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper.active span {
               color: #111; }
-          /* line 65, sass/admin/3-sections/left-menu.sass */
+          /* line 69, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul .li-container .li-wrapper .menu-link {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center; }
-            /* line 71, sass/admin/3-sections/left-menu.sass */
+            /* line 75, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper .menu-link a {
               color: #777;
               text-decoration: none; }
-            /* line 75, sass/admin/3-sections/left-menu.sass */
+            /* line 79, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper .menu-link .nothing {
               opacity: .5;
               margin-right: 3px;
@@ -326,7 +330,7 @@ body {
               background-repeat: no-repeat;
               background-size: cover;
               cursor: default; }
-            /* line 86, sass/admin/3-sections/left-menu.sass */
+            /* line 90, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper .menu-link .folder {
               opacity: .5;
               margin-right: 3px;
@@ -337,7 +341,7 @@ body {
               background-repeat: no-repeat;
               background-size: cover;
               cursor: pointer; }
-          /* line 99, sass/admin/3-sections/left-menu.sass */
+          /* line 103, sass/admin/3-sections/left-menu.sass */
           #left-menu .project-list ul .li-container .li-wrapper .delete {
             display: block;
             width: 12px;
@@ -347,16 +351,16 @@ body {
             background-image: url(../images/trash.svg);
             background-position: center;
             background-repeat: no-repeat; }
-            /* line 109, sass/admin/3-sections/left-menu.sass */
+            /* line 113, sass/admin/3-sections/left-menu.sass */
             #left-menu .project-list ul .li-container .li-wrapper .delete:hover {
               filter: grayscale(0); }
-        /* line 116, sass/admin/3-sections/left-menu.sass */
+        /* line 120, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container.unfold > .li-wrapper .menu-link .folder {
           background-position: -10px 0; }
-        /* line 119, sass/admin/3-sections/left-menu.sass */
+        /* line 123, sass/admin/3-sections/left-menu.sass */
         #left-menu .project-list ul .li-container.unfold > .sub-list {
           display: block; }
-      /* line 123, sass/admin/3-sections/left-menu.sass */
+      /* line 127, sass/admin/3-sections/left-menu.sass */
       #left-menu .project-list ul p {
         margin: 0;
         display: inline-block; }
@@ -917,12 +921,18 @@ body {
     .trash-wrapper #trash .trash-compartment h1 {
       color: white; }
     /* line 103, sass/admin/3-sections/trash.sass */
+    .trash-wrapper #trash .trash-compartment .trash-project-container #empty-trash {
+      cursor: pointer; }
+      /* line 105, sass/admin/3-sections/trash.sass */
+      .trash-wrapper #trash .trash-compartment .trash-project-container #empty-trash:hover {
+        color: #eee; }
+    /* line 108, sass/admin/3-sections/trash.sass */
     .trash-wrapper #trash .trash-compartment .trash-project-container ul {
       padding-left: 1rem; }
-      /* line 107, sass/admin/3-sections/trash.sass */
+      /* line 112, sass/admin/3-sections/trash.sass */
       .trash-wrapper #trash .trash-compartment .trash-project-container ul li.unsortable {
         color: #bbb; }
-      /* line 110, sass/admin/3-sections/trash.sass */
+      /* line 115, sass/admin/3-sections/trash.sass */
       .trash-wrapper #trash .trash-compartment .trash-project-container ul li.enabled {
         color: #333;
         cursor: pointer; }

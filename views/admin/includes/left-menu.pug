@@ -6,18 +6,18 @@ mixin parseProjects(projects)
       - linkClass = 'active'
     else
       - linkClass = ''
-    if (!project.deleted)
-      li(id=project.id, class=project.unfold ? 'unfold' : '').li-container
-        .li-wrapper(class=linkClass)
-          .menu-link
-            div(class=project.hasChildren ? 'folder' : 'nothing', onclick= project.hasChildren ? 'toggleFold(this)' : '')
-            a(href='/admin/project/' + project.id)
-              span.upper.small= project.name
-          a(href='/admin/delete/' + project.id).delete
-            img
-        if (project.hasChildren)
-          ul(id='list_'+project.id).unstyled.sub-list.sortable.connectedSortable
-            +parseProjects(project.children)
+    //if (!project.deleted)
+    li(id=project.id, class=project.unfold ? 'unfold' : '').li-container
+      .li-wrapper(class=linkClass)
+        .menu-link
+          div(class=(project.hasChildren ? 'folder' : 'nothing'), onclick= (project.hasChildren ? 'toggleFold(this)' : ''))
+          a(href='/admin/project/' + project.id)
+            span.upper.small= project.name
+        a(href='/admin/delete/' + project.id).delete
+          img
+      if (project.hasChildren)
+        ul(id='list_'+project.id).unstyled.sub-list.sortable.connectedSortable
+          +parseProjects(project.children)
 
 
 .left-container
@@ -26,12 +26,11 @@ mixin parseProjects(projects)
     .project-form
       form.form
         .form-item
-          //label Neues Projekt erstellen
           .append.w100
             input(type='text', name='project', data-whoid=currentProjectId)#project-name
-            button.button.outline Go
+            button.button.outline +
 
   .project-list
-    a(href='/admin').list-start Start
+    a(href='/admin', class=(currentProjectId ? '':'active')).list-start Hauptmenü
     ul.unstyled.sortable.connectedSortable.project-ul#main-list
       +parseProjects(projects)

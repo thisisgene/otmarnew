@@ -1,14 +1,14 @@
 mixin parseTrash(projects)
   each p in projects
-    if (p.children.length > 0 || p.deleted)
-      li(id=p.id, class=(p.deleted ? 'enabled' : 'unsortable')).li-container
-        .li-wrapper
 
-          span.upper.small= p.name
+    li(id=p.id, class=(p.deleted ? 'enabled' : 'unsortable')).li-container
+      .li-wrapper
 
-        if (p.hasChildren)
-          ul(id='list_'+p.id).unstyled.sub-trash-list.sortable.connectedSortable
-            +parseTrash(p.children)
+        span.upper.small= p.name
+
+      if (p.hasChildren)
+        ul(id='list_'+p.id).unstyled.sub-trash-list.sortable.connectedSortable
+          +parseTrash(p.children)
 
 
 .trash-handle(onclick='toggleTrash()')
@@ -20,7 +20,9 @@ mixin parseTrash(projects)
   .trash-project-container
 
     a#empty-trash Papierkorb leeren
+    hr
+    p Gelöschte Projekte zum Weiterarbeiten in die Menüliste ziehen:
 
     ul.trash-project-list.sortable.connect-sortable.unstyled
 
-      +parseTrash(projects)
+      +parseTrash(delPros)
