@@ -18,7 +18,8 @@
     "pug": "~2.0.0-rc.4",
     "serve-favicon": "~2.4.5",
     "string.prototype.startswith": "^0.2.0",
-    "express-flash": "^0.0.2"
+    "express-flash": "^0.0.2",
+    "slug": "^0.9.1"
   },
   "devDependencies": {
     "browser-sync": "^2.0.0",

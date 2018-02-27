@@ -51,7 +51,7 @@ router.get('/site/:name', function(req, res) {
         console.log(prevP);
 
         res.render('project/'+project_layout, {
-          title: 'Otmar Rychlick | ' + project.name,
+          title: 'Otmar Rychlik | ' + project.name,
           project: project,
           nextProject: nextP,
           prevProject: prevP

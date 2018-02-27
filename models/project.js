@@ -17,6 +17,7 @@ var ImageSchema = new mongoose.Schema({
 
 var ProjectSchema = new mongoose.Schema();
 ProjectSchema.add({
+
   name            : String,
   title           : String,
   subtitle        : String,
@@ -32,14 +33,10 @@ ProjectSchema.add({
   ownUpdatePretty : String,
   deleted         : Boolean,
   visible         : Boolean,
-  hasChildren     : Boolean,
   unfold          : Boolean,
-  childrenIds     : Array,
-  children        : [ProjectSchema],
   hasParent       : Boolean,
   parentId        : String,
   parentName      : String,
-  ancestors       : Array,
   layout          : String,
   subAsChapters   : Boolean,
   position        : String,
@@ -55,4 +52,6 @@ var Project = mongoose.model('Project', ProjectSchema);
 var Image = mongoose.model('Image', ImageSchema);
 
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/rychlik', {useMongoClient: true});
+mongoose.connect('mongodb://admin:otmarDB_adm2018@localhost/rychlik', {useMongoClient: true});
+
+// otmarDB_adm2018

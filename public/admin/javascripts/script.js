@@ -156,94 +156,73 @@ function showMsg(cat, content) {
 
 //////////////////////////////// FOLDING MENU
 
-$('.folder').on('click', function(event) {
-  $obj = $(this).closest('.li-container');
+function toggleFold(obj) {
+  $obj = $(obj).closest('.li-container');
 
   $obj.toggleClass('unfold');
 
   var unfold = $obj.hasClass('unfold');
-  // var $active = $obj.find('.active');
-  // if ($active) {
-  //   if (!unfold) {
-  //
-  //     $active.parents('.li-container').each(function(i, obj) {
-  //       $(obj).addClass('hasActiveChild');
-  //     })
-  //   }
-  //
-  // }
 
   var id = $obj.attr('id');
+  console.log(id, unfold);
   var body = {
     id: id,
     unfold: unfold
   };
-
   $.post('/admin/togglefold', body, function(msg) {
     console.log(msg);
   });
-});
+}
+
 
 //////////////////////////////// FORM SUBMITTING
+
+function createProject(list, body) {
+  $.post('/admin/create_project', body, function (data) {
+    list.append('<li class="li-container" id=' + data + '>\n' +
+      '  <div class="li-wrapper">\n' +
+      '    <div class="menu-link">\n' +
+      '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">' + body.name + '</span></a>\n' +
+      '    </div><a href="/admin/delete/' + data + '" class="delete"><img/></a>\n' +
+      '  </div>\n' +
+      '</li>'
+    );
+  });
+
+}
 
 $('.project-form form').on('submit', function(event) {
   event.preventDefault();
 
-  var $projectName = $('#project-name');
-  var name = $projectName.val();
-  var projectParentId = $projectName.data('whoid');
-  if (name!=='' && projectParentId == undefined) {
+  let $projectName = $('#project-name');
+  let name = $projectName.val();
+  let projectParentId = $projectName.data('whoid');
+  let $list = $('#main-list');
 
-    $.post('/admin/create_project', {name: name}, function (data) {
-      var $list = $('.project-list > .project-ul');
+  if (name!=='') {
+    if (projectParentId !== undefined) {
+      var $parent = $('#' + projectParentId);
+      var $sublist = $('#' + projectParentId + ' > .sub-list');
+      if (!$sublist.length) {
+        $parent.append('<ul class="unstyled sub-list sortable connect-sortable"></ul>');
+        $sublist = $('#' + projectParentId + ' > .sub-list');
 
-      $list.append('<li class="li-container" id='+data+'>\n' +
-        '  <div class="li-wrapper">\n' +
-        '    <div class="menu-link">\n' +
-        '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">'+ name +'</span></a>\n' +
-        '    </div><a href="/admin/delete/' + data + '" class="delete"><img/></a>\n' +
-        '  </div>\n' +
-        '</li>')
-
-
-
-    })
-  }
-  else if (name!=='' && projectParentId !== undefined) {
-    var $parent = $('#' + projectParentId);
-    var $list = $('#' + projectParentId + ' > .sub-list');
-    if (!$list.length) {
-      $parent.append('<ul class="unstyled sub-list sortable connect-sortable"></ul>');
-      $list = $list = $('#' + projectParentId + ' > .sub-list');
+      }
+      createProject($sublist, {name: name, parentId: projectParentId});
+      $('#' + projectParentId + ' > .li-wrapper > .menu-link > .nothing').addClass('folder').removeClass('nothing').click(toggleFold(this));
+      $('#' + projectParentId).addClass('unfold');
 
     }
-    $.post('/admin/create_sub_project', {name: name, parentId: projectParentId}, function (data) {
-      $list.append('<li class="li-container" id='+data+'>\n' +
-        '  <div class="li-wrapper">\n' +
-        '    <div class="menu-link">\n' +
-        '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">'+ name +'</span></a>\n' +
-        '    </div><a href="/admin/delete/' + data + '" class="delete"><img/></a>\n' +
-        '  </div>\n' +
-        '</li>');
-      $('#' + projectParentId + ' > .li-wrapper > .menu-link > .nothing').addClass('folder').removeClass('nothing').click(function() {
-        $obj = $(this).closest('.li-container');
+    else {
+      createProject($list, {name: name});
 
-        $obj.toggleClass('unfold');
+    }
 
-        var unfold = $obj.hasClass('unfold');
-        var id = $obj.attr('id');
-        var body = {
-          id: id,
-          unfold: unfold
-        };
 
-        $.post('/admin/togglefold', body, function(msg) {
-          console.log(msg);
-        });
-      });
-      $('#' + projectParentId).addClass('unfold');
-    })
   }
+
+
+
   $projectName.val('');
 
 });
@@ -500,15 +479,3 @@ function checkNameIsUnique(obj) {
 
 }
 
-/////////////////////////////////////// TRASH
-
-$('#empty-trash').click(function(e) {
-  $('.trash-project').each(function(index, project) {
-    var id = $(project).attr('id');
-    var body = {id: id};
-    console.log(id);
-    $.post('/admin/remove_project', body, function(msg) {
-      if (msg=='success') $(project).remove();
-    })
-  });
-});

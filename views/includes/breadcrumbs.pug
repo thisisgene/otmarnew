@@ -2,9 +2,9 @@ nav.breadcrumbs
   ul
     li.crumb-link: a(href='/') START
       //.home-link
-    if (project.ancestors)
+    if (ancestors)
 
-      each crumb in project.ancestors
+      each crumb in ancestors
         if (crumb.id == project.id)
           - break
         else

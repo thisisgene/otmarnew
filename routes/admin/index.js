@@ -1,13 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var marked = require('marked');
-var mongoose = require( 'mongoose' );
-var Project  = mongoose.model( 'Project' );
-var Image  = mongoose.model( 'Image' );
-var multer = require('multer');
-var upload = multer({ dest: 'public/uploads/' });
-var latinize = require('latinize');
-var dateFormat = require('dateformat')
+const express = require('express');
+const router = express.Router();
+const marked = require('marked');
+const mongoose = require( 'mongoose' );
+const Project  = mongoose.model( 'Project' );
+const Image  = mongoose.model( 'Image' );
+const multer = require('multer');
+const upload = multer({ dest: 'public/uploads/' });
+const slug = require('slug');
+const dateFormat = require('dateformat');
+
 
 dateFormat.i18n = {
   dayNames: [
@@ -23,90 +24,105 @@ dateFormat.i18n = {
   ]
 };
 
+async function fetchProject(id) {
+  let project = await Project.findById(id);
+  return project;
+}
+
+async function getAllChildren(projectId) {
+  let children = await Project.find({parentId: projectId, deleted: false});
+  return children;
+}
+
+async function buildTree(projects) {
+  let tree = [];
+  for (let project of projects) {
+    let hasChildren = false;
+    let children = await getAllChildren(project._id);
+    if (children.length > 0) {
+      hasChildren = true;
+      children = await buildTree(children)
+    }
+    let data = {
+      name : project.name,
+      latName: project.latName,
+      id: project._id,
+      hasChildren: hasChildren,
+      children: children,
+      unfold: project.unfold
+    };
+    tree.push(data);
+    // if (children.length > 0) buildTree(children);
+
+  }
+  return tree;
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Project.find().sort('position').exec(function(err, projects) {
+  Project.find({parentId:undefined, deleted: false}).sort('position').exec(async function(err, projects) {
+    let tree = await buildTree(projects);
+    console.log(tree);
     res.render('admin/index', {
       title: 'Admin',
-      projects: projects,
+      projects: tree,
       user: req.session.user
     });
-
   });
 });
 
-// function getAncestors(id, ancestors) {
-//   Project.findById(id, function(err, project) {
-//     if (err) console.log(err);
-//     else {
-//       ancestors.push({
-//         name: project.name,
-//         latname: project.latName,
-//         id: project._id
-//       });
-//       if (project.hasParent) {
-//         getAncestors(project.parentId, ancestors)
-//       }
-//
-//       else {
-//         console.log(ancestors);
-//         return ancestors;
-//       }
-//
-//     }
-//   })
-// }
 
 // GET Project
-router.get('/project/:id', function(req, res, next) {
-  var id = req.params.id;
 
-  Project.find().sort('position').exec(function(err, projects) {
-    // Project.findById(id, function(err, project) {
-    //   if (project.hasParent) {
-    //     // console.log(project.hasParent);
-    //     var ancestors = getAncestors(project.parentId, []);
-    //     console.log('ANCESTORS: ', ancestors);
-    //   }
-    //
-    //
-    // })
+async function buildPath(projectLeafId, path = []) {
+  console.log(projectLeafId);
+  let project = await Project.findById(projectLeafId);
+  path.unshift(project);
+  if (project.parentId != null) {
+    await buildPath(project.parentId, path);
+  }
+  return path;
+}
+
+router.get('/project/:id', function(req, res, next) {
+  const id = req.params.id;
+
+  Project.find({parentId:undefined, deleted: false}).sort('position').exec(async function(err, projects) {
+    let tree = await buildTree(projects);
+    let ancestorPath = await buildPath(id);
+    let currentProject = await fetchProject(id);
+
     res.render('admin/index', {
       title: 'Admin',
-      projects: projects,
+      projects: tree,
       currentProjectId: id,
+      thisProject: currentProject,        ////// <-- FIXME: Not sent to client??
+      ancestors: ancestorPath,
       user: req.session.user
-
-
-
-    })
-  })
+    }, console.log(currentProject.name));
+  });
 });
 
+//////////////////////////////////// CREATE PROJECT
+
 router.post('/create_project', function(req, res) {
-  var name = req.body.name;
+  const body = req.body;
+  let name = body.name;
   name = name.trim();
-  var latName = latinize(name).toLowerCase();
-  latName = latName.replace(/\s/g , "_");
-  Project.findOne({latName: latName}, function(err, doc) {
-    if (doc) {
-      var rndNr = Math.random().toString(36).substr(2, 5);
-      latName = latName + "_" + rndNr.toString();
+  let latName = slug(name);
+  let parentId = body.parentId;
 
-    }
-
-    new Project({
-      name    : name,
-      title   : name,
-      latName : latName,
-      deleted : false,
-      visible : true,
-      layout  : 'layout_mnu'
-    }).save(function(err, p) {
-      if (err) console.log(err);
-      if (!err) res.send(p.id);
-    });
-
+  new Project({
+    name    : name,
+    title   : name,
+    latName : latName,
+    parentId: parentId,
+    deleted : false,
+    visible : true,
+    layout  : 'layout_mnu'
+  }).save(function(err, p) {
+    if (err) console.log(err);
+    if (!err) res.send(p.id);
   });
 
 });
@@ -119,67 +135,73 @@ function match_loop(list, toCompare) {
   return false
 }
 
-router.post('/create_sub_project', function(req, res) {
-  var name = req.body.name;
-  name = name.trim();
-  var parentId = req.body.parentId;
-  var latName = latinize(name).toLowerCase();
-  latName = latName.replace(/\s/g , "_");
-
-  Project.findById(parentId, function(err, project) {
-    // console.log(project);
-    if (err) console.log(err);
-    else {
-      Project.findOne({latName: latName}, function(err, doc) {
-        if (err) console.log(err);
-        if (doc) {
-          var rndNr = Math.random().toString(36).substr(2, 5);
-          latName = latName + "_" + rndNr.toString();
-
-        }
-        var ancestors = (project.ancestors ? project.ancestors : []);
-        if (!match_loop(ancestors, project.latName)) ancestors.push({
-          name: project.name,
-          id: project._id,
-          latName: project.latName
-        }); // see if ancestor already in list (from a sibling)
-        var newProject = new Project({
-          name        : name,
-          title       : name,
-          latName     : latName,
-          deleted     : false,
-          visible     : true,
-          hasParent   : true,
-          parentId    : parentId,
-          parentName  : project.name,
-          ancestors   : ancestors,
-          layout      : 'layout_mnu'
-
-        });
-        newProject.save(function(err, p) {
-          if (err) res.send(err);
-          else {
-            project.children.push(newProject);
-            project.childrenIds.push(newProject._id);
-            project.hasChildren = true;
-            project.unfold = true;
-            project.save(function(err) {
-              if (err) throw err;
-              else res.send(p.id);
-            });
-          }
-
-        });
-        // updateParent(project.parentId);
-
-
-      });
-
-    }
-
-  });
-
-});
+// router.post('/create_sub_project', function(req, res) {
+//   var name = req.body.name;
+//   name = name.trim();
+//   var parentId = req.body.parentId;
+//   var latName = latinize(name).toLowerCase();
+//   latName = latName.replace(/\s/g , "_");
+//   //
+//   // let subProject = await createSubProject(parentId, latName);
+//   //
+//   // res.send()
+//   //
+//   Project.findById(parentId, function(err, project) {
+//     // console.log(project);
+//     if (err) console.log(err);
+//     else {
+//       Project.findOne({latName: latName}, function(err, doc) {
+//         if (err) console.log(err);
+//         if (doc) {
+//           var rndNr = Math.random().toString(36).substr(2, 5);
+//           latName = latName + "_" + rndNr.toString();
+//
+//         }
+//         var ancestors = (project.ancestors ? project.ancestors : []);
+//         if (!match_loop(ancestors, project.latName)) ancestors.push({
+//           name: project.name,
+//           id: project._id,
+//           latName: project.latName
+//         }); // see if ancestor already in list (from a sibling)
+//         var newProject = new Project({
+//           name        : name,
+//           title       : name,
+//           latName     : latName,
+//           deleted     : false,
+//           visible     : true,
+//           hasParent   : true,
+//           parentId    : parentId,
+//           parentName  : project.name,
+//           ancestors   : ancestors,
+//           layout      : 'layout_mnu'
+//
+//         });
+//         newProject.save(function(err, p) {
+//           if (err) res.send(err);
+//           else {
+//             project.children.push(newProject);
+//             project.childrenIds.push(newProject._id);
+//             project.hasChildren = true;
+//             project.unfold = true;
+//             project.save(function(err) {
+//               if (err) throw err;
+//               else res.send(p.id);
+//             });
+//           }
+//
+//         });
+//         // updateParent(project.parentId);
+//
+//
+//       });
+//
+//     }
+//
+//   });
+//
+// });
+//
+//
 
 
 router.get('/delete/:id', function(req, res) {
@@ -204,6 +226,7 @@ router.get('/delete/:id', function(req, res) {
       });
     }
 
+
     project.deleted = true;
     project.save(function(err, project) {
       res.redirect('/admin');
@@ -212,19 +235,33 @@ router.get('/delete/:id', function(req, res) {
 });
 
 
-////////////////////////////////// REMOVE PROJECT PERMANENTLY
+////////////////////////////////// REMOVE PROJECT PERMANENTLY //////// FIXME: Recursive headf...
+
+removeProject = function(p) {
+  if (p.hasChildren) {
+    for (var i=0; i<p.children.length; i++) {
+      var child = p.children[i];
+      removeProject(child);
+    }
+  }
+  p.remove();
+
+};
 
 router.post('/remove_project', function(req, res) {
   console.log(req.body.id);
-  Project.findById(req.body.id).remove(function(err) {
+  Project.findById(req.body.id, function(err, project) {
     if (err) console.log(err);
-    else res.send('success');
+    else {
+      removeProject(project);
+    }
   })
 });
 
 router.post('/togglefold', function(req, res){
-  var body = req.body;
+  const body = req.body;
   Project.findById(body.id, function(err, project) {
+    console.log(project);
     project.unfold = body.unfold;
     project.save(function(err){
       if (!err) {

@@ -3,37 +3,37 @@
     h1.slim-title ALLGEMEIN
     .layout-container
       .layout.layout-img
-        input#option-1(type='radio', name='layout', value='layout_img', checked=(currentProject.layout==='layout_img'))
+        input#option-1(type='radio', name='layout', value='layout_img', checked=(thisProject.layout==='layout_img'))
 
         .layout-label
           label(for='option-1')
           span LAYOUT MIT BILD
         .layout-img__sub-container
-          input.sub-as-chapters(type='checkbox', checked=currentProject.subAsChapters)
+          input.sub-as-chapters(type='checkbox', checked=thisProject.subAsChapters)
           span Submenüs als Kapitel
       .layout.layout-txt
-        input#option-2(type='radio', name='layout', value='layout_txt', checked=(currentProject.layout==='layout_txt'))
+        input#option-2(type='radio', name='layout', value='layout_txt', checked=(thisProject.layout==='layout_txt'))
         .layout-label
           label(for='option-2')
           span LAYOUT MIT TEXT
       .layout.layout-mnu
-        input#option-3(type='radio', name='layout', value='layout_mnu', checked=(currentProject.layout==='layout_mnu'))
+        input#option-3(type='radio', name='layout', value='layout_mnu', checked=(thisProject.layout==='layout_mnu'))
         .layout-label
           label(for='option-3')
           span NUR MENÜPUNKT
 
     .update-container
       .update__show-update
-        input.show-update(type='checkbox', checked=currentProject.showUpdate)
+        input.show-update(type='checkbox', checked=thisProject.showUpdate)
         span Update-Datum anzeigen
         .update__choose-date
-          input.set-update(type='checkbox', checked=currentProject.setUpdate)
+          input.set-update(type='checkbox', checked=thisProject.setUpdate)
           span Datum selbst wählen
 
-          input.date-picker(type='date', checked=currentProject.ownUpdate, value= currentProject.ownUpdate)
+          input.date-picker(type='date', checked=thisProject.ownUpdate, value= thisProject.ownUpdate)
 
     //.listtype-container
-      //  input#listtype(type='checkbox' checked=currentProject.orderedList)
+      //  input#listtype(type='checkbox' checked=thisProject.orderedList)
       //  .listtype-label
       //    label(for='listtype')
       //    span Nummerierte Liste
@@ -41,10 +41,10 @@
     .menuname-container
       span.menuname-label URL-Name:
       .menuname-wrapper
-        input(type='text', value=currentProject.latName, onkeyup='checkIfValid(this)', onblur='checkNameIsUnique(this)', data-projectid=currentProject._id)#menuname
+        input(type='text', value=thisProject.latName, onkeyup='checkIfValid(this)', onblur='checkNameIsUnique(this)', data-projectid=thisProject._id)#menuname
         span.invalid-msg
     .visible-container
-      input#visible-check(type='checkbox', checked=currentProject.visible)
+      input#visible-check(type='checkbox', checked=thisProject.visible)
       span Wird angezeigt
   hr
   .sub-container.save-container

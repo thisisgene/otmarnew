@@ -1,19 +1,19 @@
 
 nav.breadcrumbs
   ul
-    if (currentProject.ancestors)
+    if (ancestors)
 
-      each crumb in currentProject.ancestors
-        if (crumb.id == currentProject.id)
+      each crumb in ancestors
+        if (crumb.id == thisProject.id)
           break
         else
           li.crumb-link: a(href='/admin/project/'+crumb.id)= crumb.name
-    li: input#project-name-input(type='text', value= currentProject.name, data-currentname= currentProject.name).notempty
+    li: input#project-name-input(type='text', value= thisProject.name, data-currentname= thisProject.name).notempty
   .title-container
     span Titel:
-    input#title(type='text', value= currentProject.title).notempty
+    input#title(type='text', value= thisProject.title).notempty
     span Untertitel:
-    input#subtitle(type='text', value= currentProject.subtitle)
+    input#subtitle(type='text', value= thisProject.subtitle)
 nav.tabs(data-component='tabs', data-equals="true")
   ul.tab-list
     li: a(href='#text-container').slim-title TEXT
@@ -25,22 +25,22 @@ nav.tabs(data-component='tabs', data-equals="true")
 .main-content
 
   #text-container.textarea-wrapper
-    textarea#description= currentProject.descMU
+    textarea#description= thisProject.descMU
   #info-container.textarea-wrapper
-    textarea#info= currentProject.infoMU
+    textarea#info= thisProject.infoMU
   #img-container
     .dropzone-container
       form(action='/admin/upload').dropzone
-        input.hidden-input(name='project_id', value=currentProject._id)
-    .image-list(id='imgList_' + currentProject._id)
-      if (currentProject.images)
+        input.hidden-input(name='project_id', value=thisProject._id)
+    .image-list(id='imgList_' + thisProject._id)
+      if (thisProject.images)
         .closeButton
           a(onclick='closeBigView()') schließen x
         ul
-          each image in currentProject.images
+          each image in thisProject.images
             if (!image.isDeleted)
               li(id='img-li_'+image._id).img-li
-                a(onclick='imageView(this, "'+currentProject._id+'")').img-preview
+                a(onclick='imageView(this, "'+thisProject._id+'")').img-preview
                   .img-thumb: img(src='../../uploads/'+image.filename)
                   .img-name
                     p.img-name-p= image.name
@@ -56,7 +56,7 @@ nav.tabs(data-component='tabs', data-equals="true")
                         label Beschreibung
                         textarea(name='img_desc', rows='2', data-imgdesc=image.desc).form-img--desc= image.desc
                       .form-item
-                        button(onclick='saveImgEdit("'+ currentProject._id + '", "'+ image._id +'")') Speichern
+                        button(onclick='saveImgEdit("'+ thisProject._id + '", "'+ image._id +'")') Speichern
                         button(onclick='cancelImgEdit()').button.secondary.outline Verwerfen
                 .control-container
                   input(type='radio', name='cover-option', id='cover_'+ image._id, onclick='updateImage(this, this.id, "cover")', checked=(image.isCover))
