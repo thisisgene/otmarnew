@@ -188,27 +188,7 @@ router.get('/remove_project', async function(req, res) {
   res.send(msg);
 });
 
-removeProject = function(p) {
-  if (p.hasChildren) {
-    for (var i=0; i<p.children.length; i++) {
-      var child = p.children[i];
-      removeProject(child);
-    }
-  }
-  p.remove();
-
-};
-
-router.post('/remove_project', function(req, res) {
-  console.log(req.body.id);
-  Project.findById(req.body.id, function(err, project) {
-    if (err) console.log(err);
-    else {
-      removeProject(project);
-    }
-  })
-});
-
+////////////////////////////////// Save menu folder toggle state
 
 router.post('/togglefold', function(req, res){
   const body = req.body;
@@ -270,36 +250,6 @@ router.post('/save_all', function(req, res) {
     if (body.namechanged) {
       project.name = body.name;
       msg = 'changed';
-    }
-
-    if (project.hasParent) {
-      Project.findById(project.parentId, function(err, parent) {
-        console.log('parent: ', parent.name);
-        var children = parent.children;
-        for (var i=0; i < children.length; i++) {
-          var child = children[i];
-          console.log('childname: ', child.name);
-          if (child.id == project.id) {
-            if (body.namechanged) child.name = body.name;
-            child.title = title;
-            child.descMU = description;
-            child.descHtml = descHtml;
-            child.layout = layout;
-            child.subAsChapters = subAsChapters;
-            child.showUpdate = showUpdate;
-            child.update = update;
-            child.setUpdate = setUpdate;
-            child.ownUpdate = ownUpdate;
-            child.ownUpdatePretty = ownUpdatePretty;
-            child.latName = latName;
-            child.visible = visible;
-            console.log('adfsghfjghdf')
-          }
-        }
-
-        parent.save();
-
-      });
     }
 
     project.save(function(err) {
