@@ -1,38 +1,4 @@
 - var linkClass = ''
-- var currentProject
-- var parentsList = new Array
-
-//mixin parseSubProjects(obj, parentName, parentId, pList)
-//  ul.unstyled.sub-list
-//    each projectId in obj
-//      each project in projects
-//
-//        if (project.id == projectId && !project.deleted)
-//
-//          - project.parentsList = (pList?pList:[])
-//          - var parent = new Array
-//
-//          - parent.name = parentName
-//          - parent.id = parentName + '12344'
-//          - project.parentsList.push({name: parentName, id: parentId})
-//
-//          if (project._id == currentProjectId)
-//            - linkClass = 'active'
-//            - currentProject = project
-//
-//          else
-//            - linkClass = ''
-//
-//          li(id=project._id, class=project.unfold ? 'unfold' : '').li-container
-//            .li-wrapper(class=linkClass)
-//              .menu-link
-//                div(class=project.hasChildren ? 'folder' : 'nothing')
-//                a(href='/admin/project/' + project._id)
-//                  span.upper.small= project.name
-//              a(href='/admin/delete/' + project._id).delete
-//                img
-//            if (project.hasChildren)
-//              +parseSubProjects(project.childrenIds, project.name, project._id, project.parentsList)
 
 mixin parseProjects(projects)
   each project in projects
@@ -49,7 +15,7 @@ mixin parseProjects(projects)
         a(href='/admin/delete/' + project.id).delete
           img
       if (project.hasChildren)
-        ul.unstyled.sub-list
+        ul(id='list_'+project.id).unstyled.sub-list.sortable.connectedSortable
           +parseProjects(project.children)
 
 
@@ -66,27 +32,5 @@ mixin parseProjects(projects)
 
   .project-list
     a(href='/admin').list-start Start
-    ul.unstyled.sortable.project-ul#main-list
+    ul.unstyled.sortable.connectedSortable.project-ul#main-list
       +parseProjects(projects)
-
-      // each project in projects
-      //   if (!project.deleted && !project.hasParent)
-      //     // - linkClass = (project._id == currentProjectId ? 'active':'')
-      //     if (project._id == currentProjectId)
-      //       - linkClass = 'active'
-      //       - currentProject = project
-      //     else
-      //       - linkClass = ''
-      //     li(id=project._id, class=project.unfold ? 'unfold' : '').li-container
-      //       .li-wrapper(class=linkClass)
-      //
-      //         .menu-link
-      //           div(class=project.hasChildren ? 'folder' : 'nothing')
-      //           a(href='/admin/project/' + project._id)
-      //             span.upper.small= project.name
-      //         a(href='/admin/delete/' + project._id).delete
-      //           img
-      //       if (project.hasChildren)
-      //         +parseSubProjects(project.childrenIds, project.name, project._id)
-
-

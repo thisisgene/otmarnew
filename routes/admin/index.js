@@ -30,7 +30,7 @@ async function fetchProject(id) {
 }
 
 async function getAllChildren(projectId) {
-  let children = await Project.find({parentId: projectId, deleted: false});
+  let children = await Project.find({parentId: projectId, deleted: false}).sort('position');
   return children;
 }
 
@@ -49,7 +49,8 @@ async function buildTree(projects) {
       id: project._id,
       hasChildren: hasChildren,
       children: children,
-      unfold: project.unfold
+      unfold: project.unfold,
+      position: project.position
     };
     tree.push(data);
     // if (children.length > 0) buildTree(children);
@@ -60,7 +61,7 @@ async function buildTree(projects) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Project.find({parentId:undefined, deleted: false}).sort('position').exec(async function(err, projects) {
+  Project.find({parentId:"rootProject", deleted: false}).sort('position').exec(async function(err, projects) {
     let tree = await buildTree(projects);
     console.log(tree);
     res.render('admin/index', {
@@ -78,7 +79,7 @@ async function buildPath(projectLeafId, path = []) {
   console.log(projectLeafId);
   let project = await Project.findById(projectLeafId);
   path.unshift(project);
-  if (project.parentId != null) {
+  if (project.parentId != null && project.parentId !== 'rootProject') {
     await buildPath(project.parentId, path);
   }
   return path;
@@ -87,7 +88,7 @@ async function buildPath(projectLeafId, path = []) {
 router.get('/project/:id', function(req, res, next) {
   const id = req.params.id;
 
-  Project.find({parentId:undefined, deleted: false}).sort('position').exec(async function(err, projects) {
+  Project.find({parentId:"rootProject", deleted: false}).sort('position').exec(async function(err, projects) {
     let tree = await buildTree(projects);
     let ancestorPath = await buildPath(id);
     let currentProject = await fetchProject(id);
@@ -112,6 +113,8 @@ router.post('/create_project', function(req, res) {
   let latName = slug(name);
   let parentId = body.parentId;
 
+  if (parentId==undefined) parentId = 'rootProject';
+
   new Project({
     name    : name,
     title   : name,
@@ -134,74 +137,6 @@ function match_loop(list, toCompare) {
   }
   return false
 }
-
-// router.post('/create_sub_project', function(req, res) {
-//   var name = req.body.name;
-//   name = name.trim();
-//   var parentId = req.body.parentId;
-//   var latName = latinize(name).toLowerCase();
-//   latName = latName.replace(/\s/g , "_");
-//   //
-//   // let subProject = await createSubProject(parentId, latName);
-//   //
-//   // res.send()
-//   //
-//   Project.findById(parentId, function(err, project) {
-//     // console.log(project);
-//     if (err) console.log(err);
-//     else {
-//       Project.findOne({latName: latName}, function(err, doc) {
-//         if (err) console.log(err);
-//         if (doc) {
-//           var rndNr = Math.random().toString(36).substr(2, 5);
-//           latName = latName + "_" + rndNr.toString();
-//
-//         }
-//         var ancestors = (project.ancestors ? project.ancestors : []);
-//         if (!match_loop(ancestors, project.latName)) ancestors.push({
-//           name: project.name,
-//           id: project._id,
-//           latName: project.latName
-//         }); // see if ancestor already in list (from a sibling)
-//         var newProject = new Project({
-//           name        : name,
-//           title       : name,
-//           latName     : latName,
-//           deleted     : false,
-//           visible     : true,
-//           hasParent   : true,
-//           parentId    : parentId,
-//           parentName  : project.name,
-//           ancestors   : ancestors,
-//           layout      : 'layout_mnu'
-//
-//         });
-//         newProject.save(function(err, p) {
-//           if (err) res.send(err);
-//           else {
-//             project.children.push(newProject);
-//             project.childrenIds.push(newProject._id);
-//             project.hasChildren = true;
-//             project.unfold = true;
-//             project.save(function(err) {
-//               if (err) throw err;
-//               else res.send(p.id);
-//             });
-//           }
-//
-//         });
-//         // updateParent(project.parentId);
-//
-//
-//       });
-//
-//     }
-//
-//   });
-//
-// });
-//
-//
 
 
 router.get('/delete/:id', function(req, res) {
@@ -257,6 +192,7 @@ router.post('/remove_project', function(req, res) {
     }
   })
 });
+
 
 router.post('/togglefold', function(req, res){
   const body = req.body;
@@ -356,74 +292,6 @@ router.post('/save_all', function(req, res) {
     })
   })
 
-  // Project.find({'ancestors.name': oldname}).each( function(err, doc) {   // TODO: UPDATE ANCESTORS FOR ALL CHILDREN
-  //   if (err) console.log(err);
-  //   else{
-  //     if (body.namechanged) {
-  //       if (doc.parentName == oldname) doc.parentName = name;
-  //
-  //       for (var j=0; j<doc.ancestors.length; j++) {
-  //         var ancestor = doc.ancestors[j];
-  //         console.log("ANCI: ", ancestor);
-  //
-  //         if (ancestor.name == oldname) {
-  //           ancestor.name = name;
-  //           // ancestor.latName = latName;
-  //           console.log("ANCI new: ", ancestor);
-  //           doc.save();  ////////////////////////////////////////////////// FIXME: SAVE DOC!!??
-  //         }
-  //
-  //       }
-  //       doc.save(function(err) {
-  //         if (err) console.log(err);
-  //         else console.log('doc changed')
-  //       });
-  //
-  //     }
-  //
-  //     Project.findById(id, function(err, project) {
-  //       project.title = title;
-  //       project.descMU = description;
-  //       project.descHtml = descHtml;
-  //       project.layout = layout;
-  //       project.latName = latName;
-  //       project.visible = visible;
-  //       if (body.namechanged) {
-  //         project.name = body.name;
-  //         msg = 'changed';
-  //       }
-  //
-  //       if (project.hasParent) {
-  //         Project.findById(project.parentId, function(err, parent) {
-  //           console.log('parent: ', parent.name);
-  //           var children = parent.children;
-  //           for (var i=0; i < children.length; i++) {
-  //             var child = children[i];
-  //             console.log(child.name);
-  //             if (child.id == project.id) {
-  //               child.name = name;
-  //               child.title = title;
-  //               child.descMU = description;
-  //               child.descHtml = descHtml;
-  //               child.layout = layout;
-  //               child.latName = latName;
-  //               child.visible = visible;
-  //             }
-  //           }
-  //           parent.save();
-  //
-  //         });
-  //       }
-  //
-  //       project.save(function(err) {
-  //         if (err) res.send(err);
-  //         else res.send(msg);
-  //       })
-  //     })
-  //   }
-  //
-  // });
-
 });
 
 router.post('/check_name', function(req, res) {
@@ -446,19 +314,57 @@ router.post('/check_name', function(req, res) {
 
 //////////////////////////////////////////////// SORT PROJECTS
 
-router.post('/projectsort', function ( req, res, next) {
-  Project.find().exec(function (err, projects){
-    var pos;
-    projects.forEach(function(project){
+async function changeParent(id, parent) {
+  let thisProject = await Project.findById(id);
 
-      pos = req.body['position' + project.id];
+  thisProject.parentId = parent;
+  console.log(thisProject.parentId);
+  thisProject.save();
+  return thisProject;
+}
 
-      project.position = pos;
-      project.save();
+router.post('/projectsort', async function ( req, res, next) {
+  let body = req.body;
+  let id = body.thisId;
+  let query;
+  let parent = (body.listId!=='main-list' ? body.listId : 'rootProject');
 
-    });
-    res.send("success");
-  });
+
+  await changeParent(id, parent);
+
+  let projects = await Project.find({parentId: parent});
+  let pos;
+  for (let project of projects) {
+    pos = body['position' + project._id];
+    project.position = pos;
+    project.save();
+  }
+
+  // if (body.listId == 'main-list') {
+  //   query = {};
+  //   parent = '';
+  // }
+  // else {
+  //   query = {parentId: body.listId};
+  //   parent = listId;
+  // }
+  // let thisProject = await Project.findById(id);
+  // console.log(parent);
+  // thisProject.parent = parent;
+  // thisProject.save();
+  //
+  // Project.find(query, function (err, projects){
+  //   if (err) console.log(err);
+  //   var pos;
+  //   projects.forEach(function(project){
+  //
+  //     pos = req.body['position' + project._id];
+  //     project.position = pos;
+  //     project.save();
+  //
+  //   });
+  //   res.send("success");
+  // });
 });
 
 //////////////////////////////////////////////// IMAGE UPLOAD

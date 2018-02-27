@@ -48,16 +48,22 @@ $(document).keydown(function(event) {
 
 $(function() {
   $(".sortable").sortable({
+    connectWith: ".connectedSortable",
     update: function(event, ui){
-      var ul = ui.item.parent();
+      var li = ui.item;
+      var ul = li.parent();
       var dataObj = { };
       var projectId;
+      let thisId = li.attr('id');
+      let listId = ul.attr('id').replace('list_','');
+      dataObj.thisId = thisId;
+      dataObj.listId= listId;
       ul.children('.li-container').each(function(i, ui) {
         var li = $(this);
         projectId = li.attr('id');
         dataObj['position' + projectId] = i;
+        console.log(dataObj);
       });
-      console.log(dataObj);
       $.ajax({
         url: '/admin/projectsort',
         type: 'post',
@@ -158,7 +164,7 @@ function showMsg(cat, content) {
 
 function toggleFold(obj) {
   $obj = $(obj).closest('.li-container');
-
+  console.log('obj: '+obj);
   $obj.toggleClass('unfold');
 
   var unfold = $obj.hasClass('unfold');
@@ -209,9 +215,24 @@ $('.project-form form').on('submit', function(event) {
 
       }
       createProject($sublist, {name: name, parentId: projectParentId});
-      $('#' + projectParentId + ' > .li-wrapper > .menu-link > .nothing').addClass('folder').removeClass('nothing').click(toggleFold(this));
-      $('#' + projectParentId).addClass('unfold');
+      let foldObj = $('#' + projectParentId + ' > .li-wrapper > .menu-link > .nothing');
+      foldObj.addClass('folder').removeClass('nothing').click(function(){
+        $obj = $(this).closest('.li-container');
+        $obj.toggleClass('unfold');
 
+        var unfold = $obj.hasClass('unfold');
+
+        var id = $obj.attr('id');
+        console.log(id, unfold);
+        var body = {
+          id: id,
+          unfold: unfold
+        };
+        $.post('/admin/togglefold', body, function(msg) {
+          console.log(msg);
+        });
+      });
+      $('#' + projectParentId).addClass('unfold');
     }
     else {
       createProject($list, {name: name});

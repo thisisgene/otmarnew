@@ -39,7 +39,7 @@ ProjectSchema.add({
   parentName      : String,
   layout          : String,
   subAsChapters   : Boolean,
-  position        : String,
+  position        : Number,
   images          : [ImageSchema]
 
 });
