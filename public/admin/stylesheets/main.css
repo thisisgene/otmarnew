@@ -916,3 +916,13 @@ body {
     /* line 99, sass/admin/3-sections/trash.sass */
     .trash-wrapper #trash .trash-compartment h1 {
       color: white; }
+    /* line 103, sass/admin/3-sections/trash.sass */
+    .trash-wrapper #trash .trash-compartment .trash-project-container ul {
+      padding-left: 1rem; }
+      /* line 107, sass/admin/3-sections/trash.sass */
+      .trash-wrapper #trash .trash-compartment .trash-project-container ul li.unsortable {
+        color: #bbb; }
+      /* line 110, sass/admin/3-sections/trash.sass */
+      .trash-wrapper #trash .trash-compartment .trash-project-container ul li.enabled {
+        color: #333;
+        cursor: pointer; }

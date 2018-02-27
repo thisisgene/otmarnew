@@ -47,7 +47,11 @@ $(document).keydown(function(event) {
 /////////////////////////// SORTABLE LISTS
 
 $(function() {
+
+
+
   $(".sortable").sortable({
+    items: "li:not(.unsortable)",
     connectWith: ".connectedSortable",
     update: function(event, ui){
       var li = ui.item;
@@ -210,7 +214,9 @@ $('.project-form form').on('submit', function(event) {
       var $parent = $('#' + projectParentId);
       var $sublist = $('#' + projectParentId + ' > .sub-list');
       if (!$sublist.length) {
-        $parent.append('<ul class="unstyled sub-list sortable connect-sortable"></ul>');
+        $parent.append('<ul id="list_'+projectParentId+'" class="unstyled sub-list sortable connect-sortable"></ul>');
+        $('.sortable').sortable();
+        $('.sortable').sortable('refresh');
         $sublist = $('#' + projectParentId + ' > .sub-list');
 
       }

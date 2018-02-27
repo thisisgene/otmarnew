@@ -30,7 +30,7 @@ async function fetchProject(id) {
 }
 
 async function getAllChildren(projectId) {
-  let children = await Project.find({parentId: projectId, deleted: false}).sort('position');
+  let children = await Project.find({parentId: projectId}).sort('position');
   return children;
 }
 
@@ -50,20 +50,20 @@ async function buildTree(projects) {
       hasChildren: hasChildren,
       children: children,
       unfold: project.unfold,
-      position: project.position
+      position: project.position,
+      deleted: project.deleted
     };
     tree.push(data);
-    // if (children.length > 0) buildTree(children);
 
   }
   return tree;
 }
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Project.find({parentId:"rootProject", deleted: false}).sort('position').exec(async function(err, projects) {
+  Project.find({parentId:"rootProject"}).sort('position').exec(async function(err, projects) {
     let tree = await buildTree(projects);
-    console.log(tree);
     res.render('admin/index', {
       title: 'Admin',
       projects: tree,
@@ -88,11 +88,10 @@ async function buildPath(projectLeafId, path = []) {
 router.get('/project/:id', function(req, res, next) {
   const id = req.params.id;
 
-  Project.find({parentId:"rootProject", deleted: false}).sort('position').exec(async function(err, projects) {
+  Project.find({parentId:"rootProject"}).sort('position').exec(async function(err, projects) {
     let tree = await buildTree(projects);
     let ancestorPath = await buildPath(id);
     let currentProject = await fetchProject(id);
-
     res.render('admin/index', {
       title: 'Admin',
       projects: tree,
@@ -138,35 +137,31 @@ function match_loop(list, toCompare) {
   return false
 }
 
+//////////////////////////////// DELETE PROJECTS
+
+async function deleteProject(projectId)  {
+
+  let project = await fetchProject(projectId);
+
+  project.deleted = true;
+  await project.save();
+
+
+  let children = await getAllChildren(projectId);
+  if (children.length > 0) {
+    for (var child of children) {
+      await deleteProject(child._id);
+    }
+
+  }
+  return 'success'
+}
 
 router.get('/delete/:id', function(req, res) {
   var id = req.params.id;
-  Project.findById(id, function(err, project) {
-
-    if (project.hasParent) {
-      Project.findById(project.parentId, function(err, parent) {
-        var children = parent.children;
-        for (var i=0; i < children.length; i++) {
-          var child = children[i];
-          if (child.id == project.id) {
-            // child.deleted = true;
-            var index = children.indexOf(child);
-            parent.children.splice(index, 1);
-          }
-
-        }
-        if (parent.children.length <= 0) parent.hasChildren = false;
-        parent.save();
-
-      });
-    }
-
-
-    project.deleted = true;
-    project.save(function(err, project) {
-      res.redirect('/admin');
-    });
-  })
+  deleteProject(id).then(function(){
+    res.redirect('back');
+  });
 });
 
 
@@ -337,34 +332,13 @@ router.post('/projectsort', async function ( req, res, next) {
   for (let project of projects) {
     pos = body['position' + project._id];
     project.position = pos;
+    if (!parent.deleted && project.deleted) project.deleted = false;
     project.save();
+
   }
 
-  // if (body.listId == 'main-list') {
-  //   query = {};
-  //   parent = '';
-  // }
-  // else {
-  //   query = {parentId: body.listId};
-  //   parent = listId;
-  // }
-  // let thisProject = await Project.findById(id);
-  // console.log(parent);
-  // thisProject.parent = parent;
-  // thisProject.save();
-  //
-  // Project.find(query, function (err, projects){
-  //   if (err) console.log(err);
-  //   var pos;
-  //   projects.forEach(function(project){
-  //
-  //     pos = req.body['position' + project._id];
-  //     project.position = pos;
-  //     project.save();
-  //
-  //   });
-  //   res.send("success");
-  // });
+    res.send("success");
+
 });
 
 //////////////////////////////////////////////// IMAGE UPLOAD

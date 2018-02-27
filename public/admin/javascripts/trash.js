@@ -12,6 +12,5 @@ $('#empty-trash').click(function(e) {
 });
 
 function toggleTrash(){
-  console.log('adfsgs');
   $('.trash-wrapper').toggleClass('show-trash');
 }

@@ -1,3 +1,16 @@
+mixin parseTrash(projects)
+  each p in projects
+    if (p.children.length > 0 || p.deleted)
+      li(id=p.id, class=(p.deleted ? 'enabled' : 'unsortable')).li-container
+        .li-wrapper
+
+          span.upper.small= p.name
+
+        if (p.hasChildren)
+          ul(id='list_'+p.id).unstyled.sub-trash-list.sortable.connectedSortable
+            +parseTrash(p.children)
+
+
 .trash-handle(onclick='toggleTrash()')
   .trash-img
 
@@ -8,9 +21,6 @@
 
     a#empty-trash Papierkorb leeren
 
-    ul.trash-project-list.sortable.connect-sortable
+    ul.trash-project-list.sortable.connect-sortable.unstyled
 
-      each project in projects
-        if (project.deleted)
-          li(id= project._id).trash-project
-            a(href='/admin/revive/' + project._id)= project.name
+      +parseTrash(projects)
