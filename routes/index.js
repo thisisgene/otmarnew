@@ -15,6 +15,7 @@ async function getAllChildren(projectId, query) {
 
 async function buildPath(projectLeafId, path = []) {
   let project = await Project.findById(projectLeafId);
+
   path.unshift(project);
   if (project.parentId != null && project.parentId != 'rootProject') {
     await buildPath(project.parentId, path);
@@ -47,9 +48,24 @@ async function fetchProjectsWithLink(query) {
       showUpdate: project.showUpdate,
       setUpdate: project.setUpdate
     });
-    console.log(project.name, link)
   }
   return projectObj;
+}
+
+async function includeLinkToPath(path){
+  let fullObj = [];
+  for (project of path) {
+    let p = await buildPath(project);
+    let link = getLink(p, project);
+    let obj = {
+      name:     project.name,
+      latName:  project.latName,
+      link:     link,
+      id:       project._id
+    };
+    fullObj.push(obj);
+  }
+  return fullObj;
 }
 
 /* GET home page. */
@@ -65,7 +81,8 @@ router.get('/site/*/:id', async function(req, res){
   let id = req.params.id;
   let project = await Project.findById(id);
   let children = await fetchProjectsWithLink({parentId: id, deleted: false, visible: true});
-  console.log(children);
+  let ancestorPath = await buildPath(id);
+  let ancestors = await includeLinkToPath(ancestorPath);
   let nextP = '';
   let prevP = '';
 
@@ -97,6 +114,7 @@ router.get('/site/*/:id', async function(req, res){
     title: 'Otmar Rychlik | ' + project.name,
     project: project,
     children: children,
+    ancestors: ancestors,
     nextProject: nextP,
     prevProject: prevP
   });

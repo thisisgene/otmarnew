@@ -6,6 +6,6 @@ nav.breadcrumbs
 
       each crumb in ancestors
         if (crumb.id == project.id)
-          - break
+          - break;
         else
-          li.crumb-link: a(href='/site/' + crumb.latName)= crumb.name
+          li.crumb-link: a(href=crumb.link)= crumb.name
