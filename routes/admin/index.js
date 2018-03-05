@@ -320,6 +320,20 @@ router.post('/projectsort', async function ( req, res, next) {
 
 //////////////////////////////////////////////// IMAGE UPLOAD
 
+async function checkIfCoverExists(project) {
+  let images = project.images;
+  if (images.length <= 0 || images === undefined) return true;
+  else {
+    for (image of images) {
+      if (image.isCover && !image.isDeleted) {
+        console.log('found');
+        return false
+      }
+    }
+    return true
+  }
+}
+
 router.post('/upload', upload.single('file'), function(req, res) {
   var file = req.file;
   if ( !file.mimetype.startsWith( 'image/' ) ) {
@@ -329,7 +343,9 @@ router.post('/upload', upload.single('file'), function(req, res) {
   }
   else {
     var id = req.body.project_id;
-    Project.findById(id, function(err, project) {
+    let isCover = false;
+    Project.findById(id, async function(err, project) {
+      isCover = await checkIfCoverExists(project);
       if (err) res.send(err);
       else {
         var oName = file.originalname;
@@ -345,7 +361,8 @@ router.post('/upload', upload.single('file'), function(req, res) {
           truePath: truePath,
           fileSize: file.size,
           isVisible: true,
-          isDeleted: false
+          isDeleted: false,
+          isCover: isCover
         });
         image.save();
         project.images.push(image);
