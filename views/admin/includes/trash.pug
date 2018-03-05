@@ -25,4 +25,5 @@ mixin parseTrash(projects)
 
     ul.trash-project-list.sortable.connect-sortable.unstyled
 
-      +parseTrash(delPros)
+      if (delPros.length > 0)
+        +parseTrash(delPros)
