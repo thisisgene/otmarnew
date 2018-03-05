@@ -64,6 +64,18 @@ async function getProjectTree(query1, query2) {
   return await buildTree(projects, query2);
 }
 
+async function sortProjects(parentId, body) {
+  let projects = await Project.find({parentId: parentId});
+  let pos;
+  for (let project of projects) {
+    pos = body['position' + project._id];
+    project.position = pos;
+    if (!parentId.deleted && project.deleted) project.deleted = false;
+    project.save();
+
+  }
+}
+
 /* GET home page. */
 router.get('/', async function(req, res, next) {
 
@@ -168,7 +180,7 @@ async function deleteProject(projectId)  {
 router.get('/delete/:id', function(req, res) {
   var id = req.params.id;
   deleteProject(id).then(function(){
-    res.redirect('back');
+    res.redirect('/admin');
   });
 });
 
@@ -293,22 +305,16 @@ router.post('/projectsort', async function ( req, res, next) {
   let body = req.body;
   let id = body.thisId;
   let query;
-  let parent = (body.listId!=='main-list' ? body.listId : 'rootProject');
+  let parentId = (body.listId!=='main-list' ? body.listId : 'rootProject');
 
 
-  await changeParent(id, parent);
+  await changeParent(id, parentId);
 
-  let projects = await Project.find({parentId: parent});
-  let pos;
-  for (let project of projects) {
-    pos = body['position' + project._id];
-    project.position = pos;
-    if (!parent.deleted && project.deleted) project.deleted = false;
-    project.save();
+  await sortProjects(parentId, body);
 
-  }
 
-    res.send("success");
+
+  res.send("success");
 
 });
 

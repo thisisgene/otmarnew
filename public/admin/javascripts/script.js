@@ -46,6 +46,30 @@ $(document).keydown(function(event) {
 
 /////////////////////////// SORTABLE LISTS
 
+function sortProjects(obj) {
+  var li = obj;
+  var ul = li.parent();
+  var dataObj = { };
+  var projectId;
+  let thisId = li.attr('id');
+  let listId = ul.attr('id').replace('list_','');
+  dataObj.thisId = thisId;
+  dataObj.listId= listId;
+  ul.children('.li-container').each(function(i, ui) {
+    var li = $(this);
+    projectId = li.attr('id');
+    dataObj['position' + projectId] = i;
+    console.log(dataObj);
+  });
+  $.ajax({
+    url: '/admin/projectsort',
+    type: 'post',
+    data: dataObj
+  }).done(function() {
+    // location.reload();
+  });
+}
+
 $(function() {
 
 
@@ -53,30 +77,11 @@ $(function() {
   $(".sortable").sortable({
     items: "li:not(.unsortable)",
     connectWith: ".connectedSortable",
-    update: function(event, ui){
+    update: function(event, ui) {
       var li = ui.item;
-      var ul = li.parent();
-      var dataObj = { };
-      var projectId;
-      let thisId = li.attr('id');
-      let listId = ul.attr('id').replace('list_','');
-      dataObj.thisId = thisId;
-      dataObj.listId= listId;
-      ul.children('.li-container').each(function(i, ui) {
-        var li = $(this);
-        projectId = li.attr('id');
-        dataObj['position' + projectId] = i;
-        console.log(dataObj);
-      });
-      $.ajax({
-        url: '/admin/projectsort',
-        type: 'post',
-        data: dataObj
-      }).done(function() {
-        // location.reload();
-      });
+      sortProjects(li)
     }
-  });
+  })
 
 });
 /////////////////////////// ERROR HANDLING
@@ -189,7 +194,8 @@ function toggleFold(obj) {
 
 function createProject(list, body) {
   $.post('/admin/create_project', body, function (data) {
-    list.append('<li class="li-container" id=' + data + '>\n' +
+    let $li = $(
+      '<li class="li-container" id=' + data + '>\n' +
       '  <div class="li-wrapper">\n' +
       '    <div class="menu-link">\n' +
       '      <div class="nothing"></div><a href="/admin/project/' + data + '"><span class="upper small">' + body.name + '</span></a>\n' +
@@ -197,6 +203,8 @@ function createProject(list, body) {
       '  </div>\n' +
       '</li>'
     );
+    list.append($li);
+    sortProjects($li);
   });
 
 }

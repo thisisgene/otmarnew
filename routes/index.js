@@ -39,7 +39,7 @@ async function fetchProjectsWithLink(query) {
   let projectObj = [];
   for (let project of projects) {
     let path = await buildPath(project._id);
-    let link = getLink(path, project);
+    let link = await getLink(path, project);
     projectObj.push({
       name: project.name,
       path: link,
@@ -56,7 +56,7 @@ async function includeLinkToPath(path){
   let fullObj = [];
   for (project of path) {
     let p = await buildPath(project);
-    let link = getLink(p, project);
+    let link = await getLink(p, project);
     let obj = {
       name:     project.name,
       latName:  project.latName,
@@ -103,12 +103,15 @@ router.get('/site/*/:id', async function(req, res){
   };
   let nextProject = await Project.findOne(nextQuery).sort({_id: 1 });
   if (nextProject!=null) {
-    nextP = nextProject.latName;
+    let path = await buildPath(nextProject._id);
+    nextP = await getLink(path, nextProject);
   }
   let prevProject = await Project.findOne(prevQuery).sort({_id: -1 });
   if (prevProject!=null) {
-    prevP = prevProject.latName;
+    let path = await buildPath(prevProject._id);
+    prevP = await getLink(path, prevProject);
   }
+
 
   res.render('project/'+project_layout, {
     title: 'Otmar Rychlik | ' + project.name,
