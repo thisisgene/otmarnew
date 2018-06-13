@@ -45,13 +45,13 @@ block content
             p Bitte blättern Sie weiter
             .hand-point.hand-point__left
 
-        if (project.children && project.subAsChapters)
+        if (children && project.subAsChapters)
           .chapter-container
             h3 INHALT
               .small (Zum Weiterlesen klicken)
-            each child in project.children
+            each child in children
               if (child.visible && !child.deleted)
-                p.sub-title: a(href='/site/' + child.latName)= child.name
+                p.sub-title: a(href= child.path)= child.name
 
     .project-control
       if (prevProject)

@@ -357,7 +357,8 @@ function updateImage(obj, objId, cat) {
   projectId = $('.current-id').data('id');
   var status;
   var $parentLi = $(obj).closest('.img-li');
-  if (cat == 'visibility') {status = $(obj)[0].checked;}
+  if (cat == 'visible') {status = $(obj)[0].checked;}
+  console.log(status);
   var body = {
     imgid  : id,
     proid  : projectId,

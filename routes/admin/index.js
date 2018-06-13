@@ -109,8 +109,8 @@ router.get('/project/:id', async function(req, res, next) {
 
   let regTree = await getProjectTree({parentId:"rootProject"}, {deleted: false});
   let delTree = await getProjectTree({parentId:"rootProject"}, {});
-  let ancestorPath = await buildPath(id);
   let currentProject = await fetchProject(id);
+  let ancestorPath = await buildPath(id);
   res.render('admin/index', {
     title: 'Admin',
     projects: regTree,

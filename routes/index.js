@@ -43,10 +43,13 @@ async function fetchProjectsWithLink(query) {
     projectObj.push({
       name: project.name,
       path: link,
+      description: project.descHtml,
       update: project.update,
       ownUpdatePretty: project.ownUpdatePretty,
       showUpdate: project.showUpdate,
-      setUpdate: project.setUpdate
+      setUpdate: project.setUpdate,
+      visible: project.visible,
+      deleted: project.deleted
     });
   }
   return projectObj;
@@ -85,7 +88,7 @@ router.get('/site/*/:id', async function(req, res){
   let ancestors = await includeLinkToPath(ancestorPath);
   let nextP = '';
   let prevP = '';
-
+  console.log(children);
   let project_layout = project.layout;
   let nextQuery = {
     parentId: project.parentId,
