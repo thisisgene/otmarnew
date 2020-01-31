@@ -52,6 +52,6 @@ var Project = mongoose.model('Project', ProjectSchema);
 var Image = mongoose.model('Image', ImageSchema);
 
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://admin:otmarDB_adm2018@localhost/rychlik', {useMongoClient: true});
+mongoose.connect('mongodb://admin:otmarDB_adm2018@localhost:31297/rychlik', {useMongoClient: true});
 
 // otmarDB_adm2018

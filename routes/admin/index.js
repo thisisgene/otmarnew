@@ -348,6 +348,7 @@ router.post('/upload', upload.single('file'), function(req, res) {
       isCover = await checkIfCoverExists(project);
       if (err) res.send(err);
       else {
+        console.log("PROJECT LOG: ", project.name);
         var oName = file.originalname;
         var truePath = file.path.substring(6);
         console.log(file.path, truePath);
@@ -364,11 +365,14 @@ router.post('/upload', upload.single('file'), function(req, res) {
           isDeleted: false,
           isCover: isCover
         });
-        image.save();
-        project.images.push(image);
-        project.save(function(err, project) {
-          res.send('success');
+        image.save((err, image) => {
+          project.images.push(image);
+          project.save(function(err, project) {
+            console.log("saved success");
+            res.send('success');
+          });
         });
+        
       }
     })
   }
